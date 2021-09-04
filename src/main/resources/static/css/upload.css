@@ -19,6 +19,12 @@
   border: 1px solid #dbdbdb;
 }
 
+.upload__logo{
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
 /*업로드박스 로고*/
 .upload .upload-top {
   text-align: center;
@@ -93,7 +99,8 @@
 .upload .upload-form .upload-form-detail button {
   width: 340px;
 }
-.upload .upload-form .upload-form-detail input {
+.upload .upload-form .upload-form-detail input,
+textarea{
   text-indent: 10px;
   height: 45px;
   margin-bottom: 5px;

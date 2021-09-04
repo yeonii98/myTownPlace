@@ -10,10 +10,10 @@
                
                <!--사진업로드 로고-->
                 <div class="upload-top">
-                    <a href="home.html" class="">
-                        <img src="/images/logo.jpg" alt="">
+                    <a href="home.html" class="logo upload__logo">
+                        우리 동네 맛집<i class="fas fa-utensils header_icon"></i>
                     </a>
-                    <p>사진 업로드</p>
+                    <p>리뷰 쓰기</p>
                 </div>
                 <!--사진업로드 로고 end-->
                 
@@ -26,7 +26,9 @@
                     
                     <!--사진설명 + 업로드버튼-->
                     <div class="upload-form-detail">
-                   		 <input type="text" placeholder="사진설명" name="caption">
+                         <input type="text" placeholder="동네를 적어주세요" name="town">
+                         <input type="text" placeholder="음식점 이름을 적어주세요" name="bistro">
+                        <input type="text" placeholder="리뷰를 적어주세요" name="caption">
                         <button class="cta blue">업로드</button>
                     </div>
                     <!--사진설명end-->

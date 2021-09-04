@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photogram</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +23,7 @@
                 <article class="login__form__container">
                    <!--로그인 폼-->
                    <div class="login__form">
-                        <h1>우리 동네 맛집</h1>
+                        <h1 style="font-family: 'Gowun Dodum', sans-serif">우리 동네 맛집<i class="fas fa-utensils header_icon"></i></h1>
                         
                         <!--로그인 인풋-->
                         <form class="login__input" >
@@ -42,8 +44,8 @@
                         <!-- Oauth 소셜로그인 -->
                         <div class="login__facebook">
                             <button>
-                                <i class="fab fa-facebook-square"></i>
-                                <span>Facebook으로 로그인</span>
+                                <i class="fab fa-google"></i>
+                                <span>Google로 로그인</span>
                             </button>
                         </div>
                         <!-- Oauth 소셜로그인end -->

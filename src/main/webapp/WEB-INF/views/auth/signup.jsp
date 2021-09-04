@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photogram</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -22,15 +24,15 @@
                    <!--회원가입 폼-->
                     <div class="login__form">
                         <!--로고-->
-                        <h1>우리 동네 맛집</h1>
+                        <h1 style="font-family: 'Gowun Dodum', sans-serif">우리 동네 맛집<i class="fas fa-utensils header_icon"></i></h1>
                          <!--로고end-->
                          
                          <!--회원가입 인풋-->
-                        <form class="login__input" >
-                            <input type="text" name="username" placeholder="유저네임" required="required" />
-                            <input type="password" name="password" placeholder="패스워드" required="required" />
+                        <form class="login__input" action="/auth/signup" method="post">
                             <input type="email" name="email" placeholder="이메일" required="required" />
-                            <input type="text" name="name" placeholder="이름" required="required" />
+                            <input type="text" name="name" placeholder="성명" required="required" />
+                            <input type="text" name="username" placeholder="사용자 이름" required="required" />
+                            <input type="password" name="password" placeholder="비밀번호" required="required" />
                             <button>가입</button>
                         </form>
                         <!--회원가입 인풋end-->

@@ -39,7 +39,7 @@
 				<ul>
 					<li><a href=""> 게시물<span>3</span>
 					</a></li>
-					<li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>2</span>
+					<li><a href="javascript:subscribeInfoModalOpen();"> 즐겨찾기<span>2</span>
 					</a></li>
 				</ul>
 			</div>
@@ -122,7 +122,7 @@
 <div class="modal-subscribe">
 	<div class="subscribe">
 		<div class="subscribe-header">
-			<span>구독정보</span>
+			<span>즐겨찾기</span>
 			<button onclick="modalClose()">
 				<i class="fas fa-times"></i>
 			</button>
