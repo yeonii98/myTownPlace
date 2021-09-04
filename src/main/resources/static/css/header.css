@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+}
+
+.header {
+  height: 54px;
+  background: #fff;
+  width: 100%;
+  border: 1px solid gainsboro;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 935px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.header__search{
+  border-radius: 10px;
+  height: 32px;
+  width: 160px;
+  border: solid 1.5px;
+  padding: 8px;
+  font-family: 'Gowun Dodum', sans-serif;;
+}
+
+.header__search--btn{
+  border-radius: 12px;
+  height: 32px;
+  width: 49px;
+  border: solid 1.5px;
+  background-color: white;
+}
+
+.header_icon{
+  padding-left: 6px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 26px;
+  color: black;
+}
+/*.logo img {*/
+/*  width: 120px;*/
+/*}*/
+
+.navi > .navi-list {
+  display: flex;
+}
+.navi > .navi-list .navi-item {
+  flex: 1;
+  text-align: center;
+  margin: 0 15px;
+  display: flex;
+}
+.navi > .navi-list .navi-item a i {
+  font-size: 22px;
+  color: #000000;
+  margin-top: 4px;
+}
+
+@media screen and (max-width: 935px) {
+  .header .container {
+    width: 100%;
+  }
+}
