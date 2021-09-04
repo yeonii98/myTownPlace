@@ -41,7 +41,7 @@
                     
                     <!--계정이 있으신가요?-->
                     <div class="login__register">
-                        <span>계정이 있으신가요?</span>
+                        <span style="color: black">계정이 있으신가요?</span>
                         <a href="/auth/signin">로그인</a>
                     </div>
                     <!--계정이 있으신가요?end-->

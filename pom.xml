@@ -112,6 +112,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- 유효성 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>2.4.4</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
