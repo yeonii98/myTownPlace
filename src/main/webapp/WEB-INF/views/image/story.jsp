@@ -15,7 +15,7 @@
 							onerror="this.src='/images/person.jpeg'" />
 					</div>
 					<div>허군스시</div>
-					<button class="story__review" onclick="location.href='popular'">
+					<button class="story__review" onclick="location.href='/image/popular'">
 						리뷰 보러가기
 					</button>
 				</div>

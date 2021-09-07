@@ -34,7 +34,7 @@
 	
 	<header class="header">
 		<div class="container">
-			<a href="/image/story" class="logo">
+			<a href="/" class="logo">
 				우리 동네 맛집<i class="fas fa-utensils header_icon"></i>
 			</a>
 			<div class="input-box">
@@ -43,13 +43,13 @@
 			</div>
 			<nav class="navi">
 				<ul class="navi-list">
-					<li class="navi-item"><a href="/image/story">
+					<li class="navi-item"><a href="/">
 							<i class="fas fa-home"></i>
 						</a></li>
 <%--					<li class="navi-item"><a href="/image/popular">--%>
 <%--							<i class="fas fa-utensils"></i>--%>
 <%--						</a></li>--%>
-					<li class="navi-item"><a href="/user/profile">
+					<li class="navi-item"><a href="/user/1">
 							<i class="fas fa-user"></i>
 						</a></li>
 				</ul>
