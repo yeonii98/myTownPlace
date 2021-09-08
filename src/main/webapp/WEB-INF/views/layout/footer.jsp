@@ -15,7 +15,7 @@
 			<li><a href="#a">위치</a></li>
 		</ul>
 		<div class="copy">
-			<p>© 2021 우리동네맛집 from There Programing</p>
+			<p>© 2021 우리동네맛집 from jj</p>
 		</div>
 	</div>
 </footer>

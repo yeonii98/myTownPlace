@@ -23,6 +23,12 @@
   display: flex;
   margin: 54px 0 44px;
 }
+.profile-div{
+  width: 935px;
+  border: 1px solid gainsboro;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
 .profile > .profileContainer {
   padding: 30px 20px 0;
 }

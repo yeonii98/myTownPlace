@@ -27,7 +27,7 @@
                         
                         <!--로그인 인풋-->
                         <form class="login__input" action="/auth/signin" method="POST">
-                            <input type="text" name="username" placeholder="유저네임" required="required" />
+                            <input type="text" name="username" placeholder="사용자 이름 또는 이메일" required="required" />
                             <input type="password" name="password" placeholder="비밀번호" required="required" />
                             <button>로그인</button>
                         </form>
@@ -45,7 +45,7 @@
                         <div class="login__facebook">
                             <button>
                                 <i class="fab fa-google"></i>
-                                <span>Google로 로그인</span>
+                                <span style="color: #385185">Google로 로그인</span>
                             </button>
                         </div>
                         <!-- Oauth 소셜로그인end -->
@@ -53,7 +53,7 @@
                     
                     <!--계정이 없으신가요?-->
                     <div class="login__register">
-                        <span>계정이 없으신가요?</span>
+                        <span style="color: black">계정이 없으신가요?</span>
                         <a href="/auth/signup">가입하기</a>
                     </div>
                     <!--계정이 없으신가요?end-->

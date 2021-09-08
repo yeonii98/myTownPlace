@@ -18,7 +18,7 @@
 				</form>
 
 				<img src="#"
-					onerror="this.src='/images/person.jpeg'" id="userProfileImage" />
+					onerror="this.src='/images/profile.JPG'" id="userProfileImage" />
 			</div>
 		</div>
 		<!--유저이미지end-->
@@ -26,10 +26,9 @@
 		<!--유저정보 및 사진등록 구독하기-->
 		<div class="profile-right">
 			<div class="name-group">
-				<h2>허군스시</h2>
-
-				<button class="cta" onclick="location.href='/image/upload'">리뷰쓰기</button>
-				<button class="cta" onclick="toggleSubscribe(this)">즐겨찾기</button>
+				<h2>${principal.user.username}</h2>
+<%--				<button class="cta" onclick="toggleSubscribe(this)">즐겨찾기</button>--%>
+				<button class="modi" onclick="location.href='/image/upload'"><i class="fas fa-edit"></i></button>
 				<button class="modi" onclick="popup('.modal-info')">
 					<i class="fas fa-cog"></i>
 				</button>
@@ -44,15 +43,18 @@
 				</ul>
 			</div>
 			<div class="state">
-				<h4>자기 소개입니다.</h4>
-				<h4>https://github.com/codingspecialist</h4>
+				<h4>${principal.user.name}</h4>
+				<h4>${principal.user.bio}</h4>
+				<h4><a href="${principal.user.website}" style="color: black">${principal.user.website}</a></h4>
 			</div>
 		</div>
 		<!--유저정보 및 사진등록 구독하기-->
 
 	</div>
 </section>
-
+<div style="display: flex; justify-content: center">
+	<div class = "profile-div"></div>
+</div>
 <!--게시물컨섹션-->
 <section id="tab-content">
 	<!--게시물컨컨테이너-->
@@ -66,7 +68,7 @@
 
 
 				<div class="img-box">
-					<a href=""> <img src="/images/home.jpg" />
+					<a href=""> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 					</a>
 					<div class="comment">
 						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
@@ -75,7 +77,7 @@
 				</div>
 
 				<div class="img-box">
-					<a href=""> <img src="/images/home.jpg" />
+					<a href=""> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 					</a>
 					<div class="comment">
 						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
@@ -84,7 +86,7 @@
 				</div>
 
 				<div class="img-box">
-					<a href=""> <img src="/images/home.jpg" />
+					<a href=""> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 					</a>
 					<div class="comment">
 						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
@@ -101,7 +103,8 @@
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info" onclick="modalInfo()">
 	<div class="modal">
-		<button onclick="location.href='/user/1/update'">회원정보 변경</button>
+		<button>비밀번호 변경</button>
+		<button onclick="location.href='/user/1/update'">프로필 변경</button>
 		<button onclick="location.href='/logout'">로그아웃</button>
 		<button onclick="closePopup('.modal-info')">취소</button>
 	</div>
@@ -132,7 +135,7 @@
 
 			<div class="subscribe__item" id="subscribeModalItem-1">
 				<div class="subscribe__img">
-					<img src="#" onerror="this.src='/images/person.jpeg'"/>
+					<img src="#" onerror="this.src='/images/profile.JPG'"/>
 				</div>
 				<div class="subscribe__text">
 					<h2>love</h2>
@@ -145,7 +148,7 @@
 
 			<div class="subscribe__item" id="subscribeModalItem-2">
 				<div class="subscribe__img">
-					<img src="#" onerror="this.src='/images/person.jpeg'"/>
+					<img src="#" onerror="this.src='/images/profile.JPG'"/>
 				</div>
 				<div class="subscribe__text">
 					<h2>ssar</h2>

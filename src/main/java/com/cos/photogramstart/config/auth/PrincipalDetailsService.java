@@ -17,11 +17,17 @@ public class PrincipalDetailsService implements UserDetailsService {
     //1. 패스워드는 알아서 체킹하니까 신결 쓸 필요 없다.
     //2. 리턴이 잘 되면 자동으로 UserDetails 타입을 세션으로 만든다.
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User userEntity = userRepository.findByUsername(username);
-        if(userEntity == null){
+    public UserDetails loadUserByUsername(String user) throws UsernameNotFoundException {
+        User userEntity = null;
+        if (!user.contains("@"))
+            userEntity = userRepository.findByUsername(user);
+        else
+            userEntity = userRepository.findByEmail(user);
+
+        if (userEntity == null) {
             return null;
-        }else{
+        } else {
             return new PrincipalDetails(userEntity);
         }
-}}
+    }
+}

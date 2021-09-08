@@ -15,15 +15,22 @@
   margin-top: 30px;
   display: flex;
   border-radius: 4px;
+  background-color: white;
+  justify-content: center;
+}
+
+.profile-img__update{
+  border: none;
+  background-color: white;
+  color: #0096f6;
+  font-weight: bold;
 }
 
 /*프로필셋팅 아티클*/
 .setting-container .setting__content {
-  border-left: 1px solid gainsboro;
   display: flex;
   flex-direction: column;
   padding-top: 32px;
-  margin-right: 10%;
 }
 
 /*프로필 셋팅 내이미지 + 아이디*/
@@ -40,7 +47,7 @@
 
 /* 유저이미지, 유저아이디*/
 .setting-container .setting__content .content-item__01 .item__img {
-  flex: 2;
+  flex: 1;
   text-align: right;
   padding-right: 30px;
 }
@@ -58,12 +65,12 @@
 
 /*form 입력요소 타이틀*/
 .setting-container .setting__content div .item__title {
-  flex: 2;
+  flex: 1;
   padding-right: 30px;
   text-align: right;
   font-size: 17px;
   font-weight: 600;
-  padding-top: 7px;
+  padding-top: 3px;
 }
 
 /*form 입력요소 인풋박스*/
@@ -80,14 +87,18 @@
   padding: 0 10px;
   border-radius: 3px;
   font-size: 16px;
+  width: 355px;
 }
 
 /*form 입력요소 소개부분*/
 .setting-container .setting__content div .item__input textarea {
   border: 1px solid #dbdbdb;
-  padding: 5px 10px;
+  padding: 5px 0px;
   border-radius: 3px;
   font-size: 16px;
+  resize: vertical;
+  width: 355px;
+  height: 60px;
 }
 
 /* 비즈니스나 반려동물 어쩌고*/
@@ -95,6 +106,8 @@
   color: #8e8e8e;
   font-size: 12px;
   padding-top: 10px;
+  max-width: 355px;
+  width: 100%;
 }
 
 /*제출버튼*/

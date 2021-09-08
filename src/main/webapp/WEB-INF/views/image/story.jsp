@@ -12,7 +12,7 @@
 				<div class="sl__item__header">
 					<div>
 						<img src="#"
-							onerror="this.src='/images/person.jpeg'" />
+							onerror="this.src='/images/profile.JPG'" />
 					</div>
 					<div>허군스시</div>
 					<button class="story__review" onclick="location.href='/image/popular'">

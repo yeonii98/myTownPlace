@@ -10,31 +10,31 @@
 		<div class="popular-gallery">
 
 			<div class="p-img-box">
-				<a href="/user/profile"> <img src="/images/home.jpg" />
+				<a href="/user/profile"> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 				</a>
 			</div>
 			<div class="p-img-box">
-				<a href="/user/profile"> <img src="/images/home.jpg" />
+				<a href="/user/profile"> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 				</a>
 			</div>
 			<div class="p-img-box">
-				<a href="/user/profile"> <img src="/images/home.jpg" />
+				<a href="/user/profile"> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 				</a>
 			</div>
 			<div class="p-img-box">
-				<a href="/user/profile"> <img src="/images/home.jpg" />
+				<a href="/user/profile"> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 				</a>
 			</div>
 			<div class="p-img-box">
-				<a href="/user/profile"> <img src="/images/home.jpg" />
+				<a href="/user/profile"> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 				</a>
 			</div>
 			<div class="p-img-box">
-				<a href="/user/profile"> <img src="/images/home.jpg" />
+				<a href="/user/profile"> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 				</a>
 			</div>
 			<div class="p-img-box">
-				<a href="/user/profile"> <img src="/images/home.jpg" />
+				<a href="/user/profile"> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
 				</a>
 			</div>
 		</div>

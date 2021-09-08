@@ -162,6 +162,7 @@ span {
 /*가입페이지 이동버튼*/
 .login__register a {
   color: #0095f6;
+  font-weight: bold;
 }
 
 /* 버튼디자인 */
