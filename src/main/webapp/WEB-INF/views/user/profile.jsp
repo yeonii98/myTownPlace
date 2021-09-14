@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -26,8 +27,8 @@
 		<!--유저정보 및 사진등록 구독하기-->
 		<div class="profile-right">
 			<div class="name-group">
-				<h2>${principal.user.username}</h2>
-<%--				<button class="cta" onclick="toggleSubscribe(this)">즐겨찾기</button>--%>
+				<h2>${user.username}</h2>
+				<button class="modi" onclick="toggleSubscribe(this)"><i class="far fa-star" style="color: #0095f6"></i></button>
 				<button class="modi" onclick="location.href='/image/upload'"><i class="fas fa-edit"></i></button>
 				<button class="modi" onclick="popup('.modal-info')">
 					<i class="fas fa-cog"></i>
@@ -36,16 +37,16 @@
 
 			<div class="subscribe">
 				<ul>
-					<li><a href=""> 게시물<span>3</span>
+					<li><a href=""> 게시물<span>${user.reviews.size()}</span>
 					</a></li>
 					<li><a href="javascript:subscribeInfoModalOpen();"> 즐겨찾기<span>2</span>
 					</a></li>
 				</ul>
 			</div>
 			<div class="state">
-				<h4>${principal.user.name}</h4>
-				<h4>${principal.user.bio}</h4>
-				<h4><a href="${principal.user.website}" style="color: black">${principal.user.website}</a></h4>
+				<h4>${user.name}</h4>
+				<h4>${user.bio}</h4>
+				<h4><a href="${user.website}" style="color: black">${user.website}</a></h4>
 			</div>
 		</div>
 		<!--유저정보 및 사진등록 구독하기-->
@@ -65,34 +66,16 @@
 			<div class="tab-1-content-inner">
 
 				<!--아이템들-->
-
-
-				<div class="img-box">
-					<a href=""> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
+				<c:forEach var="review" items="${user.reviews}">
+					<div class="img-box">
+						<a href=""> <img src="/upload/${review.postImageUrl}" />
 						</a>
+						<div class="comment">
+							<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
+							</a>
+						</div>
 					</div>
-				</div>
-
-				<div class="img-box">
-					<a href=""> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
-						</a>
-					</div>
-				</div>
-
-				<div class="img-box">
-					<a href=""> <img src="https://hajl.athuman.com/karuta/uploads/6e45128aad8bdcf39055b81840ecbe0186605633.jpeg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
-						</a>
-					</div>
-				</div>
+				</c:forEach>
 
 				<!--아이템들end-->
 			</div>
@@ -141,20 +124,7 @@
 					<h2>love</h2>
 				</div>
 				<div class="subscribe__btn">
-					<button class="cta blue" onclick="toggleSubscribeModal(this)">구독취소</button>
-				</div>
-			</div>
-
-
-			<div class="subscribe__item" id="subscribeModalItem-2">
-				<div class="subscribe__img">
-					<img src="#" onerror="this.src='/images/profile.JPG'"/>
-				</div>
-				<div class="subscribe__text">
-					<h2>ssar</h2>
-				</div>
-				<div class="subscribe__btn">
-					<button class="cta blue" onclick="toggleSubscribeModal(this)">구독취소</button>
+					<button class="modi blue" onclick="toggleSubscribeModal(this)" style="margin-right: 1rem"><i class="fas fa-star fa-2x"></i></button>
 				</div>
 			</div>
 		</div>

@@ -2,6 +2,7 @@ package com.cos.photogramstart.service;
 
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.domain.user.UserRepository;
+import com.cos.photogramstart.handler.ex.CustomException;
 import com.cos.photogramstart.handler.ex.CustomValidationApiException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,14 @@ import java.util.function.Supplier;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    @Transactional(readOnly = true)
+    public User profileUser(int userId){
+        User userEntity = userRepository.findById(userId).orElseThrow(()->{
+            throw new CustomException("해당 사용자는 존재하지 않습니다.");
+        });
+        return userEntity;
+    }
 
     @Transactional
     public User updateUser(int id, User user){

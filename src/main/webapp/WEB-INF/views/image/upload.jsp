@@ -18,17 +18,18 @@
                 <!--사진업로드 로고 end-->
                 
                 <!--사진업로드 Form-->
-                <form class="upload-form" >
-                    <input  type="file" name="file"  onchange="imageChoose(this)"/>
+                <form class="upload-form" action="/image" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file"  onchange="imageChoose(this)" id='profile_img_upload'/>
+                    <label for='profile_img_upload'><i class="far fa-file-image"></i>&nbsp;이미지 선택</label>
                     <div class="upload-img">
-                        <img src="/images/profile.JPG" alt="" id="imageUploadPreview" />
+                        <img src="/images/default-img.jpg" alt="" id="imageUploadPreview" />
                     </div>
                     
                     <!--사진설명 + 업로드버튼-->
                     <div class="upload-form-detail">
-                         <input type="text" placeholder="동네를 적어주세요" name="town">
-                         <input type="text" placeholder="음식점 이름을 적어주세요" name="bistro">
-                        <input type="text" placeholder="리뷰를 적어주세요" name="caption">
+                         <input type="text" placeholder="동네를 적어주세요" name="town" required>
+                         <input type="text" placeholder="음식점 이름을 적어주세요" name="place" required>
+                        <textarea type="text" placeholder="리뷰를 적어주세요" rows="3" name="caption" required class="upload__review"></textarea>
                         <button class="cta blue">업로드</button>
                     </div>
                     <!--사진설명end-->

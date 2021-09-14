@@ -34,13 +34,12 @@ public class UserApiController {
             Map<String, String> errorMap = new HashMap<>();
             for(FieldError error : bindingResult.getFieldErrors()){
                 errorMap.put(error.getField(),error.getDefaultMessage());
-                log.info(error.getDefaultMessage());
             }
             throw new CustomValidationException("유효성검사 실패함",errorMap);
         }else{
             User userEntity = userService.updateUser(id,userUpdateDto.toEntity());
             principalDetails.setUser(userEntity);
-            return new CMRespDto<>(1,"회원 수정 완료",userEntity);
+            return new CMRespDto<>(1,"회원 수정 완료",userEntity); //응답시에 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답한다.
         }
 
 

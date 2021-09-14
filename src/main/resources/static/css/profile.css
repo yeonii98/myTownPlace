@@ -75,7 +75,7 @@
   font-weight: bold;
   background: transparent;
 }
-.profile .profile-right .name-group .modi {
+.profile .profile-right .name-group .modi, .subscribe__btn .modi{
   border: none;
   background: none;
 }
@@ -397,6 +397,9 @@
 .cta.blue {
   background: #0095f6 !important;
   color: #fff !important;
+}
+.modi.blue {
+  color: #0095f6 !important;
 }
 
 .modal-info {

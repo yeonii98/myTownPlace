@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor
@@ -17,7 +18,7 @@ import javax.persistence.*;
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "subscribe_uk",
-                        columnNames = {"fromUserId"}
+                        columnNames = {"fromUserId","toUserId"}
                 )
         }
 )
@@ -33,4 +34,11 @@ public class Subscribe {
     @JoinColumn(name = "toUserId")
     @ManyToOne
     private User toUser;
+
+    private LocalDateTime createDate;
+
+    @PrePersist
+    public void createDate(){
+        this.createDate = LocalDateTime.now();
+    }
 }
