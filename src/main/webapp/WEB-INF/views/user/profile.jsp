@@ -45,8 +45,8 @@
 			</div>
 			<div class="state">
 				<h4>${user.name}</h4>
-				<h4>${user.bio}</h4>
-				<h4><a href="${user.website}" style="color: black">${user.website}</a></h4>
+				<div>${user.bio}</div>
+				<h4><a href="${user.website}" style="color: #00376b">${user.website}</a></h4>
 			</div>
 		</div>
 		<!--유저정보 및 사진등록 구독하기-->
