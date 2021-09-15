@@ -37,6 +37,7 @@ public class User {
     private String email;
     private String phone;
     private String gender;
+    private String location;
 
     private String profileImageUrl; //이미지
     private String role; //권한

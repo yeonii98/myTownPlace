@@ -15,6 +15,7 @@ public class UserUpdateDto {
     private String bio;
     private String phone;
     private String gender;
+    private String location;
 
     //조금 위험함. 코드 수정이 필요할 예정
     public User toEntity(){
@@ -25,6 +26,7 @@ public class UserUpdateDto {
                 .bio(bio)
                 .phone(phone)
                 .gender(gender)
+                .location(location)
                 .build();
     }
 }

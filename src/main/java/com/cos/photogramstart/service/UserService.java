@@ -4,6 +4,7 @@ import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.domain.user.UserRepository;
 import com.cos.photogramstart.handler.ex.CustomException;
 import com.cos.photogramstart.handler.ex.CustomValidationApiException;
+import com.cos.photogramstart.web.dto.user.UserProfileDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +18,21 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public User profileUser(int userId){
-        User userEntity = userRepository.findById(userId).orElseThrow(()->{
+    public UserProfileDto profileUser(int pageUserId, int principalId, String principalLocation){
+        UserProfileDto dto = new UserProfileDto();
+        User userEntity = userRepository.findById(pageUserId).orElseThrow(()->{
             throw new CustomException("해당 사용자는 존재하지 않습니다.");
         });
-        return userEntity;
+
+        dto.setUser(userEntity);
+        dto.setPageOwner(pageUserId == principalId); // true면 페이지 주인, false면 주인 아님
+        dto.setImageCount(userEntity.getReviews().size());
+        dto.setPageOwnerReviewer(principalLocation.isBlank());
+
+        if(!userEntity.getLocation().isBlank())
+            dto.setAccountType(true);//true면 홍보 계정, false면 리뷰 계정
+
+       return dto;
     }
 
     @Transactional
@@ -38,6 +49,7 @@ public class UserService {
         userEntity.setPhone(user.getPhone());
         userEntity.setWebsite(user.getWebsite());
         userEntity.setGender(user.getGender());
+        userEntity.setLocation(user.getLocation());
 
         return userEntity;
     }

@@ -88,7 +88,7 @@
                 <div class="content-item__10">
                     <div class="item__title">음식점 위치(동 이름)</div>
                     <div class="item__input">
-                        <input type="text" name="location" value=""/>
+                        <input type="text" name="location" value="${principal.user.location}"/>
                     </div>
                 </div>
 
