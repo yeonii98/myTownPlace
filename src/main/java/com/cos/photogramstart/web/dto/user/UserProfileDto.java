@@ -18,4 +18,7 @@ public class UserProfileDto {
     private User user;
     private boolean accountType;
     private boolean pageOwnerReviewer;
+
+    private boolean subscribeState;
+    private int subscribeCount;
 }

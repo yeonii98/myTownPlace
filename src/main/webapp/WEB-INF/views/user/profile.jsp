@@ -35,18 +35,29 @@
                         <button class="modi" onclick="popup('.modal-info')"><i class="fas fa-cog"></i></button>
                     </c:when>
                     <c:when test="${!dto.pageOwner && dto.pageOwnerReviewer && dto.accountType}">
-                        <button class="modi" onclick="toggleSubscribe(this)"><i class="far fa-star" style="color: #0095f6"></i></button>
+                        <c:choose>
+                            <c:when test="${dto.subscribeState}">
+                                <button class="modi" onclick="toggleSubscribe(this, ${dto.user.id})"><i class="fas fa-star"
+                                                                                        style="color: #0095f6"></i>
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="modi" onclick="toggleSubscribe(this, ${dto.user.id})"><i class="far fa-star"
+                                                                                        style="color: #0095f6"></i>
+                                </button>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
                     <c:otherwise>
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
                     <c:when test="${dto.accountType}">
-						<button class="cta blue">홍보 계정</button>
+                        <button class="cta blue">홍보 계정</button>
                     </c:when>
-					<c:otherwise>
-						<button class="cta blue">리뷰 계정</button>
-					</c:otherwise>
+                    <c:otherwise>
+                        <button class="cta blue">리뷰 계정</button>
+                    </c:otherwise>
                 </c:choose>
             </div>
 
@@ -58,7 +69,7 @@
                         <c:when test="${dto.accountType}">
                         </c:when>
                         <c:otherwise>
-                            <li><a href="javascript:subscribeInfoModalOpen();"> 즐겨찾기<span>2</span>
+                            <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id});"> 즐겨찾기<span>${dto.subscribeCount}</span>
                             </a></li>
                         </c:otherwise>
                     </c:choose>
@@ -137,18 +148,8 @@
 
         <div class="subscribe-list" id="subscribeModalList">
 
-            <div class="subscribe__item" id="subscribeModalItem-1">
-                <div class="subscribe__img">
-                    <img src="#" onerror="this.src='/images/profile.JPG'"/>
-                </div>
-                <div class="subscribe__text">
-                    <h2>love</h2>
-                </div>
-                <div class="subscribe__btn">
-                    <button class="modi blue" onclick="toggleSubscribeModal(this)" style="margin-right: 1rem"><i
-                            class="fas fa-star fa-2x"></i></button>
-                </div>
-            </div>
+
+
         </div>
     </div>
 

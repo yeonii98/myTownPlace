@@ -1,5 +1,6 @@
 package com.cos.photogramstart.service;
 
+import com.cos.photogramstart.domain.subscribe.SubscribeRepository;
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.domain.user.UserRepository;
 import com.cos.photogramstart.handler.ex.CustomException;
@@ -16,6 +17,7 @@ import java.util.function.Supplier;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final SubscribeRepository subscribeRepository;
 
     @Transactional(readOnly = true)
     public UserProfileDto profileUser(int pageUserId, int principalId, String principalLocation){
@@ -28,6 +30,8 @@ public class UserService {
         dto.setPageOwner(pageUserId == principalId); // true면 페이지 주인, false면 주인 아님
         dto.setImageCount(userEntity.getReviews().size());
         dto.setPageOwnerReviewer(principalLocation.isBlank());
+        dto.setSubscribeCount(subscribeRepository.mSubscribeCount(pageUserId));
+        dto.setSubscribeState(subscribeRepository.mSubscribeState(principalId, pageUserId) == 1);
 
         if(!userEntity.getLocation().isBlank())
             dto.setAccountType(true);//true면 홍보 계정, false면 리뷰 계정
