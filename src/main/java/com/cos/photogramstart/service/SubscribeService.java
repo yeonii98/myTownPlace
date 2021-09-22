@@ -24,7 +24,7 @@ public class SubscribeService {
 
         //쿼리 준비
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT u.id, u.username, u.profileImageUrl, ");
+        sb.append("SELECT u.id, u.username, u.profileImageUrl, u.name, ");
         sb.append("(SELECT 1 FROM subscribe WHERE fromUserId = ? AND toUserId = u.id) as subscribeState, ");
         sb.append("(?=u.id) as equalUserState ");
         sb.append("FROM user u INNER JOIN subscribe s ");

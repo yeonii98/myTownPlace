@@ -50,6 +50,7 @@ function subscribeInfoModalOpen(pageUserId, promotionType) {
         dataType: "json"
     }).done(res => {
         res.data.forEach((u) => {
+            console.log(u);
             let item = getSubscribeModalItem(u, promotionType);
             $("#subscribeModalList").append(item);
         });
@@ -65,7 +66,8 @@ function getSubscribeModalItem(u, promotionType) {
         <img src="/upload/${u.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
     </div>
     <div class="subscribe__text" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
-        <h2>${u.username}</h2>
+        <div>${u.username}</div>
+        <p>${u.name}</p>
     </div>
     <div class="subscribe__btn">`;
 

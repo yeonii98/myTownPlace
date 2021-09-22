@@ -326,7 +326,7 @@
   justify-content: center;
 }
 .modal-subscribe .subscribe {
-  width: 600px;
+  width: 400px;
   height: 500px;
   background-color: #fff;
   border-radius: 10px;
@@ -374,10 +374,13 @@
 }
 .modal-subscribe .subscribe .subscribe-list .subscribe__item .subscribe__text {
   padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.modal-subscribe .subscribe .subscribe-list .subscribe__item .subscribe__text h2 {
-  font-size: 16px;
-  line-height: 50px;
+.modal-subscribe .subscribe .subscribe-list .subscribe__item .subscribe__text div {
+  font-size: 17px;
+  font-weight: bold;
 }
 .modal-subscribe .subscribe .subscribe-list .subscribe__item .subscribe__btn {
   margin-left: auto;
