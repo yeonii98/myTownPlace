@@ -4,6 +4,7 @@ import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.service.ReviewService;
 import com.cos.photogramstart.web.dto.review.ReviewUploadDto;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping({"/","/image/story"})
-    public String story(){
+    public String story(@AuthenticationPrincipal PrincipalDetails principalDetails){
         return "image/story";
     }
 

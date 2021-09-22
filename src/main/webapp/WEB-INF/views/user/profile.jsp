@@ -19,7 +19,7 @@
                 </form>
 
                 <img src="#"
-                     onerror="this.src='/images/profile.JPG'" id="userProfileImage"/>
+                     onerror="this.src='/images/Profile.png'" id="userProfileImage"/>
             </div>
         </div>
         <!--유저이미지end-->
@@ -69,7 +69,7 @@
                         <c:when test="${dto.accountType}">
                         </c:when>
                         <c:otherwise>
-                            <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id});"> 즐겨찾기<span>${dto.subscribeCount}</span>
+                            <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id},${principal.user.promotionType});"> 즐겨찾기<span>${dto.subscribeCount}</span>
                             </a></li>
                         </c:otherwise>
                     </c:choose>
@@ -147,6 +147,7 @@
         </div>
 
         <div class="subscribe-list" id="subscribeModalList">
+
 
 
 

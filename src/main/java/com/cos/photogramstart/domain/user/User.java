@@ -52,6 +52,8 @@ public class User {
 
     private LocalDateTime createDate;
 
+    private int promotionType;
+
     @PrePersist //디비에 INSERT 되기 직전에 실행
     public void createDate(){
         this.createDate = LocalDateTime.now();

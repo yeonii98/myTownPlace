@@ -42,7 +42,7 @@ function toggleSubscribe(obj, pageUserId) {
 }
 
 // (2) 구독자 정보  모달 보기
-function subscribeInfoModalOpen(pageUserId) {
+function subscribeInfoModalOpen(pageUserId, promotionType) {
     $(".modal-subscribe").css("display", "flex");
 
     $.ajax({
@@ -50,8 +50,7 @@ function subscribeInfoModalOpen(pageUserId) {
         dataType: "json"
     }).done(res => {
         res.data.forEach((u) => {
-            let item = getSubscribeModalItem(u);
-            console.log(item);
+            let item = getSubscribeModalItem(u, promotionType);
             $("#subscribeModalList").append(item);
         });
 
@@ -60,31 +59,58 @@ function subscribeInfoModalOpen(pageUserId) {
     });
 }
 
-function getSubscribeModalItem(u) {
-    let item = `<div class="subscribe__item" id="subscribeModalItem-1">
-    <div class="subscribe__img">
-        <img src="#" onerror="this.src='/images/profile.JPG'"/>
+function getSubscribeModalItem(u, promotionType) {
+    let item = `<div class="subscribe__item" id="subscribeModalItem-${u.id}">
+    <div class="subscribe__img" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
+        <img src="/upload/${u.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
     </div>
-    <div class="subscribe__text">
+    <div class="subscribe__text" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
         <h2>${u.username}</h2>
     </div>
-    <div class="subscribe__btn">
-        <button class="modi blue" onclick="toggleSubscribeModal(this)" style="margin-right: 1rem"><i
-                class="fas fa-star fa-2x"></i></button>
-    </div>
+    <div class="subscribe__btn">`;
+
+    if(!u.equalUserState && !promotionType){
+        if(u.subscribeState){
+        item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="fas fa-star fa-2x" style="color: #0095f6"></i></button>`
+        }
+        else{
+            item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="far fa-star fa-2x" style="color: #0095f6"></i></button>`
+        }
+    }
+
+    item += `</div>
 </div>`;
+
     return item;
 }
 
 
 // (3) 구독자 정보 모달에서 구독하기, 구독취소
-function toggleSubscribeModal(obj) {
-    if ($(obj).html() === '<i class="fas fa-star fa-2x"></i>') {
-        $(obj).html('<i class="far fa-star fa-2x" style="color: #0095f6"></i>');
-        $(obj).toggleClass("blue");
+function toggleSubscribeModal(obj, pageUserId) {
+    if ($(obj).html() === '<i class="fas fa-star fa-2x" style="color: #0095f6"></i>') {
+        $.ajax({
+            type: "delete",
+            url: `/api/subscribe/${pageUserId}`,
+            dataType: "json"
+        }).done(res => {
+                $(obj).html('<i class="far fa-star fa-2x" style="color: #0095f6"></i>');
+            }
+        ).fail(error => {
+            console.log("즐겨찾기 취소에 실패했습니다.", error);
+        });
+
     } else {
-        $(obj).html('<i class="fas fa-star fa-2x"></i>');
-        $(obj).toggleClass("blue");
+        $.ajax({
+            type: "post",
+            url: `/api/subscribe/${pageUserId}`,
+            dataType: "json"
+        }).done(res => {
+                $(obj).html('<i class="fas fa-star fa-2x" style="color: #0095f6"></i>');
+            }
+        ).fail(error => {
+            console.log("즐겨찾기 추가에 실패했습니다.", error);
+        });
+
     }
 }
 

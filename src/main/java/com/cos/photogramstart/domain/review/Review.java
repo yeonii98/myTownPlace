@@ -1,6 +1,7 @@
 package com.cos.photogramstart.domain.review;
 
 import com.cos.photogramstart.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JsonIgnoreProperties({"reviews"})
     @JoinColumn(name = "userId")
     @ManyToOne(fetch = FetchType.EAGER)//이미지를 select하면 조인해서 User정보를 같이 들고옴
     private User user;

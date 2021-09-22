@@ -54,6 +54,7 @@ public class UserService {
         userEntity.setWebsite(user.getWebsite());
         userEntity.setGender(user.getGender());
         userEntity.setLocation(user.getLocation());
+        if(!user.getLocation().isBlank()) userEntity.setPromotionType(1);
 
         return userEntity;
     }

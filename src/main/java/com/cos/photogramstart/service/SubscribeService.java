@@ -20,7 +20,7 @@ public class SubscribeService {
     private final EntityManager em; //Repository는 EntityManager를 구현해서 만들어져 있는 구현체
 
     @Transactional(readOnly = true)
-    public List<SubscribeDto> 구독리스트(int principalId, int pageUserId){
+    public List<SubscribeDto> subscribeList(int principalId, int pageUserId){
 
         //쿼리 준비
         StringBuffer sb = new StringBuffer();
