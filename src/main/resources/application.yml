@@ -38,3 +38,19 @@ spring:
 
 file:
   path: C:/Users/User/IdeaProjects/upload/
+
+naver :
+  url :
+    search :
+      local : https://openapi.naver.com/v1/search/local.json
+      image : https://openapi.naver.com/v1/search/image
+  client :
+    id : htCNbh8T0T4sshuls_Lx
+    secret : 4AGr4SGqJN
+
+kakao :
+  url :
+    search :
+      local : https://dapi.kakao.com/v2/local/search/keyword.json
+  client :
+    id : 2d6a1913c9431384837ab17da9346801

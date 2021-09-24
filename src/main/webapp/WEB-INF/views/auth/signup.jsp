@@ -33,6 +33,7 @@
                             <input type="text" name="name" placeholder="성명" required="required" />
                             <input type="text" name="username" placeholder="사용자 이름" required="required" maxlength="15" minlength="2"/>
                             <input type="password" name="password" placeholder="비밀번호" required="required" />
+                            <input type="text" name="location" placeholder="내 위치(동 이름)" required="required" />
                             <button>가입</button>
                         </form>
                         <!--회원가입 인풋end-->

@@ -79,16 +79,16 @@
                         <input type="text" name="gender" value="${principal.user.gender}"/>
                     </div>
                 </div>
-                <div class="content-item__07">
-                    <div class="item__title"></div>
-                    <div class="item__input">
-                        <span><b>홍보용 계정</b></span> <span>맛집 홍보용 계정을 사용하실 유저라면 아래의 정보를 입력해주세요</span>
-                    </div>
-                </div>
+<%--                <div class="content-item__07">--%>
+<%--                    <div class="item__title"></div>--%>
+<%--                    <div class="item__input">--%>
+<%--                        <span><b>홍보용 계정</b></span> <span>맛집 홍보용 계정을 사용하실 유저라면 아래의 정보를 입력해주세요</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
                 <div class="content-item__10">
-                    <div class="item__title">음식점 위치(동 이름)</div>
+                    <div class="item__title">내 위치(동 이름)</div>
                     <div class="item__input">
-                        <input type="text" name="location" value="${principal.user.location}"/>
+                        <input type="text" name="location" value="${principal.user.location}" required/>
                     </div>
                 </div>
 

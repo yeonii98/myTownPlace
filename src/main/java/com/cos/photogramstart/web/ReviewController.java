@@ -18,7 +18,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping({"/","/image/story"})
-    public String story(@AuthenticationPrincipal PrincipalDetails principalDetails){
+    public String story(){
         return "image/story";
     }
 

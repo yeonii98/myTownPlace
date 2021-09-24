@@ -3,7 +3,14 @@ package com.cos.photogramstart.service;
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.domain.review.Review;
 import com.cos.photogramstart.domain.review.ReviewRepository;
+import com.cos.photogramstart.kakao.dto.KakaoClient;
+import com.cos.photogramstart.kakao.dto.KakaoSearchLocalReq;
+import com.cos.photogramstart.kakao.dto.KakaoSearchLocalRes;
+import com.cos.photogramstart.naver.dto.NaverClient;
+import com.cos.photogramstart.naver.dto.NaverSearchImageReq;
+import com.cos.photogramstart.naver.dto.NaverSearchImageRes;
 import com.cos.photogramstart.web.dto.review.ReviewUploadDto;
+import com.cos.photogramstart.web.dto.review.StoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -15,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.List;
 
@@ -22,14 +30,36 @@ import java.util.List;
 @Service
 public class ReviewService {
     private final ReviewRepository reviewRepository;
+    private final KakaoClient kakaoClient;
+    private final NaverClient naverClinet;
 
     @Value("${file.path}")
     private String uploadFolder;
 
     @Transactional(readOnly = true)//영속성 컨텍스트 변경 감지를 해서, 더티체킹, flush(반영) X
-    public Page<Review> listReview(int principalId, Pageable pageable){
-        Page<Review> reviewList = reviewRepository.mStory(principalId, pageable);
-        return  reviewList;
+    public ArrayList<StoryDto> listReview(String location, int page){
+        KakaoSearchLocalReq kakaoSearchLocalReq = new KakaoSearchLocalReq();
+        NaverSearchImageReq naverSearchImageReq = new NaverSearchImageReq();
+        kakaoSearchLocalReq.setPage(page);
+        kakaoSearchLocalReq.setQuery(location +" 맛집");
+
+        KakaoSearchLocalRes localRes = kakaoClient.localSearch(kakaoSearchLocalReq);
+        ArrayList<StoryDto> storyDtos = new ArrayList<>();
+        for(int i = 0; i < localRes.getDocuments().size(); i++){
+            naverSearchImageReq.setQuery(localRes.getDocuments().get(i).getPlace_name());
+            NaverSearchImageRes imageRes = naverClinet.searchImage(naverSearchImageReq);
+
+            storyDtos.add(new StoryDto(localRes.getDocuments().get(i).getPlace_name(),
+                    localRes.getDocuments().get(i).getCategory_name(),
+                    localRes.getDocuments().get(i).getRoad_address_name(),
+                    localRes.getDocuments().get(i).getPhone(),
+                    localRes.getDocuments().get(i).getPlace_url(),
+                    imageRes.getItems().get(0).getLink()));
+        }
+
+        System.out.println(storyDtos);
+
+        return storyDtos;
     }
 
     //트랜잭션이란? 일의 최소 단위. ex) 송금을 하기 위해서는 입금과 출금 2가지 상황이 필요함, 입금과 출금을 성공 했을 때 commit을 한다. 실패하면 rollback

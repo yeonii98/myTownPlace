@@ -1,22 +1,21 @@
 /**
-	2. 스토리 페이지
-	(1) 스토리 로드하기
-	(2) 스토리 스크롤 페이징하기
-	(3) 좋아요, 안좋아요
-	(4) 댓글쓰기
-	(5) 댓글삭제
+ 2. 스토리 페이지
+ (1) 스토리 로드하기
+ (2) 스토리 스크롤 페이징하기
+ (3) 좋아요, 안좋아요
+ (4) 댓글쓰기
+ (5) 댓글삭제
  */
 
 // (1) 스토리 로드하기
-let page = 0;
+let page = 1;
 
 function storyLoad() {
 	$.ajax({
-		url:`/api/story?page=${page}`,
+		url:`/api/story/${page}`,
 		dataType:"json"
 	}).done(res=>{
-		console.log(res);
-		res.data.content.forEach((u) => {
+		res.data.forEach((u) => {
 			console.log(u);
 			let item = getStoryItem(u);
 			$("#storyList").append(item);
@@ -32,17 +31,17 @@ function getStoryItem(u) {
 	let item = `<div class="story-list__item">
                 <div class="sl__item__header">
                     <div>
-                        <img src="/upload/${u.user.profileImageUrl}"
-                             onerror="this.src='/images/Profile.png'"/>
+<!--                        <img src="/upload/Profile.png"-->
+<!--                             onerror="this.src='/images/Profile.png'"/>-->
                     </div>
-                    <div>${u.place}</div>
+                    <div>${u.name}</div>
                     <button class="story__review" onclick="location.href='/image/popular'">
                         리뷰 보러가기
                     </button>
                 </div>
 
                 <div class="sl__item__img">
-                    <img src="/upload/${u.postImageUrl}"/>
+                    <img src="${u.image}" onerror="this.src='/images/foodImg.png'"/>
                 </div>
 
                 <div class="sl__item__contents">
@@ -55,28 +54,38 @@ function getStoryItem(u) {
 
 
                     <div class="sl__item__contents__content">
-                        <p>${u.caption}</p>
+                        <div><i class="fas fa-tags"></i></div> ${u.category}
+                    </div>
+                    
+                    <div class="sl__item__contents__content">
+                        <div><i class="fas fa-map-marker-alt"></i></div> ${u.address}
+                    </div>
+                    
+                    <div class="sl__item__contents__content">
+                        <div><i class="fas fa-phone"></i></div> ${u.phone}
+                    </div>
+                    
+                    <div class="sl__item__contents__content">
+                        <div><i class="fas fa-info-circle"></i></div> <a href="${u.detailUrl}">상세보기</a>
                     </div>
 
-                    <div id="storyCommentList-1">
+<!--                    <div id="storyCommentList-1">-->
 
-                        <div class="sl__item__contents__comment" id="storyCommentItem-1">
-                            <p>
-                                <b>먹보 :</b> 당장 먹으러갈게요.
-                            </p>
+<!--                        <div class="sl__item__contents__comment" id="storyCommentItem-1">-->
+<!--                            <p>-->
+<!--                                <b>먹보 :</b> 당장 먹으러갈게요.-->
+<!--                            </p>-->
 
-                            <button>
-                                <i class="fas fa-times"></i>
-                            </button>
+<!--                            <button>-->
+<!--                                <i class="fas fa-times"></i>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                        </div>
-
-                    </div>
-
-                    <div class="sl__item__input">
-                        <input type="text" placeholder="댓글 달기..." id="storyCommentInput-1"/>
-                        <button type="button" onClick="addComment()">게시</button>
-                    </div>
+<!--                    <div class="sl__item__input">-->
+<!--                        <input type="text" placeholder="댓글 달기..." id="storyCommentInput-1"/>-->
+<!--                        <button type="button" onClick="addComment()">게시</button>-->
+<!--                    </div>-->
 
                 </div>
             </div>`;
@@ -85,14 +94,10 @@ function getStoryItem(u) {
 
 // (2) 스토리 스크롤 페이징하기
 $(window).scroll(() => {
-	// console.log("윈도우 스크롤 탑",$(window).scrollTop());
-	// console.log("다큐먼트 헤이트",$(document).height());
-	// console.log("윈도우 헤이트",$(window).height());
-
 	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
 
 	console.log(checkNum);
-	if(checkNum < 1 && checkNum > -1){
+	if(checkNum < 1 && checkNum > -2){
 		page++;
 		storyLoad();
 	}

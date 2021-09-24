@@ -34,7 +34,7 @@
                         </button>
                         <button class="modi" onclick="popup('.modal-info')"><i class="fas fa-cog"></i></button>
                     </c:when>
-                    <c:when test="${!dto.pageOwner && dto.pageOwnerReviewer && dto.accountType}">
+                    <c:when test="${!dto.pageOwner}">
                         <c:choose>
                             <c:when test="${dto.subscribeState}">
                                 <button class="modi" onclick="toggleSubscribe(this, ${dto.user.id})"><i class="fas fa-star"
@@ -51,14 +51,14 @@
                     <c:otherwise>
                     </c:otherwise>
                 </c:choose>
-                <c:choose>
-                    <c:when test="${dto.accountType}">
-                        <button class="cta blue">홍보 계정</button>
-                    </c:when>
-                    <c:otherwise>
-                        <button class="cta blue">리뷰 계정</button>
-                    </c:otherwise>
-                </c:choose>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${dto.accountType}">--%>
+<%--                        <button class="cta blue">홍보 계정</button>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <button class="cta blue">리뷰 계정</button>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
             </div>
 
             <div class="subscribe">

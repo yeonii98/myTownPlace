@@ -18,6 +18,8 @@ public class SignupDto {
     String email;
     @NotBlank
     String password;
+    @NotBlank
+    String location;
 
     public User toEntity(){
         return User.builder()
@@ -25,6 +27,7 @@ public class SignupDto {
                 .password(password)
                 .email(email)
                 .name(name)
+                .location(location)
                 .build();
     }
 }
