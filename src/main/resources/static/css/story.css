@@ -1,7 +1,7 @@
 @import "header.css";
 
 *{
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 /*메인*/
@@ -53,7 +53,7 @@
 /*리스트 아이템 헤더 div*/
 .main .container .story-list .story-list__item .sl__item__header div {
   margin-left: 10px;
-
+  font-size: 19px;
 }
 
 /*리스트 아이템 헤더 이미지영역 박스*/
@@ -99,6 +99,7 @@
 .main .container .story-list .story-list__item .sl__item__contents {
   display: flex;
   flex-direction: column;
+  padding: 1rem;
 }
 
 /*좋아요 버튼영역*/
