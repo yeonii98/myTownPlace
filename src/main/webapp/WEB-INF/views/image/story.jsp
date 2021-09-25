@@ -10,6 +10,11 @@
             <!--전체 리스트 아이템-->
 
         </article>
+        <article class="story-list" id="searchList">
+
+            <!--검색 리스트 아이템-->
+
+        </article>
     </section>
 </main>
 <script src="/js/story.js"></script>

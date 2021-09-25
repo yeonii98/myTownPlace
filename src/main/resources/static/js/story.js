@@ -96,8 +96,7 @@ function getStoryItem(u) {
 $(window).scroll(() => {
 	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
 
-	console.log(checkNum);
-	if(checkNum < 1 && checkNum > -1000){
+	if(checkNum < 1 && checkNum > -500){
 		page++;
 		storyLoad();
 	}

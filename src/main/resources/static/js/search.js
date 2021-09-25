@@ -8,13 +8,14 @@
  */
 
 // (1) 스토리 로드하기
-let mPage = 1;
-
 
 function search() {
+    let mPage = 1;
 	let data = $("#searchText").val();
 	$("#storyList").empty();
+    $("#searchList").empty();
 	function searchLoad(){
+		console.log(mPage);
         $.ajax({
             url:`/api/search/${mPage}`,
             data: {"location" : data},
@@ -24,7 +25,8 @@ function search() {
             res.data.forEach((u) => {
                 console.log(u);
                 let item = getSearchItem(u);
-                $("#storyList").append(item);
+                $("#storyList").empty();
+                $("#searchList").append(item);
             })
         }).fail(error=>{
             console.log("오류",error);
@@ -34,13 +36,11 @@ function search() {
     $(window).scroll(() => {
         let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
 
-        console.log(checkNum);
-        if(checkNum < 1 && checkNum > -1000){
+        if(checkNum < 1 && checkNum > -500){
             mPage++;
             searchLoad();
         }
     });
-
 }
 
 
