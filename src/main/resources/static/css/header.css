@@ -32,7 +32,11 @@
   width: 160px;
   border: solid 1.5px;
   padding: 8px;
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.search__btn{
+  cursor: pointer;
 }
 
 .header__search--btn{

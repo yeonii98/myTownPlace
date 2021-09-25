@@ -41,8 +41,8 @@
 				우리 동네 맛집<i class="fas fa-utensils header_icon"></i>
 			</a>
 			<div class="input-box">
-				<input class="header__search" type="text" placeholder="동네를 검색하세요">
-							<i class="fas fa-search"></i>
+				<input class="header__search" type="text" id="searchText" placeholder="동네를 검색하세요">
+							<i class="fas fa-search search__btn" onclick="search()"></i>
 			</div>
 			<nav class="navi">
 				<ul class="navi-list">
@@ -62,3 +62,4 @@
 			</nav>
 		</div>
 	</header>
+	<script src="/js/search.js"></script>

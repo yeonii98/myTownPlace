@@ -8,26 +8,44 @@
  */
 
 // (1) 스토리 로드하기
-let page = 1;
+let mPage = 1;
 
-function storyLoad() {
-	$.ajax({
-		url:`/api/story/${page}`,
-		dataType:"json"
-	}).done(res=>{
-		res.data.forEach((u) => {
-			console.log(u);
-			let item = getStoryItem(u);
-			$("#storyList").append(item);
-		})
-	}).fail(error=>{
-		console.log("오류",error);
-	});
+
+function search() {
+	let data = $("#searchText").val();
+	$("#storyList").empty();
+	function searchLoad(){
+        $.ajax({
+            url:`/api/search/${mPage}`,
+            data: {"location" : data},
+            dataType:"json"//서버가 요청 URL을 통해서 응답하는 내용의 타입
+        }).done(res=>{
+            console.log(res);
+            res.data.forEach((u) => {
+                console.log(u);
+                let item = getSearchItem(u);
+                $("#storyList").append(item);
+            })
+        }).fail(error=>{
+            console.log("오류",error);
+        });
+    }
+    searchLoad();
+    $(window).scroll(() => {
+        let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
+
+        console.log(checkNum);
+        if(checkNum < 1 && checkNum > -1000){
+            mPage++;
+            searchLoad();
+        }
+    });
+
 }
 
-storyLoad();
 
-function getStoryItem(u) {
+
+function getSearchItem(u) {
 	let item = `<div class="story-list__item">
                 <div class="sl__item__header">
                     <div>
@@ -56,15 +74,15 @@ function getStoryItem(u) {
                     <div class="sl__item__contents__content">
                         <div><i class="fas fa-tags"></i></div> ${u.category}
                     </div>
-                    
+
                     <div class="sl__item__contents__content">
                         <div><i class="fas fa-map-marker-alt"></i></div> ${u.address}
                     </div>
-                    
+
                     <div class="sl__item__contents__content">
                         <div><i class="fas fa-phone"></i></div> ${u.phone}
                     </div>
-                    
+
                     <div class="sl__item__contents__content">
                         <div><i class="fas fa-info-circle"></i></div> <a href="${u.detailUrl}">상세보기</a>
                     </div>
@@ -93,15 +111,7 @@ function getStoryItem(u) {
 }
 
 // (2) 스토리 스크롤 페이징하기
-$(window).scroll(() => {
-	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
 
-	console.log(checkNum);
-	if(checkNum < 1 && checkNum > -1000){
-		page++;
-		storyLoad();
-	}
-});
 
 
 // (3) 좋아요, 좋아요 취소
@@ -134,7 +144,7 @@ function addComment() {
 	}
 
 	let content = `
-			  <div class="sl__item__contents__comment" id="storyCommentItem-2""> 
+			  <div class="sl__item__contents__comment" id="storyCommentItem-2"">
 			    <p>
 			      <b>GilDong :</b>
 			      댓글 샘플입니다.

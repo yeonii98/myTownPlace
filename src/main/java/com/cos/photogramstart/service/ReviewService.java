@@ -41,6 +41,7 @@ public class ReviewService {
         KakaoSearchLocalReq kakaoSearchLocalReq = new KakaoSearchLocalReq();
         NaverSearchImageReq naverSearchImageReq = new NaverSearchImageReq();
         kakaoSearchLocalReq.setPage(page);
+        System.out.println(location);
         kakaoSearchLocalReq.setQuery(location +" 맛집");
 
         KakaoSearchLocalRes localRes = kakaoClient.localSearch(kakaoSearchLocalReq);
@@ -54,7 +55,7 @@ public class ReviewService {
                     localRes.getDocuments().get(i).getRoad_address_name(),
                     localRes.getDocuments().get(i).getPhone(),
                     localRes.getDocuments().get(i).getPlace_url(),
-                    imageRes.getItems().get(0).getLink()));
+                    imageRes.getItems().get(i).getLink()));
         }
 
         System.out.println(storyDtos);
