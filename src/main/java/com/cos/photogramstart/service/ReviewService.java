@@ -55,7 +55,7 @@ public class ReviewService {
                     localRes.getDocuments().get(i).getRoad_address_name(),
                     localRes.getDocuments().get(i).getPhone(),
                     localRes.getDocuments().get(i).getPlace_url(),
-                    imageRes.getItems().get(i).getLink()));
+                    imageRes.getItems().get(1).getLink()));
         }
 
         System.out.println(storyDtos);

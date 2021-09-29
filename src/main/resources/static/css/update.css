@@ -73,7 +73,15 @@
   padding-top: 3px;
   width: 256px;
 }
-
+.text_location{
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  text-decoration: underline;
+  text-underline-position:under;
+  font-size: 13px;
+}
 /*form 입력요소 인풋박스*/
 .setting-container .setting__content div .item__input {
   flex: 4;

@@ -8,42 +8,49 @@
  */
 
 // (1) 스토리 로드하기
-
+let mPage;
+let data;
 function search() {
-    let mPage = 1;
-	let data = $("#searchText").val();
+    mPage = 1;
+	data = $("#searchText").val();
 	$("#storyList").empty();
     $("#searchList").empty();
-	function searchLoad(){
-		console.log(mPage);
-        $.ajax({
-            url:`/api/search/${mPage}`,
-            data: {"location" : data},
-            dataType:"json"//서버가 요청 URL을 통해서 응답하는 내용의 타입
-        }).done(res=>{
-            console.log(res);
-            res.data.forEach((u) => {
-                console.log(u);
-                let item = getSearchItem(u);
-                $("#storyList").empty();
-                $("#searchList").append(item);
-            })
-        }).fail(error=>{
-            console.log("오류",error);
-        });
-    }
-    searchLoad();
-    $(window).scroll(() => {
-        let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
 
-        if(checkNum < 1 && checkNum > -500){
-            mPage++;
-            searchLoad();
-        }
-    });
+    searchLoad();
 }
 
+function searchLoad(){
+	console.log(mPage);
+	$.ajax({
+		url:`/api/search/${mPage}`,
+		data: {"location" : data},
+		dataType:"json"//서버가 요청 URL을 통해서 응답하는 내용의 타입
+	}).done(res=>{
+		console.log(res);
+		res.data.forEach((u) => {
+			console.log(u);
+			let item = getSearchItem(u);
+			$("#storyList").empty();
+			$("#searchList").append(item);
+		})
+	}).fail(error=>{
+		console.log("오류",error);
+	});
+}
 
+$(window).scroll(() => {
+	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
+
+	if(checkNum < 1 && checkNum > -500){
+		mPage++;
+		searchLoad();
+	}
+});
+function enterkey() {
+	if(window.event.keyCode === 13){
+		search();
+	}
+}
 
 function getSearchItem(u) {
 	let item = `<div class="story-list__item">

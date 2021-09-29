@@ -88,7 +88,8 @@
                 <div class="content-item__10">
                     <div class="item__title">내 위치(동 이름)</div>
                     <div class="item__input">
-                        <input type="text" name="location" value="${principal.user.location}" required/>
+                        <input type="text" class="getLocation" name="location" value="${principal.user.location}" required/>
+                        <div style="width: 355px; padding-top: 7px" onclick="loadCoords()" class="text_location">위치 받아오기</div>
                     </div>
                 </div>
 
@@ -108,5 +109,6 @@
 </main>
 
 <script src="/js/update.js"></script>
+<script src="/js/getLocation.js"></script>
 
 <%@ include file="../layout/footer.jsp" %>
