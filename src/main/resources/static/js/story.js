@@ -11,33 +11,42 @@
 let page = 1;
 
 function storyLoad() {
-	$.ajax({
-		url:`/api/story/${page}`,
-		dataType:"json"
-	}).done(res=>{
-		res.data.forEach((u) => {
-			console.log(u);
-			let item = getStoryItem(u);
-			$("#storyList").append(item);
-		})
-	}).fail(error=>{
-		console.log("오류",error);
-	});
+    $.ajax({
+        url: `/api/story/${page}`,
+        dataType: "json"
+    }).done(res => {
+        res.data.forEach((u) => {
+            console.log(u);
+            let item = getStoryItem(u);
+            $("#storyList").append(item);
+        })
+    }).fail(error => {
+        console.log("오류", error);
+    });
 }
 
 storyLoad();
 
 function getStoryItem(u) {
-	let item = `<div class="story-list__item">
+    let item = `<div class="story-list__item">
                 <div class="sl__item__header">
-                    <div>
-<!--                        <img src="/upload/Profile.png"-->
-<!--                             onerror="this.src='/images/Profile.png'"/>-->
-                    </div>
+<!--                    <div>-->
+<!--&lt;!&ndash;                        <img src="/upload/Profile.png"&ndash;&gt;-->
+<!--&lt;!&ndash;                             onerror="this.src='/images/Profile.png'"/>&ndash;&gt;-->
+<!--                    </div>-->
+                    <div style="display: flex">
                     <div>${u.name}</div>
+                    <div>
                     <button class="story__review" onclick="location.href='/image/popular'">
                         리뷰 보러가기
                     </button>
+				</div>
+				</div>
+                    <div style="margin-right: 1rem">
+                    <button class="cta blue" onclick="location.href='/image/popular'">
+                    	즐겨 찾기 추가
+                    </button>
+                    </div>
                 </div>
 
                 <div class="sl__item__img">
@@ -89,50 +98,50 @@ function getStoryItem(u) {
 
                 </div>
             </div>`;
-	return item;
+    return item;
 }
 
 // (2) 스토리 스크롤 페이징하기
 $(window).scroll(() => {
-	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
+    let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
 
-	if(checkNum < 1 && checkNum > -500){
-		page++;
-		storyLoad();
-	}
+    if (checkNum < 1 && checkNum > -500) {
+        page++;
+        storyLoad();
+    }
 });
 
 
 // (3) 좋아요, 좋아요 취소
 function toggleLike() {
-	let likeIcon = $("#storyLikeIcon-1");
-	if (likeIcon.hasClass("far")) {
-		likeIcon.addClass("fas");
-		likeIcon.addClass("active");
-		likeIcon.removeClass("far");
-	} else {
-		likeIcon.removeClass("fas");
-		likeIcon.removeClass("active");
-		likeIcon.addClass("far");
-	}
+    let likeIcon = $("#storyLikeIcon-1");
+    if (likeIcon.hasClass("far")) {
+        likeIcon.addClass("fas");
+        likeIcon.addClass("active");
+        likeIcon.removeClass("far");
+    } else {
+        likeIcon.removeClass("fas");
+        likeIcon.removeClass("active");
+        likeIcon.addClass("far");
+    }
 }
 
 // (4) 댓글쓰기
 function addComment() {
 
-	let commentInput = $("#storyCommentInput-1");
-	let commentList = $("#storyCommentList-1");
+    let commentInput = $("#storyCommentInput-1");
+    let commentList = $("#storyCommentList-1");
 
-	let data = {
-		content: commentInput.val()
-	}
+    let data = {
+        content: commentInput.val()
+    }
 
-	if (data.content === "") {
-		alert("댓글을 작성해주세요!");
-		return;
-	}
+    if (data.content === "") {
+        alert("댓글을 작성해주세요!");
+        return;
+    }
 
-	let content = `
+    let content = `
 			  <div class="sl__item__contents__comment" id="storyCommentItem-2""> 
 			    <p>
 			      <b>GilDong :</b>
@@ -141,8 +150,8 @@ function addComment() {
 			    <button><i class="fas fa-times"></i></button>
 			  </div>
 	`;
-	commentList.prepend(content);
-	commentInput.val("");
+    commentList.prepend(content);
+    commentInput.val("");
 }
 
 // (5) 댓글 삭제

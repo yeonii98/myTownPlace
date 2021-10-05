@@ -10,11 +10,9 @@ import com.cos.photogramstart.naver.dto.NaverClient;
 import com.cos.photogramstart.naver.dto.NaverSearchImageReq;
 import com.cos.photogramstart.naver.dto.NaverSearchImageRes;
 import com.cos.photogramstart.web.dto.review.ReviewUploadDto;
-import com.cos.photogramstart.web.dto.review.StoryDto;
+import com.cos.photogramstart.web.dto.story.StoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +22,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.UUID;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -50,7 +47,8 @@ public class ReviewService {
             naverSearchImageReq.setQuery(localRes.getDocuments().get(i).getPlace_name());
             NaverSearchImageRes imageRes = naverClinet.searchImage(naverSearchImageReq);
 
-            storyDtos.add(new StoryDto(localRes.getDocuments().get(i).getPlace_name(),
+            storyDtos.add(new StoryDto(localRes.getDocuments().get(i).getId(),
+                    localRes.getDocuments().get(i).getPlace_name(),
                     localRes.getDocuments().get(i).getCategory_name(),
                     localRes.getDocuments().get(i).getRoad_address_name(),
                     localRes.getDocuments().get(i).getPhone(),

@@ -1,4 +1,4 @@
-package com.cos.photogramstart.web.dto.review;
+package com.cos.photogramstart.web.dto.story;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class StoryDto {
+    private String id;
     private String name;
     private String category;
     private String address;
