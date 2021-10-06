@@ -37,13 +37,15 @@
                     <c:when test="${!dto.pageOwner}">
                         <c:choose>
                             <c:when test="${dto.subscribeState}">
-                                <button class="modi" onclick="toggleSubscribe(this, ${dto.user.id})"><i class="fas fa-star"
-                                                                                        style="color: #0095f6"></i>
+                                <button class="modi" onclick="toggleSubscribe(this, ${dto.user.id})"><i
+                                        class="fas fa-star"
+                                        style="color: #0095f6"></i>
                                 </button>
                             </c:when>
                             <c:otherwise>
-                                <button class="modi" onclick="toggleSubscribe(this, ${dto.user.id})"><i class="far fa-star"
-                                                                                        style="color: #0095f6"></i>
+                                <button class="modi" onclick="toggleSubscribe(this, ${dto.user.id})"><i
+                                        class="far fa-star"
+                                        style="color: #0095f6"></i>
                                 </button>
                             </c:otherwise>
                         </c:choose>
@@ -51,28 +53,20 @@
                     <c:otherwise>
                     </c:otherwise>
                 </c:choose>
-<%--                <c:choose>--%>
-<%--                    <c:when test="${dto.accountType}">--%>
-<%--                        <button class="cta blue">홍보 계정</button>--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <button class="cta blue">리뷰 계정</button>--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
             </div>
 
             <div class="subscribe">
                 <ul>
                     <li><a href=""> 게시물<span>${dto.imageCount}</span>
                     </a></li>
-                    <c:choose>
-                        <c:when test="${dto.accountType}">
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id},${principal.user.promotionType});"> 즐겨찾기<span>${dto.subscribeCount}</span>
-                            </a></li>
-                        </c:otherwise>
-                    </c:choose>
+
+                    <li><a href="javascript:favoriteModalOpen(${dto.user.id});">
+                        즐겨찾기<span>${dto.favoriteCount}</span>
+                    </a></li>
+<%--                    <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id},${principal.user.promotionType});">--%>
+<%--                        팔로우<span>${dto.subscribeCount}</span>--%>
+<%--                    </a></li>--%>
+
                 </ul>
             </div>
             <div class="state">
@@ -147,13 +141,8 @@
         </div>
 
         <div class="subscribe-list" id="subscribeModalList">
-
-
-
-
         </div>
     </div>
-
 </div>
 
 

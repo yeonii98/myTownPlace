@@ -41,17 +41,17 @@ function toggleSubscribe(obj, pageUserId) {
     }
 }
 
-// (2) 구독자 정보  모달 보기
-function subscribeInfoModalOpen(pageUserId, promotionType) {
+// (2) 즐겨찾기  모달 보기
+function favoriteModalOpen(pageUserId) {
     $(".modal-subscribe").css("display", "flex");
 
     $.ajax({
-        url: `/api/user/${pageUserId}/subscribe`,
+        url: `/api/user/${pageUserId}/favorite`,
         dataType: "json"
     }).done(res => {
         res.data.forEach((u) => {
             console.log(u);
-            let item = getSubscribeModalItem(u, promotionType);
+            let item = getFavoriteItem(u);
             $("#subscribeModalList").append(item);
         });
 
@@ -60,31 +60,75 @@ function subscribeInfoModalOpen(pageUserId, promotionType) {
     });
 }
 
-function getSubscribeModalItem(u, promotionType) {
-    let item = `<div class="subscribe__item" id="subscribeModalItem-${u.id}">
-    <div class="subscribe__img" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
-        <img src="/upload/${u.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
+function getFavoriteItem(u) {
+    let item = `<div class="subscribe__item">
+    <div class="subscribe__img" onclick="location.href='${u.detailUrl}'" style="cursor: pointer">
+        <img src="/upload/${u.img}" onerror="this.src='/images/foodImg.png'"/>
     </div>
-    <div class="subscribe__text" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
-        <div>${u.username}</div>
-        <p>${u.name}</p>
+    <div class="subscribe__text" onclick="location.href='${u.detailUrl}'" style="cursor: pointer">
+        <div>${u.name}</div>
     </div>
     <div class="subscribe__btn">`;
 
-    if(!u.equalUserState && !promotionType){
-        if(u.subscribeState){
-        item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="fas fa-star fa-2x" style="color: #0095f6"></i></button>`
-        }
-        else{
-            item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="far fa-star fa-2x" style="color: #0095f6"></i></button>`
-        }
-    }
+    // if(!u.equalUserState && !promotionType){
+    //     if(u.subscribeState){
+    //         item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="fas fa-star fa-2x" style="color: #0095f6"></i></button>`
+    //     }
+    //     else{
+    //         item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="far fa-star fa-2x" style="color: #0095f6"></i></button>`
+    //     }
+    // }
 
     item += `</div>
 </div>`;
 
     return item;
 }
+
+// (2) 구독자 정보  모달 보기
+// function subscribeInfoModalOpen(pageUserId, promotionType) {
+//     $(".modal-subscribe").css("display", "flex");
+//
+//     $.ajax({
+//         url: `/api/user/${pageUserId}/subscribe`,
+//         dataType: "json"
+//     }).done(res => {
+//         res.data.forEach((u) => {
+//             console.log(u);
+//             let item = getSubscribeModalItem(u, promotionType);
+//             $("#subscribeModalList").append(item);
+//         });
+//
+//     }).fail(error => {
+//         console.log("구독정보 불러오기 오류", error);
+//     });
+// }
+
+// function getSubscribeModalItem(u, promotionType) {
+//     let item = `<div class="subscribe__item" id="subscribeModalItem-${u.id}">
+//     <div class="subscribe__img" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
+//         <img src="/upload/${u.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
+//     </div>
+//     <div class="subscribe__text" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
+//         <div>${u.username}</div>
+//         <p>${u.name}</p>
+//     </div>
+//     <div class="subscribe__btn">`;
+//
+//     if(!u.equalUserState && !promotionType){
+//         if(u.subscribeState){
+//         item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="fas fa-star fa-2x" style="color: #0095f6"></i></button>`
+//         }
+//         else{
+//             item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="far fa-star fa-2x" style="color: #0095f6"></i></button>`
+//         }
+//     }
+//
+//     item += `</div>
+// </div>`;
+//
+//     return item;
+// }
 
 
 // (3) 구독자 정보 모달에서 구독하기, 구독취소

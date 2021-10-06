@@ -14,7 +14,7 @@ public class KakaoSearchLocalReq {
     private String query = ""; //검색을 원하는 문자열로서 UTF-8로 인코딩한다
     private String category_group_code = "FD6";
     private int page = 1;
-    private int size = 3;
+    private int size = 10;
 
     public MultiValueMap<String, String> toMultiValueMap(){
         var map = new LinkedMultiValueMap<String, String>();

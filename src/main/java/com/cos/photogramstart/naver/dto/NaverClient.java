@@ -25,33 +25,33 @@ public class NaverClient {
     @Value("${naver.url.search.image}")
     private String naverImageSearchUrl;
 
-    public NaverSearchLocalRes localSearch(NaverSearchLocalReq naverSearchLocalReq) {
-        var uri = UriComponentsBuilder
-                .fromUriString(naverLocalSearchUrl)
-                .queryParams(naverSearchLocalReq.toMultiValueMap())
-                .build()
-                .encode()
-                .toUri();
-
-        var headers = new HttpHeaders();
-        headers.set("X-Naver-Client-Id", naverClientId);
-        headers.set("X-Naver-Client-Secret", naverSecret);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        var httpEntity = new HttpEntity<>(headers);
-        var responseType = new ParameterizedTypeReference<NaverSearchLocalRes>(){};
-
-
-        var responseEntity = new RestTemplate()
-                .exchange(
-                        uri,
-                        HttpMethod.GET,
-                        httpEntity,
-                        responseType
-                );
-
-        return responseEntity.getBody();
-    }
+//    public NaverSearchLocalRes localSearch(NaverSearchLocalReq naverSearchLocalReq) {
+//        var uri = UriComponentsBuilder
+//                .fromUriString(naverLocalSearchUrl)
+//                .queryParams(naverSearchLocalReq.toMultiValueMap())
+//                .build()
+//                .encode()
+//                .toUri();
+//
+//        var headers = new HttpHeaders();
+//        headers.set("X-Naver-Client-Id", naverClientId);
+//        headers.set("X-Naver-Client-Secret", naverSecret);
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//
+//        var httpEntity = new HttpEntity<>(headers);
+//        var responseType = new ParameterizedTypeReference<NaverSearchLocalRes>(){};
+//
+//
+//        var responseEntity = new RestTemplate()
+//                .exchange(
+//                        uri,
+//                        HttpMethod.GET,
+//                        httpEntity,
+//                        responseType
+//                );
+//
+//        return responseEntity.getBody();
+//    }
 
     public NaverSearchImageRes searchImage(NaverSearchImageReq searchImageReq) {
         var uri = UriComponentsBuilder

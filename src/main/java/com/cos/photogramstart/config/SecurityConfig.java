@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        super.configure(http); // 이거를 비활성화 하면 기존 시큐리티가 가지고 있는 기능이 다 비활성화 됨
         http.csrf().disable();//csrf 비활성화, 로그인 페이지에서 하든, 포스트맨에서 하든 상관없어짐
         http.authorizeRequests()
-                .antMatchers("/","/user/**","/image/**","/subscribe/**","/comment/**","/api/**").authenticated()//인증이 필요한 페이지
+                .antMatchers("/","/user/**","/image/**","/subscribe/**","/comment/**","/api/**","/search").authenticated()//인증이 필요한 페이지
                 .anyRequest().permitAll()//그 외 페이지는 상관 없음
                 .and()
                 .formLogin()

@@ -33,6 +33,12 @@ public class Favorite {
 
     private String toPlaceId;
 
+    private String name;
+
+    private String detailUrl;
+
+    private String img;
+
     private LocalDateTime createDate;
 
     @PrePersist

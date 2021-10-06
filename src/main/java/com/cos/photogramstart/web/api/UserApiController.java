@@ -3,9 +3,11 @@ package com.cos.photogramstart.web.api;
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.handler.ex.CustomValidationException;
+import com.cos.photogramstart.service.FavoriteService;
 import com.cos.photogramstart.service.SubscribeService;
 import com.cos.photogramstart.service.UserService;
 import com.cos.photogramstart.web.dto.CMRespDto;
+import com.cos.photogramstart.web.dto.favorite.FavoriteDto;
 import com.cos.photogramstart.web.dto.subscribe.SubscribeDto;
 import com.cos.photogramstart.web.dto.user.UserUpdateDto;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +33,20 @@ public class UserApiController {
 
     private final UserService userService;
     private final SubscribeService subscribeService;
+    private final FavoriteService favoriteService;
 
     @GetMapping("/api/user/{pageUserId}/subscribe")
     public ResponseEntity<?> subscribeList(@PathVariable int pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails){
         List<SubscribeDto> subscribeDtoList = subscribeService.subscribeList(principalDetails.getUser().getId(), pageUserId);
 
         return new ResponseEntity<>(new CMRespDto<>(1,"구독자 정보 리스트 가져오기 성공",subscribeDtoList), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/user/{pageUserId}/favorite")
+    public ResponseEntity<?> favoriteList(@PathVariable int pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        List<FavoriteDto> favoriteDtoList = favoriteService.favoriteList(principalDetails.getUser().getId(), pageUserId);
+
+        return new ResponseEntity<>(new CMRespDto<>(1,"즐겨찾기 리스트 가져오기 성공",favoriteDtoList), HttpStatus.OK);
     }
 
     @PutMapping("/api/user/{id}")

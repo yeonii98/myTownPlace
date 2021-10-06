@@ -40,10 +40,13 @@
 			<a href="/" class="logo">
 				우리 동네 맛집<i class="fas fa-utensils header_icon"></i>
 			</a>
-			<div class="input-box">
-				<input class="header__search" type="text" id="searchText" placeholder="동네를 검색하세요" onkeyup="enterkey()">
-							<i class="fas fa-search search__btn" onclick="search()"></i>
-			</div>
+	<form action = "/search" method="GET">
+	<div class="input-box">
+	<input name="location" class="header__search" type="text" id="searchText" placeholder="동네를 검색하세요">
+	<button class="search__btn"><i class="fas fa-search"></i></button>
+	</div>
+	</form>
+
 			<nav class="navi">
 				<ul class="navi-list">
 					<li class="navi-item"><a href="/">
@@ -62,4 +65,3 @@
 			</nav>
 		</div>
 	</header>
-	<script src="/js/search.js"></script>

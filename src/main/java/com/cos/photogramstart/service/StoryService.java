@@ -1,6 +1,7 @@
 package com.cos.photogramstart.service;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
+import com.cos.photogramstart.domain.favorite.FavoriteRepository;
 import com.cos.photogramstart.domain.review.Review;
 import com.cos.photogramstart.domain.review.ReviewRepository;
 import com.cos.photogramstart.kakao.dto.KakaoClient;
@@ -25,8 +26,9 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
-public class ReviewService {
+public class StoryService {
     private final ReviewRepository reviewRepository;
+    private final FavoriteRepository favoriteRepository;
     private final KakaoClient kakaoClient;
     private final NaverClient naverClinet;
 
@@ -34,7 +36,7 @@ public class ReviewService {
     private String uploadFolder;
 
     @Transactional(readOnly = true)//영속성 컨텍스트 변경 감지를 해서, 더티체킹, flush(반영) X
-    public ArrayList<StoryDto> listReview(String location, int page){
+    public ArrayList<StoryDto> listStory(int principalId, String location, int page){
         KakaoSearchLocalReq kakaoSearchLocalReq = new KakaoSearchLocalReq();
         NaverSearchImageReq naverSearchImageReq = new NaverSearchImageReq();
         kakaoSearchLocalReq.setPage(page);
@@ -43,9 +45,14 @@ public class ReviewService {
 
         KakaoSearchLocalRes localRes = kakaoClient.localSearch(kakaoSearchLocalReq);
         ArrayList<StoryDto> storyDtos = new ArrayList<>();
+        String imgLink;
+
         for(int i = 0; i < localRes.getDocuments().size(); i++){
+            imgLink = "";
             naverSearchImageReq.setQuery(localRes.getDocuments().get(i).getPlace_name());
             NaverSearchImageRes imageRes = naverClinet.searchImage(naverSearchImageReq);
+
+            if(imageRes.getItems().size() != 0) imgLink = imageRes.getItems().get(0).getLink();
 
             storyDtos.add(new StoryDto(localRes.getDocuments().get(i).getId(),
                     localRes.getDocuments().get(i).getPlace_name(),
@@ -53,10 +60,9 @@ public class ReviewService {
                     localRes.getDocuments().get(i).getRoad_address_name(),
                     localRes.getDocuments().get(i).getPhone(),
                     localRes.getDocuments().get(i).getPlace_url(),
-                    imageRes.getItems().get(1).getLink()));
+                    imgLink,
+                    favoriteRepository.mFavoriteState (principalId, localRes.getDocuments().get(i).getId()) == 1));
         }
-
-        System.out.println(storyDtos);
 
         return storyDtos;
     }

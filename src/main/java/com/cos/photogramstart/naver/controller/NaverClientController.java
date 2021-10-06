@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class NaverClientController {
     private final NaverClient naverClinet;
 
-    @GetMapping("/naverTest")
-    public NaverSearchLocalRes test(){
-        NaverSearchLocalReq search = new NaverSearchLocalReq();
-        search.setQuery("풍무동" + "맛집");
-
-        NaverSearchLocalRes result = naverClinet.localSearch(search);
-        System.out.println(result);
-        return result;
-    }
+//    @GetMapping("/naverTest")
+//    public NaverSearchLocalRes test(){
+//        NaverSearchLocalReq search = new NaverSearchLocalReq();
+//        search.setQuery("풍무동" + "맛집");
+//
+//        NaverSearchLocalRes result = naverClinet.localSearch(search);
+//        System.out.println(result);
+//        return result;
+//    }
 
     @GetMapping("/naverTest2")
     public NaverSearchImageRes test2(){

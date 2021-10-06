@@ -1,5 +1,7 @@
 package com.cos.photogramstart.service;
 
+import com.cos.photogramstart.domain.favorite.Favorite;
+import com.cos.photogramstart.domain.favorite.FavoriteRepository;
 import com.cos.photogramstart.domain.subscribe.SubscribeRepository;
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.domain.user.UserRepository;
@@ -18,6 +20,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final SubscribeRepository subscribeRepository;
+    private final FavoriteRepository favoriteRepository;
 
     @Transactional(readOnly = true)
     public UserProfileDto profileUser(int pageUserId, int principalId, String principalLocation){
@@ -32,6 +35,7 @@ public class UserService {
         dto.setPageOwnerReviewer(principalLocation.isBlank());
         dto.setSubscribeCount(subscribeRepository.mSubscribeCount(pageUserId));
         dto.setSubscribeState(subscribeRepository.mSubscribeState(principalId, pageUserId) == 1);
+        dto.setFavoriteCount(favoriteRepository.mFavoriteCount(principalId));
 
         if(!userEntity.getLocation().isBlank())
             dto.setAccountType(true);//true면 홍보 계정, false면 리뷰 계정

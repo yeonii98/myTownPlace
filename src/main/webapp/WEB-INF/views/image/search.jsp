@@ -10,10 +10,6 @@
             <c:forEach items="${u}" var="u">
                 <div class="story-list__item">
                     <div class="sl__item__header">
-                        <!--                    <div>-->
-                        <!--                       <img src="/upload/Profile.png"-->
-                        <!--                            onerror="this.src='/images/Profile.png'"/>-->
-                        <!--                    </div>-->
                         <div style="display: flex">
                             <div>${u.name}</div>
                             <div>
@@ -62,34 +58,10 @@
                         <div class="sl__item__contents__content">
                             <div><i class="fas fa-info-circle"></i></div> <a href="${u.detailUrl}">상세보기</a>
                         </div>
-
-                        <!--                    <div id="storyCommentList-1">-->
-
-                        <!--                        <div class="sl__item__contents__comment" id="storyCommentItem-1">-->
-                        <!--                            <p>-->
-                        <!--                                <b>먹보 :</b> 당장 먹으러갈게요.-->
-                        <!--                            </p>-->
-
-                        <!--                            <button>-->
-                        <!--                                <i class="fas fa-times"></i>-->
-                        <!--                            </button>-->
-                        <!--                        </div>-->
-                        <!--                    </div>-->
-
-                        <!--                    <div class="sl__item__input">-->
-                        <!--                        <input type="text" placeholder="댓글 달기..." id="storyCommentInput-1"/>-->
-                        <!--                        <button type="button" onClick="addComment()">게시</button>-->
-                        <!--                    </div>-->
-
                     </div>
                 </div>
             </c:forEach>
 
-
-        </article>
-        <article class="story-list" id="searchList">
-
-            <!--검색 리스트 아이템-->
 
         </article>
     </section>

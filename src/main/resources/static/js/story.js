@@ -10,107 +10,69 @@
 // (1) 스토리 로드하기
 let page = 1;
 
-function storyLoad() {
-    $.ajax({
-        url: `/api/story/${page}`,
-        dataType: "json"
-    }).done(res => {
-        res.data.forEach((u) => {
-            console.log(u);
-            let item = getStoryItem(u);
-            $("#storyList").append(item);
-        })
-    }).fail(error => {
-        console.log("오류", error);
-    });
-}
-
-storyLoad();
-
-function getStoryItem(u) {
-    let item = `<div class="story-list__item">
-                <div class="sl__item__header">
-<!--                    <div>-->
-<!--&lt;!&ndash;                        <img src="/upload/Profile.png"&ndash;&gt;-->
-<!--&lt;!&ndash;                             onerror="this.src='/images/Profile.png'"/>&ndash;&gt;-->
-<!--                    </div>-->
-                    <div style="display: flex">
-                    <div>${u.name}</div>
-                    <div>
-                    <button class="story__review" onclick="location.href='/image/popular'">
-                        리뷰 보러가기
-                    </button>
-				</div>
-				</div>
-                    <div style="margin-right: 1rem">
-                    <button class="cta blue" onclick="location.href='/image/popular'">
-                    	즐겨 찾기 추가
-                    </button>
-                    </div>
-                </div>
-
-                <div class="sl__item__img">
-                    <img src="${u.image}" onerror="this.src='/images/foodImg.png'"/>
-                </div>
-
-                <div class="sl__item__contents">
-                    <div class="sl__item__contents__icon">
-                        <button>
-                            <i class="fas fa-heart active" id="storyLikeIcon-1" onclick="toggleLike()"></i>
-                        </button>
-                        <span class="like"><b id="storyLikeCount-1">3 </b>명이 이 음식점을 좋아합니다.</span>
-                    </div>
-
-
-                    <div class="sl__item__contents__content">
-                        <div><i class="fas fa-tags"></i></div> ${u.category}
-                    </div>
-                    
-                    <div class="sl__item__contents__content">
-                        <div><i class="fas fa-map-marker-alt"></i></div> ${u.address}
-                    </div>
-                    
-                    <div class="sl__item__contents__content">
-                        <div><i class="fas fa-phone"></i></div> ${u.phone}
-                    </div>
-                    
-                    <div class="sl__item__contents__content">
-                        <div><i class="fas fa-info-circle"></i></div> <a href="${u.detailUrl}">상세보기</a>
-                    </div>
-
-<!--                    <div id="storyCommentList-1">-->
-
-<!--                        <div class="sl__item__contents__comment" id="storyCommentItem-1">-->
-<!--                            <p>-->
-<!--                                <b>먹보 :</b> 당장 먹으러갈게요.-->
-<!--                            </p>-->
-
-<!--                            <button>-->
-<!--                                <i class="fas fa-times"></i>-->
-<!--                            </button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div class="sl__item__input">-->
-<!--                        <input type="text" placeholder="댓글 달기..." id="storyCommentInput-1"/>-->
-<!--                        <button type="button" onClick="addComment()">게시</button>-->
-<!--                    </div>-->
-
-                </div>
-            </div>`;
-    return item;
-}
+// function storyLoad() {
+//     $.ajax({
+//         url: `/api/story/${page}`,
+//         dataType: "json"
+//     }).done(res => {
+//         res.data.forEach((u) => {
+//             console.log(u);
+//             let item = getStoryItem(u);
+//             $("#storyList").append(item);
+//         })
+//     }).fail(error => {
+//         console.log("오류", error);
+//     });
+// }
+//
+// storyLoad();
+//
+// function getStoryItem(u) {
+//     let item = ``;
+//     return item;
+// }
 
 // (2) 스토리 스크롤 페이징하기
-$(window).scroll(() => {
-    let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
+// $(window).scroll(() => {
+// //     let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
+// //
+// //     if (checkNum < 1 && checkNum > -500) {
+// //         page++;
+// //         storyLoad();
+// //     }
+// // });
 
-    if (checkNum < 1 && checkNum > -500) {
-        page++;
-        storyLoad();
+
+function toggleFavoriteModal(obj, id) {
+    if ($(obj).text() === "즐겨찾기 해제") {
+        $.ajax({
+            type: "delete",
+            url: `/api/favorite/${id}`,
+            dataType: "json"
+        }).done(res => {
+            console.log(res);
+                $(obj).text("즐겨찾기 추가");
+                $(obj).toggleClass("blue");
+            }
+        ).fail(error => {
+            console.log("즐겨찾기 취소에 실패했습니다.", error);
+        });
+
+    } else {
+        $.ajax({
+            type: "post",
+            url: `/api/favorite/${id}`,
+            dataType: "json"
+        }).done(res => {
+            console.log(res);
+                $(obj).text("즐겨찾기 해제");
+                $(obj).toggleClass("blue");
+            }
+        ).fail(error => {
+            console.log("즐겨찾기 추가에 실패했습니다.", error);
+        });
     }
-});
-
+}
 
 // (3) 좋아요, 좋아요 취소
 function toggleLike() {

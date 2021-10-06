@@ -21,4 +21,6 @@ public class UserProfileDto {
 
     private boolean subscribeState;
     private int subscribeCount;
+
+    private int favoriteCount;
 }
