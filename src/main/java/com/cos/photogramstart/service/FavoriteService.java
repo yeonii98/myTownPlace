@@ -26,7 +26,7 @@ public class FavoriteService {
 
         //쿼리 준비
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT f.toPlaceId, f.name, f.img, f.detailUrl, ");
+        sb.append("SELECT f.toPlaceId, f.name, f.detailUrl, f.img, ");
         sb.append("(SELECT 1 FROM favorite WHERE fromUserId = ? AND toPlaceId = f.toPlaceId) as favoriteState ");
         sb.append("FROM favorite f ");
         sb.append("WHERE f.fromUserId = ?");//세미콜론 첨부하면 안 됨
@@ -43,9 +43,9 @@ public class FavoriteService {
     }
 
     @Transactional
-    public void favorite(int fromUserId, String toPlaceId){
+    public void favorite(int fromUserId, String toPlaceId, String name, String detailUrl, String img){
         try{
-            favoriteRepository.mFavorite(fromUserId,toPlaceId);
+            favoriteRepository.mFavorite(fromUserId,toPlaceId, name, detailUrl, img);
         } catch (Exception e){
             throw new CustomApiException("이미 추가 하셨습니다."+e.getMessage());
         }
@@ -53,6 +53,7 @@ public class FavoriteService {
 
     @Transactional
     public void unfavorite(int fromUserId, String toPlaceId){
+        System.out.println("hello~??????????" + fromUserId + " " + toPlaceId);
         favoriteRepository.mUnFavorite(fromUserId,toPlaceId);
     }
 

@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface FavoriteRepository extends JpaRepository<Favorite,Integer> {
 
     @Modifying //INSERT, DELETE, UPDATE 를 네이티브 쿼리로 작성하려면 해당 어노테이션 필요
-    @Query(value = "INSERT INTO favorite(fromUserID, toPlaceId, createDate) VALUES(:fromUserId, :toPlaceId, now())", nativeQuery = true)
-    void mFavorite(int fromUserId, String toPlaceId); // 성공했을 때 : 변경된 행의 개수가 리턴됨, 실패했을 때 : -1 리턴
+    @Query(value = "INSERT INTO favorite(fromUserID, toPlaceId, name, detailUrl, img, createDate) VALUES(:fromUserId, :toPlaceId, :name, :detailUrl, :img, now())", nativeQuery = true)
+    void mFavorite(int fromUserId, String toPlaceId, String name, String detailUrl, String img); // 성공했을 때 : 변경된 행의 개수가 리턴됨, 실패했을 때 : -1 리턴
 
     @Modifying //INSERT, DELETE, UPDATE 를 네이티브 쿼리로 작성하려면 해당 어노테이션 필요
     @Query(value = "DELETE FROM favorite WHERE fromUserId =:fromUserId AND toPlaceId =:toPlaceId", nativeQuery = true)

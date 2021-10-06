@@ -25,10 +25,10 @@
                         <div style="margin-right: 1rem">
                             <c:choose>
                                 <c:when test="${u.favoriteState}">
-                                    <button class="cta" onclick="toggleFavoriteModal(this, ${u.id})">즐겨찾기 해제</button>
+                                    <button class="cta" onclick="toggleFavorite(this, ${u.id})">즐겨찾기 해제</button>
                                 </c:when>
                                 <c:otherwise>
-                                    <button class="cta blue" onclick="toggleFavoriteModal(this, ${u.id})">즐겨찾기 추가</button>
+                                    <button class="cta blue" onclick="toggleFavorite(this, ${u.id}, '${u.name}', '${u.image}', '${u.detailUrl}')">즐겨찾기 추가</button>
                                 </c:otherwise>
                             </c:choose>
                         </div>

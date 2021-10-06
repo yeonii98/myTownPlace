@@ -43,7 +43,7 @@ let page = 1;
 // // });
 
 
-function toggleFavoriteModal(obj, id) {
+function toggleFavorite(obj, id, name, img, detailUrl) {
     if ($(obj).text() === "즐겨찾기 해제") {
         $.ajax({
             type: "delete",
@@ -62,6 +62,7 @@ function toggleFavoriteModal(obj, id) {
         $.ajax({
             type: "post",
             url: `/api/favorite/${id}`,
+            data: {"name" : name, "img" : img, "detailUrl" : detailUrl},
             dataType: "json"
         }).done(res => {
             console.log(res);

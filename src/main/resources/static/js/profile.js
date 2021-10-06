@@ -50,7 +50,6 @@ function favoriteModalOpen(pageUserId) {
         dataType: "json"
     }).done(res => {
         res.data.forEach((u) => {
-            console.log(u);
             let item = getFavoriteItem(u);
             $("#subscribeModalList").append(item);
         });
@@ -62,22 +61,24 @@ function favoriteModalOpen(pageUserId) {
 
 function getFavoriteItem(u) {
     let item = `<div class="subscribe__item">
-    <div class="subscribe__img" onclick="location.href='${u.detailUrl}'" style="cursor: pointer">
-        <img src="/upload/${u.img}" onerror="this.src='/images/foodImg.png'"/>
-    </div>
-    <div class="subscribe__text" onclick="location.href='${u.detailUrl}'" style="cursor: pointer">
+        <a href="${u.detailUrl}">
+            <div class="subscribe__img" style="cursor: pointer">
+                <img src=${u.img} onerror="this.src='/images/foodImg.png'"/>
+            </div>
+        </a>
+    <div class="subscribe__text">
         <div>${u.name}</div>
     </div>
     <div class="subscribe__btn">`;
 
-    // if(!u.equalUserState && !promotionType){
-    //     if(u.subscribeState){
-    //         item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="fas fa-star fa-2x" style="color: #0095f6"></i></button>`
-    //     }
-    //     else{
-    //         item += `<button class="modi" onclick="toggleSubscribeModal(this,${u.id})" style="margin-right: 1rem;"><i class="far fa-star fa-2x" style="color: #0095f6"></i></button>`
-    //     }
-    // }
+
+        if(u.favoriteState){
+            item += `<button class="cta" onclick="toggleFavoriteModal(this, ${u.toPlaceId})">즐겨찾기 해제</button>`
+        }
+        else{
+            item += `<button class="cta blue" onclick="toggleFavoriteModal(this, ${u.toPlaceId}, '${u.name}', '${u.img}', '${u.detailUrl}')">즐겨찾기 추가</button>`
+        }
+
 
     item += `</div>
 </div>`;
@@ -130,6 +131,37 @@ function getFavoriteItem(u) {
 //     return item;
 // }
 
+function toggleFavoriteModal(obj, id, name, img, detailUrl) {
+    if ($(obj).text() === "즐겨찾기 해제") {
+        $.ajax({
+            type: "delete",
+            url: `/api/favorite/${id}`,
+            dataType: "json"
+        }).done(res => {
+                console.log(res);
+                $(obj).text("즐겨찾기 추가");
+                $(obj).toggleClass("blue");
+            }
+        ).fail(error => {
+            console.log("즐겨찾기 취소에 실패했습니다.", error);
+        });
+
+    } else {
+        $.ajax({
+            type: "post",
+            url: `/api/favorite/${id}`,
+            data: {"name" : name, "img" : img, "detailUrl" : detailUrl},
+            dataType: "json"
+        }).done(res => {
+                console.log(res);
+                $(obj).text("즐겨찾기 해제");
+                $(obj).toggleClass("blue");
+            }
+        ).fail(error => {
+            console.log("즐겨찾기 추가에 실패했습니다.", error);
+        });
+    }
+}
 
 // (3) 구독자 정보 모달에서 구독하기, 구독취소
 function toggleSubscribeModal(obj, pageUserId) {

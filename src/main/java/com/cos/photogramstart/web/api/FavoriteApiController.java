@@ -20,8 +20,8 @@ public class FavoriteApiController {
     private final FavoriteService favoriteService;
 
     @PostMapping("/api/favorite/{id}")
-    public ResponseEntity<?> subscribe(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable String id){
-        favoriteService.favorite(principalDetails.getUser().getId(), id);
+    public ResponseEntity<?> subscribe(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable String id, String name, String detailUrl, String img){
+        favoriteService.favorite(principalDetails.getUser().getId(), id, name, detailUrl, img);
         return new ResponseEntity<>(new CMRespDto<>(1,"즐겨찾기 추가 성공", null), HttpStatus.OK);
     }
 

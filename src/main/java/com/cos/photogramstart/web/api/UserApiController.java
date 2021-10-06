@@ -45,8 +45,8 @@ public class UserApiController {
     @GetMapping("/api/user/{pageUserId}/favorite")
     public ResponseEntity<?> favoriteList(@PathVariable int pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails){
         List<FavoriteDto> favoriteDtoList = favoriteService.favoriteList(principalDetails.getUser().getId(), pageUserId);
-
-        return new ResponseEntity<>(new CMRespDto<>(1,"즐겨찾기 리스트 가져오기 성공",favoriteDtoList), HttpStatus.OK);
+        System.out.println(favoriteDtoList.get(0));
+        return new ResponseEntity<>(new CMRespDto<>(1,"즐겨찾기 리스트 가져오기 성공", favoriteDtoList), HttpStatus.OK);
     }
 
     @PutMapping("/api/user/{id}")

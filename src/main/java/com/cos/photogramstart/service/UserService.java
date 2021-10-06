@@ -35,7 +35,7 @@ public class UserService {
         dto.setPageOwnerReviewer(principalLocation.isBlank());
         dto.setSubscribeCount(subscribeRepository.mSubscribeCount(pageUserId));
         dto.setSubscribeState(subscribeRepository.mSubscribeState(principalId, pageUserId) == 1);
-        dto.setFavoriteCount(favoriteRepository.mFavoriteCount(principalId));
+        dto.setFavoriteCount(favoriteRepository.mFavoriteCount(pageUserId));
 
         if(!userEntity.getLocation().isBlank())
             dto.setAccountType(true);//true면 홍보 계정, false면 리뷰 계정
