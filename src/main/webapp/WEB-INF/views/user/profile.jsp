@@ -63,9 +63,9 @@
                     <li><a href="javascript:favoriteModalOpen(${dto.user.id});">
                         즐겨찾기<span>${dto.favoriteCount}</span>
                     </a></li>
-<%--                    <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id},${principal.user.promotionType});">--%>
-<%--                        팔로우<span>${dto.subscribeCount}</span>--%>
-<%--                    </a></li>--%>
+                    <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id});">
+                        팔로우<span>${dto.subscribeCount}</span>
+                    </a></li>
 
                 </ul>
             </div>
