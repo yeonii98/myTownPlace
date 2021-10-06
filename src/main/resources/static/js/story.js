@@ -43,8 +43,14 @@ let page = 1;
 // // });
 
 
-function toggleFavorite(obj, id, name, img, detailUrl) {
+function toggleFavorite(obj, id, idx, name, img, detailUrl) {
+    console.log(idx);
+    const resultElement = document.getElementById('favoriteCnt-'+ idx);
+    let number = resultElement.innerText;
+    console.log(number);
     if ($(obj).text() === "즐겨찾기 해제") {
+        number--;
+        resultElement.innerText = number;
         $.ajax({
             type: "delete",
             url: `/api/favorite/${id}`,
@@ -59,6 +65,8 @@ function toggleFavorite(obj, id, name, img, detailUrl) {
         });
 
     } else {
+        number++;
+        resultElement.innerText = number;
         $.ajax({
             type: "post",
             url: `/api/favorite/${id}`,

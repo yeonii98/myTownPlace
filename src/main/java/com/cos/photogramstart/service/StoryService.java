@@ -40,7 +40,7 @@ public class StoryService {
         KakaoSearchLocalReq kakaoSearchLocalReq = new KakaoSearchLocalReq();
         NaverSearchImageReq naverSearchImageReq = new NaverSearchImageReq();
         kakaoSearchLocalReq.setPage(page);
-        System.out.println(location);
+
         kakaoSearchLocalReq.setQuery(location +" 맛집");
 
         KakaoSearchLocalRes localRes = kakaoClient.localSearch(kakaoSearchLocalReq);
@@ -61,7 +61,8 @@ public class StoryService {
                     localRes.getDocuments().get(i).getPhone(),
                     localRes.getDocuments().get(i).getPlace_url(),
                     imgLink,
-                    favoriteRepository.mFavoriteState (principalId, localRes.getDocuments().get(i).getId()) == 1));
+                    favoriteRepository.mFavoriteState (principalId, localRes.getDocuments().get(i).getId()) == 1,
+                    favoriteRepository.countByToPlaceId(localRes.getDocuments().get(i).getId())));
         }
 
         return storyDtos;

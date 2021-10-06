@@ -19,4 +19,5 @@ public class StoryDto {
     private String detailUrl;
     private String image;
     private Boolean favoriteState;
+    private int favoriteCnt;
 }

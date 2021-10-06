@@ -22,4 +22,5 @@ public interface FavoriteRepository extends JpaRepository<Favorite,Integer> {
     @Query(value = "SELECT COUNT(*) FROM favorite WHERE fromUserId =:principalId AND toPlaceId =:toPlaceId", nativeQuery = true)
     int mFavoriteState(int principalId, String toPlaceId);
 
+    int countByToPlaceId(String toPlaceId);
 }
