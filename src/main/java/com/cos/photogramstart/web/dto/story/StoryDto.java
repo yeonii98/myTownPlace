@@ -20,4 +20,6 @@ public class StoryDto {
     private String image;
     private Boolean favoriteState;
     private int favoriteCnt;
+    private int page;
+    private Integer pageable_count;
 }

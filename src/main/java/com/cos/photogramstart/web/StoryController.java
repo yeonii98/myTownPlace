@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -22,10 +23,12 @@ public class StoryController {
 
     private final StoryService storyService;
 
-    @GetMapping({"/","/image/story"})
-    public String story(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
-        ArrayList<StoryDto> dto =  storyService.listStory(principalDetails.getUser().getId(), principalDetails.getUser().getLocation(),1);
+    @GetMapping({"/", "/{page}"})
+    public String story(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable(required = false) Optional<Integer> page){
+        int page2 = page.orElse(1);
+        ArrayList<StoryDto> dto =  storyService.listStory(principalDetails.getUser().getId(), principalDetails.getUser().getLocation(),page2);
         model.addAttribute("u", dto);
+        model.addAttribute("page", dto.get(0).getPage());
         return "image/story";
     }
 
