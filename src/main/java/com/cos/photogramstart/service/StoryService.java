@@ -62,10 +62,9 @@ public class StoryService {
                     localRes.getDocuments().get(i).getPlace_url(),
                     imgLink,
                     favoriteRepository.mFavoriteState (principalId, localRes.getDocuments().get(i).getId()) == 1,
-                    favoriteRepository.countByToPlaceId(localRes.getDocuments().get(i).getId()),++page, localRes.getMeta().getPageable_count())
+                    favoriteRepository.countByToPlaceId(localRes.getDocuments().get(i).getId()))
                     );
         }
-        System.out.println(storyDtos);
 
         return storyDtos;
     }

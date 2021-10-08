@@ -23,19 +23,20 @@ public class StoryController {
 
     private final StoryService storyService;
 
-    @GetMapping({"/", "/{page}"})
-    public String story(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable(required = false) Optional<Integer> page){
-        int page2 = page.orElse(1);
-        ArrayList<StoryDto> dto =  storyService.listStory(principalDetails.getUser().getId(), principalDetails.getUser().getLocation(),page2);
+    @GetMapping({"/"})
+    public String story(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @RequestParam(required = false, defaultValue = "1") int page){
+        ArrayList<StoryDto> dto =  storyService.listStory(principalDetails.getUser().getId(), principalDetails.getUser().getLocation(),page);
         model.addAttribute("u", dto);
-        model.addAttribute("page", dto.get(0).getPage());
+        model.addAttribute("page", page);
         return "image/story";
     }
 
     @GetMapping("/search")
-    public String searchStory(@RequestParam(value = "location") String location, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
-        ArrayList<StoryDto> dto = storyService.listStory(principalDetails.getUser().getId(), location,1);
+    public String searchStory(@RequestParam(value = "location") String location, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @RequestParam(required = false, defaultValue = "1") int page){
+        ArrayList<StoryDto> dto = storyService.listStory(principalDetails.getUser().getId(), location, page);
         model.addAttribute("u", dto);
+        model.addAttribute("location", location);
+        model.addAttribute("page", page);
         return "image/search";
     }
 

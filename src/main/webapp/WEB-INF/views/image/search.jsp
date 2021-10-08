@@ -18,7 +18,7 @@
                                 <i class="fas fa-star"></i>
                             </div>
                         </div>
-                        <div style="margin-right: 1rem">
+                        <div style="margin-right: 1rem;font-size: 13px">
                             <c:choose>
                                 <c:when test="${u.favoriteState}">
                                     <button class="cta" onclick="toggleFavorite(this, ${u.id})">즐겨찾기 해제</button>
@@ -53,9 +53,35 @@
                     </div>
                 </div>
             </c:forEach>
-
-
         </article>
+        <ul class="pagination justify-content-center">
+            <c:choose>
+                <c:when test="${page eq 1}">
+                    <li class="page-item disabled"><a class="page-link" href="?location=${location}&page=${page-1}">Previous</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="?location=${location}&page=${page-1}">Previous</a></li>
+                </c:otherwise>
+            </c:choose>
+            <c:forEach var="i" begin="1" end="5">
+                <c:choose>
+                    <c:when test="${page eq i}">
+                        <li class="page-item active"><a class="page-link" href="?location=${location}&page=${i}">${i}</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link" href="?location=${location}&page=${i}">${i}</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:choose>
+                <c:when test="${page eq 5 }">
+                    <li class="page-item disabled"><a class="page-link" href="?location=${location}&page=${page+1}">Next</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="?location=${location}&page=${page+1}">Next</a></li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
     </section>
 </main>
 <script src="/js/story.js"></script>

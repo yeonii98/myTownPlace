@@ -18,13 +18,17 @@
                                 <i class="fas fa-star"></i>
                             </div>
                         </div>
-                        <div style="margin-right: 1rem">
+                        <div style="margin-right: 1rem; font-size: 13px">
                             <c:choose>
                                 <c:when test="${s.favoriteState}">
-                                    <button class="cta" onclick="toggleFavorite(this, ${s.id}, ${idx.count})">즐겨찾기 해제</button>
+                                    <button class="cta" onclick="toggleFavorite(this, ${s.id}, ${idx.count})">즐겨찾기 해제
+                                    </button>
                                 </c:when>
                                 <c:otherwise>
-                                    <button class="cta blue" onclick="toggleFavorite(this, ${s.id}, ${idx.count}, '${s.name}', '${s.image}', '${s.detailUrl}')">즐겨찾기 추가</button>
+                                    <button class="cta blue"
+                                            onclick="toggleFavorite(this, ${s.id}, ${idx.count}, '${s.name}', '${s.image}', '${s.detailUrl}')">
+                                        즐겨찾기 추가
+                                    </button>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -36,25 +40,56 @@
 
                     <div class="sl__item__contents">
                         <div class="sl__item__contents__content">
-                            <div><i class="fas fa-tags"></i></div> ${s.category}
+                            <div><i class="fas fa-tags"></i></div>
+                                ${s.category}
                         </div>
 
                         <div class="sl__item__contents__content">
-                            <div><i class="fas fa-map-marker-alt"></i></div> ${s.address}
+                            <div><i class="fas fa-map-marker-alt"></i></div>
+                                ${s.address}
                         </div>
 
                         <div class="sl__item__contents__content">
-                            <div><i class="fas fa-phone"></i></div> ${s.phone}
+                            <div><i class="fas fa-phone"></i></div>
+                                ${s.phone}
                         </div>
 
                         <div class="sl__item__contents__content">
-                            <div><i class="fas fa-info-circle"></i></div> <a href="${s.detailUrl}">상세보기</a>
+                            <div><i class="fas fa-info-circle"></i></div>
+                            <a href="${s.detailUrl}">상세보기</a>
                         </div>
                     </div>
                 </div>
             </c:forEach>
         </article>
-        <button onclick="location.href='/${page}'">next</button>
+        <ul class="pagination justify-content-center">
+            <c:choose>
+                <c:when test="${page eq 1}">
+                    <li class="page-item disabled"><a class="page-link" href="?page=${page-1}">Previous</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="?page=${page-1}">Previous</a></li>
+                </c:otherwise>
+            </c:choose>
+            <c:forEach var="i" begin="1" end="5">
+                <c:choose>
+                    <c:when test="${page eq i}">
+                        <li class="page-item active"><a class="page-link" href="?page=${i}">${i}</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link" href="?page=${i}">${i}</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:choose>
+                <c:when test="${page eq 5 }">
+                    <li class="page-item disabled"><a class="page-link" href="?page=${page+1}">Next</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="?page=${page+1}">Next</a></li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
     </section>
 </main>
 <script src="/js/story.js"></script>
