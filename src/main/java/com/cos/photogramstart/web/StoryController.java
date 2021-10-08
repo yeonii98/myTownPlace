@@ -50,13 +50,4 @@ public class StoryController {
         return "image/upload";
     }
 
-//    @PostMapping("/image")
-//    public String imageUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
-//        if(reviewUploadDto.getFile().isEmpty()){
-//            throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
-//        }
-//        //서비스 호출
-//        reviewService.uploadReview(reviewUploadDto, principalDetails);
-//        return "redirect:/user/" + principalDetails.getUser().getId();
-//    }
 }

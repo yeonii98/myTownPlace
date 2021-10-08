@@ -9,7 +9,7 @@
         <article class="story-list" id="storyList">
             <c:forEach items="${u}" var="s" varStatus="idx">
                 <div class="story-list__item">
-                    <div class="sl__item__header">
+                    <div class="sl__item__header sl__item__header--home">
                         <div style="display: flex">
                             <div>${s.name}</div>
                             <div class="story-cnt" style="font-size: 15px">

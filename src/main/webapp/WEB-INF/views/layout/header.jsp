@@ -59,7 +59,7 @@
 					<li class="navi-item"><a href="/">
 							<i class="fas fa-home"></i>
 						</a></li>
-					<li class="navi-item"><a href="/image/popular">
+					<li class="navi-item"><a href="/review">
 							<i class="fas fa-utensils"></i>
 						</a></li>
 					<li class="navi-item"><a href="/user/${principal.user.id}">

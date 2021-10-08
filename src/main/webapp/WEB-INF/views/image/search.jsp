@@ -9,7 +9,7 @@
         <article class="story-list" id="storyList">
             <c:forEach items="${u}" var="u" varStatus="idx">
                 <div class="story-list__item">
-                    <div class="sl__item__header">
+                    <div class="sl__item__header sl__item__header--home">
                         <div style="display: flex">
                             <div>${u.name}</div>
                             <div class="story-cnt" style="font-size: 15px">
@@ -17,6 +17,11 @@
                                 <span id="favoriteCnt-${idx.count}">${u.favoriteCnt}</span> 명이 이 음식점을 즐겨찾습니다
                                 <i class="fas fa-star"></i>
                             </div>
+                                <%--                            <div>--%>
+                                <%--                                <button class="story__review" onclick="location.href='/image/popular'">--%>
+                                <%--                                    리뷰 보러가기--%>
+                                <%--                                </button>--%>
+                                <%--                            </div>--%>
                         </div>
                         <div style="margin-right: 1rem;font-size: 13px">
                             <c:choose>

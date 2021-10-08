@@ -83,7 +83,9 @@
   color: #000000;
   margin-top: 4px;
 }
-
+.navi ul{
+  margin-bottom: 0;
+}
 @media screen and (max-width: 935px) {
   .header .container {
     width: 100%;

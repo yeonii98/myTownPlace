@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -92,9 +93,10 @@
             <div class="tab-1-content-inner">
 
                 <!--아이템들-->
-                <c:forEach var="review" items="${dto.user.reviews}">
+                <c:set var = "size" value="${fn:length(dto.user.reviews)}"/>
+                <c:forEach var="i" begin="1" end="${size}">
                     <div class="img-box">
-                        <a href=""> <img src="/upload/${review.postImageUrl}"/>
+                        <a href=""> <img src="/upload/${dto.user.reviews[size-i].postImageUrl}"/>
                         </a>
                         <div class="comment">
                             <a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>

@@ -10,5 +10,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review,Integer> {
 
     @Query(value = "SELECT * FROM review WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId =:principalId) ORDER BY id DESC", nativeQuery = true)
-    Page<Review> mStory(int principalId, Pageable pageable);
+    Page<Review> mReview(int principalId, Pageable pageable);
 }
