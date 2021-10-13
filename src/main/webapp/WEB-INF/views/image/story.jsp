@@ -21,14 +21,11 @@
                         <div style="margin-right: 1rem; font-size: 13px">
                             <c:choose>
                                 <c:when test="${s.favoriteState}">
-                                    <button class="cta" onclick="toggleFavorite(this, ${s.id}, ${idx.count})">즐겨찾기 해제
-                                    </button>
+                                    <button class="cta" onclick="toggleFavorite(this, ${s.id}, ${idx.count})">즐겨찾기 해제</button>
                                 </c:when>
                                 <c:otherwise>
                                     <button class="cta blue"
-                                            onclick="toggleFavorite(this, ${s.id}, ${idx.count}, '${s.name}', '${s.image}', '${s.detailUrl}')">
-                                        즐겨찾기 추가
-                                    </button>
+                                            onclick="toggleFavorite(this, ${s.id}, ${idx.count}, '${s.name}', '${s.image}', '${s.detailUrl}')">즐겨찾기 추가</button>
                                 </c:otherwise>
                             </c:choose>
                         </div>

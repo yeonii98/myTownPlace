@@ -33,7 +33,11 @@
   flex-direction: column;
   width: 100%;
 }
-
+.review__hash{
+  color: #0095f6;
+  font-weight: bold;
+  cursor: pointer;
+}
 /*게시물 리스트 아이템*/
 .main .container .story-list .story-list__item {
   margin-bottom: 30px;
@@ -259,7 +263,5 @@
   color: red;
 }
 
-.profile-image {
-  border: 2px solid #8a3ab8;
-}
+
 

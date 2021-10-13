@@ -7,7 +7,10 @@
   list-style: none;
   outline: none;
 }
-
+button:focus{
+  border: none;
+  outline: none;
+}
 /*페이지의 중앙을 잡아줄 컨테이너*/
 .container {
   width: 100%;

@@ -37,7 +37,18 @@ public class ReviewService {
 
     @Transactional(readOnly = true)
     public Page<Review> reviewList(int principalId, Pageable pageable){
-        return reviewRepository.mReview(principalId, pageable);
+        Page<Review> reviews = reviewRepository.mReview(principalId, pageable);
+
+        reviews.forEach((review -> {
+            review.setLikeCount(review.getLikes().size());
+            review.getLikes().forEach((likes -> {
+                if(likes.getUser().getId() == principalId){
+                    review.setLikeState(true);
+                }
+            }));
+        }));
+
+        return reviews;
     }
 
     //트랜잭션이란? 일의 최소 단위. ex) 송금을 하기 위해서는 입금과 출금 2가지 상황이 필요함, 입금과 출금을 성공 했을 때 commit을 한다. 실패하면 rollback

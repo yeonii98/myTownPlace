@@ -53,7 +53,6 @@ public class FavoriteService {
 
     @Transactional
     public void unfavorite(int fromUserId, String toPlaceId){
-        System.out.println("hello~??????????" + fromUserId + " " + toPlaceId);
         favoriteRepository.mUnFavorite(fromUserId,toPlaceId);
     }
 
