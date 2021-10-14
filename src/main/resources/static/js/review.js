@@ -1,3 +1,6 @@
+//현재 로그인한 사용자 아이디
+let principalId = $("#principalId").val();
+
 // (1) 스토리 로드하기
 let page = 0;
 
@@ -56,22 +59,25 @@ function getStoryItem(review) {
                     <div class="sl__item__contents__content">
                         <p>${review.caption}</p>
                     </div>
-                    <div id="storyCommentList-1">
+                    <div id="storyCommentList-${review.id}">`
 
-                        <div class="sl__item__contents__comment" id="storyCommentItem-1">
+                        review.comments.forEach((comment)=>{
+                            item +=`<div class="sl__item__contents__comment" id="storyCommentItem-${comment.id}">
                             <p>
-                                <b>먹보 </b> 당장 먹으러갈게요.
-                            </p>
-                            <button>
-                                <i class="fas fa-times"></i>
-                                
-                            </button>
-                        </div>
-                    </div>
+                                <b>${comment.user.username} </b> ${comment.content}
+                            </p>`
+                            if(Number(principalId) === Number(comment.user.id)){
+                            item += `<button onclick="deleteComment(${comment.id})">
+                                    <i class="fas fa-times"></i>
+                                    </button>`
+                            }
+                        item += `</div>`
 
+                        })
+            item += `</div>
                     <div class="sl__item__input">
-                        <input type="text" placeholder="댓글 달기..." id="storyCommentInput-1"/>
-                        <button type="button" onClick="addComment()">게시</button>
+                        <input type="text" placeholder="댓글 달기..." id="storyCommentInput-${review.id}"/>
+                        <button type="button" onClick="addComment(${review.id})">게시</button>
                     </div>
 
                 </div>
@@ -95,7 +101,7 @@ function toggleLike(reviewId) {
     let likeIcon = $(`#storyLikeIcon-${reviewId}`);
     const resultElement = document.getElementById('storyLikeCount-'+ reviewId);
     let number = resultElement.innerText;
-    console.log(number);
+
     if (likeIcon.hasClass("far")) {
         number++;
         resultElement.innerText = number;
@@ -130,12 +136,13 @@ function toggleLike(reviewId) {
 }
 
 // (4) 댓글쓰기
-function addComment() {
+function addComment(reviewId) {
 
-    let commentInput = $("#storyCommentInput-1");
-    let commentList = $("#storyCommentList-1");
+    let commentInput = $(`#storyCommentInput-${reviewId}`);
+    let commentList = $(`#storyCommentList-${reviewId}`);
 
     let data = {
+        reviewId: reviewId,
         content: commentInput.val()
     }
 
@@ -143,23 +150,47 @@ function addComment() {
         alert("댓글을 작성해주세요!");
         return;
     }
-
-    let content = `
-			  <div class="sl__item__contents__comment" id="storyCommentItem-2""> 
+    $.ajax({
+        url: `/api/comment`,
+        type: "post",
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8", // 보내는 데이터 타입
+        dataType: "json" // 응답 받을 타임
+    }).done(res => {
+        console.log("성공", res);
+        let content = `
+			  <div class="sl__item__contents__comment" id="storyCommentItem-${res.data.id}"> 
 			    <p>
-			      <b>GilDong :</b>
-			      댓글 샘플입니다.
+			      <b>${res.data.user.username} </b>
+			      ${res.data.content}
 			    </p>
-			    <button><i class="fas fa-times"></i></button>
+			    <button onclick="deleteComment(${res.data.id})"><i class="fas fa-times"></i></button>
 			  </div>
 	`;
-    commentList.prepend(content);
+        commentList.append(content);
+
+    }).fail(error => {
+        console.log("오류", error);
+    });
     commentInput.val("");
+
 }
 
 // (5) 댓글 삭제
-function deleteComment() {
+function deleteComment(commentId) {
+    if(confirm("댓글을 삭제하겠습니까?")){
 
+        $.ajax({
+            url: `/api/comment/${commentId}`,
+            type: "delete",
+            dataType: "json" // 응답 받을 타임
+        }).done(res => {
+            console.log("성공", res);
+            $(`#storyCommentItem-${commentId}`).remove();
+        }).fail(error => {
+            console.log("오류", error);
+        });
+    }
 }
 
 

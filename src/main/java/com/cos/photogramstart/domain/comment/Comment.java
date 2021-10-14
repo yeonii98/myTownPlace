@@ -1,4 +1,4 @@
-package com.cos.photogramstart.domain.likes;
+package com.cos.photogramstart.domain.comment;
 
 import com.cos.photogramstart.domain.review.Review;
 import com.cos.photogramstart.domain.user.User;
@@ -16,27 +16,22 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "likes_uk",
-                        columnNames = {"toReviewId","fromUserId"}
-                )
-        }
-)
-public class Likes { // N
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JoinColumn(name = "toReviewId")
-    @ManyToOne
-    private Review review; // 1
+    @Column(length = 100, nullable = false)
+    private String content;
 
     @JsonIgnoreProperties({"reviews"})
-    @JoinColumn(name = "fromUserId")
-    @ManyToOne
+    @JoinColumn(name = "userId")
+    @ManyToOne//기본 패치 전략 : EAGER
     private User user;
+
+    @JoinColumn(name = "reviewId")
+    @ManyToOne//기본 패치 전략 : EAGER
+    private Review review;
 
     private LocalDateTime createDate;
 

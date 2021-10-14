@@ -1,5 +1,6 @@
 package com.cos.photogramstart.domain.review;
 
+import com.cos.photogramstart.domain.comment.Comment;
 import com.cos.photogramstart.domain.likes.Likes;
 import com.cos.photogramstart.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -34,7 +35,7 @@ public class Review {
 
     //좋아요
     @JsonIgnoreProperties({"review"})
-    @OneToMany(mappedBy = "review")
+    @OneToMany(mappedBy = "review")//mappedBy : 난 연관관계의 주인이 아니다 (난 FK가 아니에요) DB에 칼럼을 만들지 마세요.
     private List<Likes> likes;
 
     @Transient //DB에 칼럼이 만들어지지 않는다.
@@ -42,7 +43,11 @@ public class Review {
 
     @Transient //DB에 칼럼이 만들어지지 않는다.
     private int likeCount;
-    // 댓글글
+
+    //댓글
+    @JsonIgnoreProperties({"review"})
+    @OneToMany(mappedBy = "review")
+    private List<Comment> comments;
 
    private LocalDateTime createDate;
 
