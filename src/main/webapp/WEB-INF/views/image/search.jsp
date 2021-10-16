@@ -3,6 +3,9 @@
          pageEncoding="UTF-8" %>
 <%@ include file="../layout/header.jsp" %>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <main class="main">
     <section class="container">
         <!--전체 리스트 시작-->

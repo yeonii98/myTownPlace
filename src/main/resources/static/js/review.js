@@ -58,16 +58,21 @@ function getStoryItem(review) {
                     <span class="like"><b id="storyLikeCount-${review.id}">${review.likeCount}</b>명이 좋아합니다.</span>
                     <div class="sl__item__contents__content">
                         <p>${review.caption}</p>
-                    </div>
-                    <div id="storyCommentList-${review.id}">`
+                    </div>`
 
+                    if(review.commentCount !== 0){
+                        item += `<div class="sl__item__contents__content story__comment-list--more" id="storyCommentListMore-${review.id}" onclick="openList(${review.id}, ${review.commentCount})">댓글&nbsp <b id="storyCommentCount-${review.id}">${review.commentCount}</b>개 모두 보기</div>`
+                    }
+
+                    
+                    item += `<div id="storyCommentList-${review.id}" class="story__comment-list">`
                         review.comments.forEach((comment)=>{
                             item +=`<div class="sl__item__contents__comment" id="storyCommentItem-${comment.id}">
                             <p>
                                 <b>${comment.user.username} </b> ${comment.content}
                             </p>`
                             if(Number(principalId) === Number(comment.user.id)){
-                            item += `<button onclick="deleteComment(${comment.id})">
+                            item += `<button onclick="deleteComment(${comment.id}, ${review.id})">
                                     <i class="fas fa-times"></i>
                                     </button>`
                             }
@@ -95,6 +100,17 @@ $(window).scroll(() => {
         storyLoad();
     }
 });
+
+function openList(id, cnt) {
+
+    if ($(`#storyCommentList-${id}`).css('display') === 'block') {
+        $(`#storyCommentList-${id}`).css('display', 'none');
+        $(`#storyCommentListMore-${id}`).text(`댓글 ${cnt}개 모두 보기`);
+    } else {
+        $(`#storyCommentList-${id}`).css('display', 'block');
+        $(`#storyCommentListMore-${id}`).text("댓글 접기");
+    }
+}
 
 // (3) 좋아요, 좋아요 취소
 function toggleLike(reviewId) {
@@ -137,9 +153,11 @@ function toggleLike(reviewId) {
 
 // (4) 댓글쓰기
 function addComment(reviewId) {
-
+    console.log(reviewId);
     let commentInput = $(`#storyCommentInput-${reviewId}`);
     let commentList = $(`#storyCommentList-${reviewId}`);
+    const resultElement = document.getElementById('storyCommentCount-'+ reviewId);
+    let number = resultElement.innerText;
 
     let data = {
         reviewId: reviewId,
@@ -158,13 +176,15 @@ function addComment(reviewId) {
         dataType: "json" // 응답 받을 타임
     }).done(res => {
         console.log("성공", res);
+        number++;
+        resultElement.innerText = number;
         let content = `
 			  <div class="sl__item__contents__comment" id="storyCommentItem-${res.data.id}"> 
 			    <p>
 			      <b>${res.data.user.username} </b>
 			      ${res.data.content}
 			    </p>
-			    <button onclick="deleteComment(${res.data.id})"><i class="fas fa-times"></i></button>
+			    <button onclick="deleteComment(${res.data.id}, ${reviewId})"><i class="fas fa-times"></i></button>
 			  </div>
 	`;
         commentList.append(content);
@@ -177,7 +197,9 @@ function addComment(reviewId) {
 }
 
 // (5) 댓글 삭제
-function deleteComment(commentId) {
+function deleteComment(commentId, reviewId) {
+    const resultElement = document.getElementById('storyCommentCount-' + reviewId);
+    let number = resultElement.innerText;
     if(confirm("댓글을 삭제하겠습니까?")){
 
         $.ajax({
@@ -186,6 +208,8 @@ function deleteComment(commentId) {
             dataType: "json" // 응답 받을 타임
         }).done(res => {
             console.log("성공", res);
+            number--;
+            resultElement.innerText = number;
             $(`#storyCommentItem-${commentId}`).remove();
         }).fail(error => {
             console.log("오류", error);

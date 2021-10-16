@@ -49,6 +49,9 @@ public class Review {
     @OneToMany(mappedBy = "review")
     private List<Comment> comments;
 
+    @Transient //DB에 칼럼이 만들어지지 않는다.
+    private int commentCount;
+
    private LocalDateTime createDate;
 
     @PrePersist

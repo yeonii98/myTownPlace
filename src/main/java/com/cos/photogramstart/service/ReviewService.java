@@ -41,6 +41,7 @@ public class ReviewService {
 
         reviews.forEach((review -> {
             review.setLikeCount(review.getLikes().size());
+            review.setCommentCount(review.getComments().size());
             review.getLikes().forEach((likes -> {
                 if(likes.getUser().getId() == principalId){
                     review.setLikeState(true);
