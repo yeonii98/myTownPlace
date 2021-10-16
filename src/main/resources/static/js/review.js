@@ -105,10 +105,10 @@ function openList(id, cnt) {
 
     if ($(`#storyCommentList-${id}`).css('display') === 'block') {
         $(`#storyCommentList-${id}`).css('display', 'none');
-        $(`#storyCommentListMore-${id}`).text(`댓글 ${cnt}개 모두 보기`);
+        $(`#storyCommentListMore-${id}`).html(`댓글 <b id="storyCommentCount-${id}">${cnt}</b>개 모두 보기`);
     } else {
         $(`#storyCommentList-${id}`).css('display', 'block');
-        $(`#storyCommentListMore-${id}`).text("댓글 접기");
+        $(`#storyCommentListMore-${id}`).html(`댓글 <b id="storyCommentCount-${id}">${cnt}</b>개 접기`);
     }
 }
 
@@ -156,6 +156,7 @@ function addComment(reviewId) {
     console.log(reviewId);
     let commentInput = $(`#storyCommentInput-${reviewId}`);
     let commentList = $(`#storyCommentList-${reviewId}`);
+
     const resultElement = document.getElementById('storyCommentCount-'+ reviewId);
     let number = resultElement.innerText;
 
