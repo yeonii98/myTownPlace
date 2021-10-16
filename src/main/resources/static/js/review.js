@@ -61,7 +61,7 @@ function getStoryItem(review) {
                     </div>`
 
                     if(review.commentCount !== 0){
-                        item += `<div class="sl__item__contents__content story__comment-list--more" id="storyCommentListMore-${review.id}" onclick="openList(${review.id}, ${review.commentCount})">댓글&nbsp <b id="storyCommentCount-${review.id}">${review.commentCount}</b>개 모두 보기</div>`
+                        item += `<div class="sl__item__contents__content story__comment-list--more" id="storyCommentListMore-${review.id}" onclick="openList(${review.id})">댓글&nbsp <b id="storyCommentCount-${review.id}">${review.commentCount}</b>개 모두 보기</div>`
                     }
 
                     
@@ -101,14 +101,15 @@ $(window).scroll(() => {
     }
 });
 
-function openList(id, cnt) {
-
+function openList(id) {
+    let cnt = document.getElementById('storyCommentCount-'+ id).innerText;
+    console.log(cnt);
     if ($(`#storyCommentList-${id}`).css('display') === 'block') {
         $(`#storyCommentList-${id}`).css('display', 'none');
-        $(`#storyCommentListMore-${id}`).html(`댓글 <b id="storyCommentCount-${id}">${cnt}</b>개 모두 보기`);
+        $(`#storyCommentListMore-${id}`).html(`댓글&nbsp  <b id="storyCommentCount-${id}">${cnt}</b>개 모두 보기`);
     } else {
         $(`#storyCommentList-${id}`).css('display', 'block');
-        $(`#storyCommentListMore-${id}`).html(`댓글 <b id="storyCommentCount-${id}">${cnt}</b>개 접기`);
+        $(`#storyCommentListMore-${id}`).html(`댓글&nbsp  <b id="storyCommentCount-${id}">${cnt}</b>개 접기`);
     }
 }
 
