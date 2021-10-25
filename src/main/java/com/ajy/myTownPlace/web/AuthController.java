@@ -5,7 +5,6 @@ import com.ajy.myTownPlace.handler.ex.CustomValidationException;
 import com.ajy.myTownPlace.service.AuthService;
 import com.ajy.myTownPlace.web.dto.auth.SignupDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -17,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RequiredArgsConstructor //final 필드를 DI 할때 사용
-@Log4j
 @Controller // 1.IoC, 2.파일을 리턴하는 컨트롤러
 public class AuthController {
 
@@ -45,15 +43,11 @@ public class AuthController {
             Map<String, String> errorMap = new HashMap<>();
             for(FieldError error : bindingResult.getFieldErrors()){
                 errorMap.put(error.getField(),error.getDefaultMessage());
-                log.info(error.getDefaultMessage());
             }
             throw new CustomValidationException("유효성검사 실패함",errorMap);
         }else{
-            log.info(signupDto.toString());
             User user = signupDto.toEntity();
-            log.info(user.toString());
             User userEntity = authService.join(user);
-            log.info(userEntity);
             return "auth/signin";
         }
 
