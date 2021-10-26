@@ -18,13 +18,20 @@
                 <!--사진업로드 로고 end-->
                 
                 <!--사진업로드 Form-->
-                <form class="upload-form" action="/image" method="post" enctype="multipart/form-data">
+                <form class="upload-form" id="myform" action="/image" method="post" enctype="multipart/form-data">
+
                     <input type="file" name="file"  onchange="imageChoose(this)" id='profile_img_upload'/>
                     <label for='profile_img_upload'><i class="far fa-file-image"></i>&nbsp;이미지 선택</label>
                     <div class="upload-img">
                         <img src="/images/default-img.jpg" alt="" id="imageUploadPreview" />
                     </div>
-                    
+                    <fieldset>
+                        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+                        <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+                        <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+                        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+                        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+                    </fieldset>
                     <!--사진설명 + 업로드버튼-->
                     <div class="upload-form-detail">
                          <input type="text" placeholder="동네를 적어주세요" name="town" required>
@@ -33,7 +40,6 @@
                         <button class="cta blue">업로드</button>
                     </div>
                     <!--사진설명end-->
-                    
                 </form>
                 <!--사진업로드 Form-->
             </section>

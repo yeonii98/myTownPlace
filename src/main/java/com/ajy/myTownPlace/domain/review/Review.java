@@ -52,6 +52,9 @@ public class Review {
     @Transient //DB에 칼럼이 만들어지지 않는다.
     private int commentCount;
 
+    //별점
+    private int rating;
+
    private LocalDateTime createDate;
 
     @PrePersist

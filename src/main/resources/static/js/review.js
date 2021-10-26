@@ -25,12 +25,24 @@ storyLoad();
 function getStoryItem(review) {
     let item = `<div class="story-list__item">
                 <div class="sl__item__header sl__item__header--review">
-                    <div>
-                        <img class="profile-image" src="${review.user.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
-                    </div>
+                <div style="display: flex; align-items: center">
+                    <img class="profile-image" src="${review.user.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
+                    
                     <div>${review.user.name}</div>
-                    <div class="review__hash">#${review.town}</div>
-                    <div class="review__hash">#${review.place}</div>
+                    <div class="review__hash">
+                        <p>#${review.town}</p>
+                        <p>#${review.place}</p>
+                    </div>
+                </div>
+                    <div style="font-size: 2rem; margin-right: 1rem">`
+    for(var i = 0 ; i < 5; i ++) {
+        if( i < review.rating) {
+            item  +=   `<b style='color: #f7e600;'>★</b>` ;
+        }else{
+            item  +=  `<b style='color: transparent;text-shadow: 0 0 0 #f0f0f0;'>☆</b>` ;
+        }
+    }
+    item += `</div>
                 </div>
 
                 <div class="sl__item__img">
@@ -41,12 +53,12 @@ function getStoryItem(review) {
 
         if(review.likeState){
             item += ` <button>
-                            <i class="fas fa-heart active" id="storyLikeIcon-${review.id}" onclick="toggleLike(${review.id})"></i>
+                            <i class="fas fa-thumbs-up active" id="storyLikeIcon-${review.id}" onclick="toggleLike(${review.id})"></i>
                         </button>`
         }
         else{
             item += `<button>
-                            <i class="far fa-heart" id="storyLikeIcon-${review.id}" onclick="toggleLike(${review.id})"></i>
+                            <i class="far fa-thumbs-up" id="storyLikeIcon-${review.id}" onclick="toggleLike(${review.id})"></i>
                         </button>`
         }
 
@@ -55,16 +67,16 @@ function getStoryItem(review) {
                         </button>
                     </div>
                     
-                    <span class="like"><b id="storyLikeCount-${review.id}">${review.likeCount}</b>명이 좋아합니다.</span>
+                    <span class="like"><b id="storyLikeCount-${review.id}">${review.likeCount}</b>명이 공감합니다.</span>
                     <div class="sl__item__contents__content">
                         <p>${review.caption}</p>
                     </div>`
 
-                    if(review.commentCount !== 0){
-                        item += `<div class="sl__item__contents__content story__comment-list--more" id="storyCommentListMore-${review.id}" onclick="openList(${review.id})">댓글&nbsp <b id="storyCommentCount-${review.id}">${review.commentCount}</b>개 모두 보기</div>`
-                    }
 
-                    
+                    item += `<div class="sl__item__contents__content story__comment-list--more" id="storyCommentListMore-${review.id}" onclick="openList(${review.id})">댓글&nbsp <b id="storyCommentCount-${review.id}">${review.commentCount}</b>개 모두 보기</div>`
+
+
+
                     item += `<div id="storyCommentList-${review.id}" class="story__comment-list">`
                         review.comments.forEach((comment)=>{
                             item +=`<div class="sl__item__contents__comment" id="storyCommentItem-${comment.id}">

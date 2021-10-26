@@ -27,6 +27,7 @@ public class ReviewController {
             throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
         }
         //서비스 호출
+        System.out.println(reviewUploadDto.getRating());
         reviewService.uploadReview(reviewUploadDto, principalDetails);
         return "redirect:/user/" + principalDetails.getUser().getId();
     }
