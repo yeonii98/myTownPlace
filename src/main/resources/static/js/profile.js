@@ -249,6 +249,10 @@ function modalInfo() {
     $(".modal-info").css("display", "none");
 }
 
+function modalReview() {
+    $(".modal-review").css("display", "none");
+}
+
 // (7) 사용자 프로파일 이미지 메뉴(사진업로드, 취소) 모달
 function modalImage() {
     $(".modal-image").css("display", "none");

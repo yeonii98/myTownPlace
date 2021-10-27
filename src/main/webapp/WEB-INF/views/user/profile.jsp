@@ -98,9 +98,8 @@
                     <div class="img-box">
                         <a href=""> <img src="/upload/${dto.user.reviews[size-i].postImageUrl}"/>
                         </a>
-                        <div class="comment">
-                            <a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
-                            </a>
+                        <div class="comment" onclick="popup('.modal-review')">
+                            <a href="#" class=""> <i class="fas fa-thumbs-up"></i><span>0</span>&nbsp&nbsp<i class="fas fa-comment"></i><span>0</span></a>
                         </div>
                     </div>
                 </c:forEach>
@@ -111,11 +110,18 @@
     </div>
 </section>
 
+<div class="modal-review" onclick="modalInfo()">
+    <div class="modal">
+        <button>수정</button>
+        <button>삭제</button>
+        <button onclick="closePopup('.modal-review')">취소</button>
+    </div>
+</div>
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info" onclick="modalInfo()">
     <div class="modal">
         <button>비밀번호 변경</button>
-        <button onclick="location.href='/user/1/update'">프로필 변경</button>
+        <button onclick="location.href='/user/${principal.user.id}/update'">프로필 변경</button>
         <button onclick="location.href='/logout'">로그아웃</button>
         <button onclick="closePopup('.modal-info')">취소</button>
     </div>
