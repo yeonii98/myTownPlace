@@ -8,8 +8,18 @@ import com.ajy.myTownPlace.web.dto.user.UserProfileDto;
 import com.ajy.myTownPlace.domain.subscribe.SubscribeRepository;
 import com.ajy.myTownPlace.handler.ex.CustomValidationApiException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -18,6 +28,28 @@ public class UserService {
     private final UserRepository userRepository;
     private final SubscribeRepository subscribeRepository;
     private final FavoriteRepository favoriteRepository;
+
+    @Value("${file.path}")
+    private String uploadFolder;
+
+    @Transactional
+    public User profileUserImage(int princopalId, MultipartFile profileImageFile) {
+        User userEntity = userRepository.findById(princopalId).orElseThrow(()-> {
+            return new CustomValidationApiException("찾을 수 없는 id입니다.");
+        });
+        UUID uuid = UUID.randomUUID();
+        String imageFileName = uuid + "_" + profileImageFile.getOriginalFilename();
+
+        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+        try{
+            Files.write(imageFilePath, profileImageFile.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        userEntity.setProfileImageUrl(imageFileName);
+
+        return userEntity;
+    }
 
     @Transactional(readOnly = true)
     public UserProfileDto profileUser(int pageUserId, int principalId, String principalLocation){
