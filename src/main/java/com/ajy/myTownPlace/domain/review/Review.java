@@ -33,6 +33,9 @@ public class Review {
     private String place;
     private String caption;
 
+    //api id
+    private String apiId;
+
     //좋아요
     @JsonIgnoreProperties({"review"})
     @OneToMany(mappedBy = "review")//mappedBy : 난 연관관계의 주인이 아니다 (난 FK가 아니에요) DB에 칼럼을 만들지 마세요.

@@ -35,6 +35,8 @@
                                     <button class="cta blue" onclick="toggleFavorite(this, ${u.id}, ${idx.count}, '${u.name}', '${u.image}', '${u.detailUrl}')">즐겨찾기 추가</button>
                                 </c:otherwise>
                             </c:choose>
+                            <button class="cta green" onclick="location.href='/apiReview/${u.id}/${u.name}/${location}'">리뷰 보기</button>
+                            <button class="cta blue" onclick="location.href='/apiReview/upload/${u.id}/${u.name}/${location}'">리뷰 쓰기</button>
                         </div>
                     </div>
 

@@ -48,7 +48,6 @@ public class ReviewService {
     public void uploadReview(ReviewUploadDto reviewUploadDto, PrincipalDetails principalDetails){
         UUID uuid = UUID.randomUUID();
         String imageFileName = uuid + "_" + reviewUploadDto.getFile().getOriginalFilename();
-        System.out.println("이미지 파일 이름 : " + imageFileName);
 
         Path imageFilePath = Paths.get(uploadFolder+imageFileName);
 

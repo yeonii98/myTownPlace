@@ -1,6 +1,9 @@
 package com.ajy.myTownPlace.web;
 
 import com.ajy.myTownPlace.config.auth.PrincipalDetails;
+import com.ajy.myTownPlace.domain.user.User;
+import com.ajy.myTownPlace.domain.user.UserRepository;
+import com.ajy.myTownPlace.handler.ex.CustomValidationApiException;
 import com.ajy.myTownPlace.service.StoryService;
 import com.ajy.myTownPlace.web.dto.story.StoryDto;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 public class StoryController {
 
     private final StoryService storyService;
+
 
     @GetMapping({"/"})
     public String story(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @RequestParam(required = false, defaultValue = "1") int page){

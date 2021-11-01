@@ -182,5 +182,10 @@ span {
 /*버튼 블루*/
 .cta.blue {
   background: #0095f6 !important;
+color: #fff !important;
+}
+
+.cta.green {
+  background: #008000 !important;
   color: #fff !important;
 }

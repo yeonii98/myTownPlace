@@ -12,6 +12,7 @@ public class ReviewUploadDto {
     private String place;
     private String town;
     private int rating;
+    private String apiId;
 
     public Review toEntity(String postImageUrl, User user){
         return Review.builder()
@@ -21,6 +22,7 @@ public class ReviewUploadDto {
                 .place(place)
                 .user(user)
                 .rating(rating)
+                .apiId(apiId)
                 .build();
     }
 }

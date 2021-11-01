@@ -31,8 +31,8 @@
                 <h2>${dto.user.username}</h2>
                 <c:choose>
                     <c:when test="${dto.pageOwner}">
-                        <button class="modi" onclick="location.href='/image/upload'"><i class="fas fa-edit"></i>
-                        </button>
+<%--                        <button class="modi" onclick="location.href='/image/upload'"><i class="fas fa-edit"></i>--%>
+<%--                        </button>--%>
                         <button class="modi" onclick="popup('.modal-info')"><i class="fas fa-cog"></i></button>
                     </c:when>
                     <c:when test="${!dto.pageOwner}">
