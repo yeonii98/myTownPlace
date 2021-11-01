@@ -95,10 +95,10 @@
                 <!--아이템들-->
                 <c:set var = "size" value="${fn:length(dto.user.reviews)}"/>
                 <c:forEach var="i" begin="1" end="${size}">
-                    <div class="img-box">
+                    <div class="img-box" onclick="popup('.modal-review', ${dto.user.id}, ${principal.user.id})">
                         <a href=""> <img src="/upload/${dto.user.reviews[size-i].postImageUrl}"/>
                         </a>
-                        <div class="comment" onclick="popup('.modal-review')">
+                        <div class="comment">
                             <a href="#" class=""> <i class="fas fa-thumbs-up"></i><span>0</span>&nbsp&nbsp<i class="fas fa-comment"></i><span>0</span></a>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
     </div>
 </section>
 
-<div class="modal-review" onclick="modalInfo()">
+<div class="modal-review" onclick="modalReview()">
     <div class="modal">
         <button>수정</button>
         <button>삭제</button>
