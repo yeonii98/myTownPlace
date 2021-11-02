@@ -46,7 +46,9 @@ public class ReviewService {
     @Transactional(readOnly = true)
     public Page<Review> apiReviewList(int principalId, String apiId, Pageable pageable){
         Page<Review> reviews = reviewRepository.mApiReview(apiId, pageable);
-
+        if(reviews.getSize() == 0){
+            return null;
+        }
         reviews.forEach((review -> {
             review.setLikeCount(review.getLikes().size());
             review.setCommentCount(review.getComments().size());
@@ -65,6 +67,9 @@ public class ReviewService {
     @Transactional(readOnly = true)
     public ApiReviewDto apiReviewDto(String apiId, Pageable pageable){
         Page<Review> reviews = reviewRepository.mApiReview(apiId, pageable);
+        ApiReviewDto apiReviewDto = new ApiReviewDto();
+        if(reviews.isEmpty()) return null;
+
         sum = 0;
         count = 0;
         reviews.forEach((review -> {
@@ -75,7 +80,6 @@ public class ReviewService {
         String placeName = reviews.get().findFirst().get().getPlace();
         String location = reviews.get().findFirst().get().getTown();
 
-        ApiReviewDto apiReviewDto = new ApiReviewDto();
         apiReviewDto.setAvgRating(sum / count);
         apiReviewDto.setPlaceName(placeName);
         apiReviewDto.setLocation(location);

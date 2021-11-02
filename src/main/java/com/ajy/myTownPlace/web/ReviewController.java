@@ -73,6 +73,10 @@ public class ReviewController {
     @GetMapping("/apiReview/{apiId}")
     public String apiReview(@PathVariable String apiId, Model model, Pageable pageable){
         ApiReviewDto dto = reviewService.apiReviewDto(apiId,pageable);
+        System.out.println(dto == null);
+        if(dto == null){
+            throw new CustomValidationException("등록된 리뷰가 없습니다", null);
+        }
         model.addAttribute("apiId", apiId);
         model.addAttribute("dto",dto);
         return "image/apiReview";

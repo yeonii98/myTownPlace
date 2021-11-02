@@ -2,6 +2,7 @@ package com.ajy.myTownPlace.web.api;
 
 
 import com.ajy.myTownPlace.domain.review.Review;
+import com.ajy.myTownPlace.handler.ex.CustomValidationException;
 import com.ajy.myTownPlace.service.ReviewService;
 import com.ajy.myTownPlace.web.dto.CMRespDto;
 import com.ajy.myTownPlace.config.auth.PrincipalDetails;
@@ -44,7 +45,6 @@ public class ReviewApiController {
     @GetMapping("/api/{apiId}/review")
     public ResponseEntity<?> reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size = 5) Pageable pageable, @PathVariable String apiId){
         Page<Review> reviews = reviewService.apiReviewList(principalDetails.getUser().getId(), apiId, pageable);
-
         return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", reviews), HttpStatus.OK);
     }
 }
