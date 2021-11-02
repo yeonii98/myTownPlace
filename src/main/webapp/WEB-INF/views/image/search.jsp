@@ -45,22 +45,6 @@
                     </div>
 
                     <div class="sl__item__contents">
-                        <div class="sl__item__contents__content">
-                            <div><i class="fas fa-tags"></i></div> ${u.category}
-                        </div>
-
-                        <div class="sl__item__contents__content">
-                            <div><i class="fas fa-map-marker-alt"></i></div> ${u.address}
-                        </div>
-
-                        <div class="sl__item__contents__content">
-                            <div><i class="fas fa-phone"></i></div> ${u.phone}
-                        </div>
-
-                        <div class="sl__item__contents__content">
-                            <div><i class="fas fa-info-circle"></i></div> <a href="${u.detailUrl}">상세보기</a>
-                        </div>
-
                         <div class="sl__item__avgRating">
                             <div><i class="fas fa-star-half-alt"></i></div>
                             <c:choose>
@@ -80,6 +64,21 @@
                                 </c:when>
                                 <c:otherwise>리뷰를 등록해주세요</c:otherwise>
                             </c:choose>
+                        </div>
+                        <div class="sl__item__contents__content">
+                            <div><i class="fas fa-tags"></i></div> ${u.category}
+                        </div>
+
+                        <div class="sl__item__contents__content">
+                            <div><i class="fas fa-map-marker-alt"></i></div> ${u.address}
+                        </div>
+
+                        <div class="sl__item__contents__content">
+                            <div><i class="fas fa-phone"></i></div> ${u.phone}
+                        </div>
+
+                        <div class="sl__item__contents__content">
+                            <div><i class="fas fa-info-circle"></i></div> <a href="${u.detailUrl}">상세보기</a>
                         </div>
                     </div>
                 </div>

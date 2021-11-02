@@ -26,7 +26,7 @@ storyLoad();
 function getStoryItem(review) {
     let item = `<div class="story-list__item">
                 <div class="sl__item__header sl__item__header--review">
-                    <div style="display: -webkit-inline-box; align-items: center">
+                    <div style="display: -webkit-inline-box; align-items: center; cursor:pointer;" onclick="location.href='/user/${review.user.id}'">
                         <img class="profile-image" src="/upload/${review.user.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
                             <div style="margin-left: 1rem; margin-top: 4px">${review.user.name}</div>
                     </div>
