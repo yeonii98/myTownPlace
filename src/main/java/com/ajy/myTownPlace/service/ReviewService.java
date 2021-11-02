@@ -2,6 +2,7 @@ package com.ajy.myTownPlace.service;
 
 import com.ajy.myTownPlace.domain.review.Review;
 import com.ajy.myTownPlace.domain.review.ReviewRepository;
+import com.ajy.myTownPlace.web.dto.review.ApiReviewDto;
 import com.ajy.myTownPlace.web.dto.review.ReviewUploadDto;
 import com.ajy.myTownPlace.config.auth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,46 @@ public class ReviewService {
         }));
 
         return reviews;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Review> apiReviewList(int principalId, String apiId, Pageable pageable){
+        Page<Review> reviews = reviewRepository.mApiReview(apiId, pageable);
+
+        reviews.forEach((review -> {
+            review.setLikeCount(review.getLikes().size());
+            review.setCommentCount(review.getComments().size());
+            review.getLikes().forEach((likes -> {
+                if(likes.getUser().getId() == principalId){
+                    review.setLikeState(true);
+                }
+            }));
+        }));
+
+        return reviews;
+    }
+
+    private double sum;
+    private double count;
+    @Transactional(readOnly = true)
+    public ApiReviewDto apiReviewDto(String apiId, Pageable pageable){
+        Page<Review> reviews = reviewRepository.mApiReview(apiId, pageable);
+        sum = 0;
+        count = 0;
+        reviews.forEach((review -> {
+            sum += review.getRating();
+            count++;
+        }));
+
+        String placeName = reviews.get().findFirst().get().getPlace();
+        String location = reviews.get().findFirst().get().getTown();
+
+        ApiReviewDto apiReviewDto = new ApiReviewDto();
+        apiReviewDto.setAvgRating(sum / count);
+        apiReviewDto.setPlaceName(placeName);
+        apiReviewDto.setLocation(location);
+
+        return apiReviewDto;
     }
 
     //트랜잭션이란? 일의 최소 단위. ex) 송금을 하기 위해서는 입금과 출금 2가지 상황이 필요함, 입금과 출금을 성공 했을 때 commit을 한다. 실패하면 rollback

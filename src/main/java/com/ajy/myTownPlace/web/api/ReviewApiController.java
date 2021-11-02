@@ -39,4 +39,12 @@ public class ReviewApiController {
         likesService.unlikes(principalDetails.getUser().getId(), reviewId);
         return new ResponseEntity<>(new CMRespDto<>(1,"좋아요 취소 성공", null), HttpStatus.OK);
     }
+
+
+    @GetMapping("/api/{apiId}/review")
+    public ResponseEntity<?> reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size = 5) Pageable pageable, @PathVariable String apiId){
+        Page<Review> reviews = reviewService.apiReviewList(principalDetails.getUser().getId(), apiId, pageable);
+
+        return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", reviews), HttpStatus.OK);
+    }
 }

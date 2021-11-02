@@ -4,10 +4,12 @@ import com.ajy.myTownPlace.domain.user.User;
 import com.ajy.myTownPlace.domain.user.UserRepository;
 import com.ajy.myTownPlace.handler.ex.CustomValidationApiException;
 import com.ajy.myTownPlace.handler.ex.CustomValidationException;
+import com.ajy.myTownPlace.web.dto.review.ApiReviewDto;
 import com.ajy.myTownPlace.web.dto.review.ReviewUploadDto;
 import com.ajy.myTownPlace.config.auth.PrincipalDetails;
 import com.ajy.myTownPlace.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,9 +70,11 @@ public class ReviewController {
         return "image/apiReviewUpload";
     }
 
-    @GetMapping("/apiReview/{apiId}/{placeName}")
-    public String apiReview(Model model, @PathVariable String apiId, @PathVariable String placeName, @AuthenticationPrincipal PrincipalDetails principalDetails){
-
+    @GetMapping("/apiReview/{apiId}")
+    public String apiReview(@PathVariable String apiId, Model model, Pageable pageable){
+        ApiReviewDto dto = reviewService.apiReviewDto(apiId,pageable);
+        model.addAttribute("apiId", apiId);
+        model.addAttribute("dto",dto);
         return "image/apiReview";
     }
 }
