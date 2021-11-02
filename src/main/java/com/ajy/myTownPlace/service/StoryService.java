@@ -14,6 +14,7 @@ import com.ajy.myTownPlace.naver.dto.NaverSearchImageRes;
 import com.ajy.myTownPlace.web.dto.story.StoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,8 @@ public class StoryService {
     private final FavoriteRepository favoriteRepository;
     private final KakaoClient kakaoClient;
     private final NaverClient naverClinet;
+    private double sum;
+    private double count;
 
     @Value("${file.path}")
     private String uploadFolder;
@@ -54,7 +57,16 @@ public class StoryService {
 
             if(imageRes.getItems().size() != 0) imgLink = imageRes.getItems().get(0).getLink();
 
-            storyDtos.add(new StoryDto(localRes.getDocuments().get(i).getId(),
+            //평점
+            ArrayList<Review> reviews = reviewRepository.mApiReviewList(localRes.getDocuments().get(i).getId());
+            sum = 0;
+            count = reviews.size();
+            reviews.forEach((review -> {
+                sum += review.getRating();
+            }));
+
+            storyDtos.add(new StoryDto(
+                    localRes.getDocuments().get(i).getId(),
                     localRes.getDocuments().get(i).getPlace_name(),
                     localRes.getDocuments().get(i).getCategory_name(),
                     localRes.getDocuments().get(i).getRoad_address_name(),
@@ -62,8 +74,10 @@ public class StoryService {
                     localRes.getDocuments().get(i).getPlace_url(),
                     imgLink,
                     favoriteRepository.mFavoriteState (principalId, localRes.getDocuments().get(i).getId()) == 1,
-                    favoriteRepository.countByToPlaceId(localRes.getDocuments().get(i).getId()))
-                    );
+                    favoriteRepository.countByToPlaceId(localRes.getDocuments().get(i).getId()),
+                    (count != 0) ? sum/count : 0
+                    )
+            );
         }
 
         return storyDtos;

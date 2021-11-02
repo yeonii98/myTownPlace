@@ -38,7 +38,8 @@
   font-size: 28px;
   padding-right: 1rem;
 }
-.star-ratings {
+.star-ratings,
+.sl__item__contents__content .star-ratings{
   font-size: 28px;
   color: #aaa9a9;
   position: relative;
@@ -185,6 +186,13 @@
   
   border: 0;
   cursor: pointer;
+}
+.sl__item__avgRating{
+  display: flex;
+  padding: 5px 15px
+}
+.sl__item__avgRating div:nth-child(1){
+  width: 2rem;
 }
 
 /*게시물 내용*/

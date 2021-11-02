@@ -60,6 +60,27 @@
                         <div class="sl__item__contents__content">
                             <div><i class="fas fa-info-circle"></i></div> <a href="${u.detailUrl}">상세보기</a>
                         </div>
+
+                        <div class="sl__item__avgRating">
+                            <div><i class="fas fa-star-half-alt"></i></div>
+                            <c:choose>
+                                <c:when test="${u.avgRating ne 0.0}">
+                                    평점 ${u.avgRating}
+                                    <div class="star-ratings" style="padding-left: 8px">
+                                        <div
+                                                class="star-ratings-fill space-x-2 text-lg"
+                                                style="width: ${u.avgRating * 20}%; font-size: 16px; padding-left: 8px"
+                                        >
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <div class="star-ratings-base space-x-2 text-lg" style="font-size: 16px">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>리뷰를 등록해주세요</c:otherwise>
+                            </c:choose>
+                        </div>
                     </div>
                 </div>
             </c:forEach>
