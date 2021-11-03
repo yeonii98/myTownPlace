@@ -42,12 +42,18 @@
                         <!-- 또는end -->
                         
                         <!-- Oauth 소셜로그인 -->
-                        <div class="login__facebook">
+                        <div class="login__google">
                             <button onclick="location.href='/oauth2/authorization/google'">
                                 <i class="fab fa-google"></i>
-                                <span style="color: #385185">Google로 로그인</span>
+                                <span>Google로 로그인</span>
                             </button>
                         </div>
+                       <div class="login__naver">
+                           <button onclick="location.href='/oauth2/authorization/naver'">
+                               <img src="/images/btnG_아이콘사각.png"/>
+                               <span>Naver로 로그인</span>
+                           </button>
+                       </div>
                         <!-- Oauth 소셜로그인end -->
                     </div>
                     

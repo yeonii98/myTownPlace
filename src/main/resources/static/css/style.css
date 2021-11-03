@@ -129,13 +129,13 @@ button {
   font-size: 14px;
 }
 
-/* 페이스북로그인 영역 */
-.login__facebook {
+/* 구글 로그인 영역 */
+.login__google {
   padding: 0 40px;
   margin-top: 15px;
 }
-/*페이스북 로그인 버튼*/
-.login__facebook button {
+/*구글 로그인 버튼*/
+.login__google button {
   background-color: #fff;
   width: 100%;
   height: 30px;
@@ -143,10 +143,40 @@ button {
   font-weight: 600;
   font-size: 15px;
 }
-/*페이스북 로그인 색깔*/
-.login__facebook button i,
-span {
+/*구글 로그인 색깔*/
+.login__google button i{
   color: #4285f4;
+}
+
+.login__google button span{
+  color: #385185;
+}
+
+/* 네이버 로그인 영역 */
+.login__naver {
+  padding: 0 40px;
+  margin-top: 15px;
+}
+/*네이버 로그인 버튼*/
+.login__naver button {
+  background-color: #fff;
+  width: 100%;
+  height: 30px;
+  border: 0;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.login__naver button img {
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+}
+
+.login__naver button span{
+  color: #2db400;
 }
 
 /*가입페이지로 이동*/
