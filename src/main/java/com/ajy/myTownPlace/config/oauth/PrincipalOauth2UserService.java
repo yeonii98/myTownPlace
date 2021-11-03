@@ -2,6 +2,7 @@ package com.ajy.myTownPlace.config.oauth;
 
 import com.ajy.myTownPlace.config.auth.PrincipalDetails;
 import com.ajy.myTownPlace.config.oauth.provider.GoogleUserInfo;
+import com.ajy.myTownPlace.config.oauth.provider.KakaoUserInfo;
 import com.ajy.myTownPlace.config.oauth.provider.NaverUserInfo;
 import com.ajy.myTownPlace.config.oauth.provider.OAuth2UserInfo;
 import com.ajy.myTownPlace.domain.user.User;
@@ -27,12 +28,15 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
    @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
        OAuth2User oAuth2User = super.loadUser(userRequest);
+       System.out.println(oAuth2User.getAttributes());
 
        OAuth2UserInfo oAuth2UserInfo = null;
        if(userRequest.getClientRegistration().getRegistrationId().equals("google")){
            oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
        }else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")){
            oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
+       }else if(userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
+           oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
        }
 
        String provider = oAuth2UserInfo.getProvider(); //google

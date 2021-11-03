@@ -54,6 +54,11 @@
                                <span>Naver로 로그인</span>
                            </button>
                        </div>
+                       <div class="login__kakao">
+                           <button onclick="location.href='/oauth2/authorization/kakao'">
+                               <img src="/images/kakao_login_medium_narrow.png"/>
+                           </button>
+                       </div>
                         <!-- Oauth 소셜로그인end -->
                     </div>
                     
