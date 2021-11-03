@@ -43,7 +43,7 @@
                         
                         <!-- Oauth 소셜로그인 -->
                         <div class="login__facebook">
-                            <button>
+                            <button onclick="location.href='/oauth2/authorization/google'">
                                 <i class="fab fa-google"></i>
                                 <span style="color: #385185">Google로 로그인</span>
                             </button>

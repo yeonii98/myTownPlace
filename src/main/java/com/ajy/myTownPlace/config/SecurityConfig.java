@@ -1,5 +1,7 @@
 package com.ajy.myTownPlace.config;
 
+import com.ajy.myTownPlace.config.oauth.PrincipalOauth2UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,9 +9,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+@RequiredArgsConstructor
 @EnableWebSecurity //해당 파일로 시큐리티를 활성화
 @Configuration //IoC
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final PrincipalOauth2UserService principalOauth2UserService;
 
     @Bean
     public BCryptPasswordEncoder encode(){
@@ -27,7 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/signin")//GET, 인증이 필요한 페이지를 요청하면 로그인 페이지로 이동
                 .loginProcessingUrl("/auth/signin")//POST, 스프링 시큐리티가 로그인 프로세스 진행
-                .defaultSuccessUrl("/");//정상 로그인 시 이동
-
+                .defaultSuccessUrl("/")//정상 로그인 시 이동
+                .and()
+                .oauth2Login()
+                .loginPage("/auth/signin")
+                .userInfoEndpoint()
+                .userService(principalOauth2UserService);
     }
 }

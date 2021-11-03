@@ -4,6 +4,7 @@ import com.ajy.myTownPlace.config.auth.PrincipalDetails;
 import com.ajy.myTownPlace.domain.user.User;
 import com.ajy.myTownPlace.domain.user.UserRepository;
 import com.ajy.myTownPlace.handler.ex.CustomValidationApiException;
+import com.ajy.myTownPlace.handler.ex.CustomValidationException;
 import com.ajy.myTownPlace.service.StoryService;
 import com.ajy.myTownPlace.web.dto.story.StoryDto;
 import lombok.RequiredArgsConstructor;

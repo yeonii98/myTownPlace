@@ -61,13 +61,9 @@ public class UserService {
         dto.setUser(userEntity);
         dto.setPageOwner(pageUserId == principalId); // true면 페이지 주인, false면 주인 아님
         dto.setImageCount(userEntity.getReviews().size());
-        dto.setPageOwnerReviewer(principalLocation.isBlank());
         dto.setSubscribeCount(subscribeRepository.mSubscribeCount(pageUserId));
         dto.setSubscribeState(subscribeRepository.mSubscribeState(principalId, pageUserId) == 1);
         dto.setFavoriteCount(favoriteRepository.mFavoriteCount(pageUserId));
-
-        if(!userEntity.getLocation().isBlank())
-            dto.setAccountType(true);//true면 홍보 계정, false면 리뷰 계정
 
        return dto;
     }
@@ -87,7 +83,6 @@ public class UserService {
         userEntity.setWebsite(user.getWebsite());
         userEntity.setGender(user.getGender());
         userEntity.setLocation(user.getLocation());
-        if(!user.getLocation().isBlank()) userEntity.setPromotionType(1);
 
         return userEntity;
     }

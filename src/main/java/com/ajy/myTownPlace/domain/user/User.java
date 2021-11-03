@@ -8,8 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -48,9 +50,10 @@ public class User {
     @JsonIgnoreProperties({"user"})//review의 user는 호출하지 마세영, review내부 user 호출 금지
     private List<Review> reviews;//양방향 매핑
 
-    private LocalDateTime createDate;
+    private String provider;
+    private String providerId;
 
-    private int promotionType;
+    private LocalDateTime createDate;
 
     @PrePersist //디비에 INSERT 되기 직전에 실행
     public void createDate(){
