@@ -109,4 +109,9 @@ public class ReviewService {
 
 //        System.out.println(reviewEntity);
     }
+
+    @Transactional
+    public void deleteReview(int reviewId){
+        reviewRepository.deleteById(reviewId);
+    }
 }

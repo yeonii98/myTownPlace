@@ -58,7 +58,7 @@
 
             <div class="subscribe">
                 <ul>
-                    <li><a href=""> 게시물<span>${dto.imageCount}</span>
+                    <li><a href=""> 게시물<span id="reviewCnt">${dto.imageCount}</span>
                     </a></li>
 
                     <li><a href="javascript:favoriteModalOpen(${dto.user.id});">
@@ -95,7 +95,7 @@
                 <!--아이템들-->
                 <c:set var = "size" value="${fn:length(dto.user.reviews)}"/>
                 <c:forEach var="i" begin="1" end="${size}">
-                    <div class="img-box" onclick="popup('.modal-review', ${dto.user.id}, ${principal.user.id})">
+                    <div class="img-box" id="review-${dto.user.reviews[size-i].id}" onclick="popup2('.modal-review', ${dto.user.id}, ${principal.user.id}, ${dto.user.reviews[size-i].id})">
                         <a href=""> <img src="/upload/${dto.user.reviews[size-i].postImageUrl}"/>
                         </a>
                         <div class="comment">
@@ -111,10 +111,8 @@
 </section>
 
 <div class="modal-review" onclick="modalReview()">
-    <div class="modal">
-        <button>수정</button>
-        <button>삭제</button>
-        <button onclick="closePopup('.modal-review')">취소</button>
+    <div class="modal" id="reviewModal">
+
     </div>
 </div>
 <!--로그아웃, 회원정보변경 모달-->

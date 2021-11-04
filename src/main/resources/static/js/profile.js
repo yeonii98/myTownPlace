@@ -232,9 +232,39 @@ function profileImageUpload(principalId) {
     });
 }
 
+function deleteReview(reviewId) {
+    const resultElement = document.getElementById('reviewCnt');
+    let number = resultElement.innerText;
+    if(confirm("게시글을 삭제하겠습니까?")){
+        $.ajax({
+            url: `review/${reviewId}`,
+            type: "delete",
+            dataType: "json"
+        }).done(res => {
+            console.log(res);
+            number--;
+            resultElement.innerText = number;
+            $(`#review-${reviewId}`).remove();
+        }).fail(error => {
+            console.log("오류", error);
+        });
+    }
+}
+
 
 // (5) 사용자 정보 메뉴 열기 닫기
 function popup(obj, pageUserId, principalId) {
+    if(pageUserId === principalId)
+        $(obj).css("display", "flex");
+}
+
+function popup2(obj, pageUserId, principalId, reviewId) {
+    $("#reviewModal").empty();
+    let item = `<button>수정</button>
+        <button onclick="deleteReview(${reviewId})">삭제</button>
+        <button onclick="closePopup('.modal-review')">취소</button>`
+    $("#reviewModal").prepend(item)
+
     if(pageUserId === principalId)
         $(obj).css("display", "flex");
 }

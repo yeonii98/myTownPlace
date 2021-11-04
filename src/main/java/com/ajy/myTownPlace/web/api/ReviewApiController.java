@@ -47,4 +47,11 @@ public class ReviewApiController {
         Page<Review> reviews = reviewService.apiReviewList(principalDetails.getUser().getId(), apiId, pageable);
         return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", reviews), HttpStatus.OK);
     }
+
+    @DeleteMapping("user/review/{reviewId}")
+    public ResponseEntity<?> deleteReview(@PathVariable int reviewId){
+        System.out.println(reviewId);
+        reviewService.deleteReview(reviewId);
+        return new ResponseEntity<>(new CMRespDto<>(1,"글 삭제 성공", null), HttpStatus.OK);
+    }
 }
