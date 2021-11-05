@@ -52,7 +52,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public UserProfileDto profileUser(int pageUserId, int principalId, String principalLocation){
+    public UserProfileDto profileUser(int pageUserId, int principalId){
         UserProfileDto dto = new UserProfileDto();
         User userEntity = userRepository.findById(pageUserId).orElseThrow(()->{
             throw new CustomException("해당 사용자는 존재하지 않습니다.");
@@ -64,6 +64,11 @@ public class UserService {
         dto.setSubscribeCount(subscribeRepository.mSubscribeCount(pageUserId));
         dto.setSubscribeState(subscribeRepository.mSubscribeState(principalId, pageUserId) == 1);
         dto.setFavoriteCount(favoriteRepository.mFavoriteCount(pageUserId));
+
+        userEntity.getReviews().forEach((review)->{
+            review.setLikeCount(review.getLikes().size());
+            review.setCommentCount(review.getComments().size());
+        });
 
        return dto;
     }

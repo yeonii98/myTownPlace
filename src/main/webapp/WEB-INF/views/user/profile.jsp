@@ -99,7 +99,7 @@
                         <a href=""> <img src="/upload/${dto.user.reviews[size-i].postImageUrl}"/>
                         </a>
                         <div class="comment">
-                            <a href="#" class=""> <i class="fas fa-thumbs-up"></i><span>0</span>&nbsp&nbsp<i class="fas fa-comment"></i><span>0</span></a>
+                            <a href="#" class=""> <i class="fas fa-thumbs-up"></i><span>${dto.user.reviews[size-i].likeCount}</span>&nbsp&nbsp<i class="fas fa-comment"></i><span>${dto.user.reviews[size-i].commentCount}</span></a>
                         </div>
                     </div>
                 </c:forEach>
