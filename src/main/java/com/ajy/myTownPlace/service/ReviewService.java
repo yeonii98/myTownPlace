@@ -2,6 +2,7 @@ package com.ajy.myTownPlace.service;
 
 import com.ajy.myTownPlace.domain.review.Review;
 import com.ajy.myTownPlace.domain.review.ReviewRepository;
+import com.ajy.myTownPlace.handler.ex.CustomValidationApiException;
 import com.ajy.myTownPlace.web.dto.review.ApiReviewDto;
 import com.ajy.myTownPlace.web.dto.review.ReviewUploadDto;
 import com.ajy.myTownPlace.config.auth.PrincipalDetails;
@@ -107,11 +108,54 @@ public class ReviewService {
         Review review = reviewUploadDto.toEntity(imageFileName, principalDetails.getUser());
         reviewRepository.save(review);
 
-//        System.out.println(reviewEntity);
     }
+
+    @Transactional
+    public void updateReview(ReviewUploadDto reviewUploadDto, int reviewId, String img){
+        UUID uuid = UUID.randomUUID();
+        String imageFileName = uuid + "_" + reviewUploadDto.getFile().getOriginalFilename();
+
+        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+
+        //통신 I/O -> 예외가 발생할 수 있다.
+        try{
+            Files.write(imageFilePath,reviewUploadDto.getFile().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Review reviewEntity = reviewRepository.findById(reviewId).orElseThrow(()-> {
+            return new CustomValidationApiException("찾을 수 없는 글입니다.");
+        });
+
+        reviewEntity.setCaption(reviewUploadDto.getCaption());
+        reviewEntity.setRating(reviewUploadDto.getRating());
+        reviewEntity.setPostImageUrl(imageFileName);
+        if(!img.isBlank()){
+            reviewEntity.setPostImageUrl(img);
+        }
+        reviewRepository.save(reviewEntity);
+    }
+
 
     @Transactional
     public void deleteReview(int reviewId){
         reviewRepository.deleteById(reviewId);
+    }
+
+    @Transactional(readOnly = true)
+    public ApiReviewDto getReviewDto(int reviewId){
+        Review reviewEntity = reviewRepository.findById(reviewId).orElseThrow(()-> {
+            return new CustomValidationApiException("찾을 수 없는 id입니다.");
+        });
+
+        ApiReviewDto dto = new ApiReviewDto();
+        dto.setLocation(reviewEntity.getTown());
+        dto.setPlaceName(reviewEntity.getPlace());
+        dto.setRating(reviewEntity.getRating());
+        dto.setReviewImgUrl(reviewEntity.getPostImageUrl());
+        dto.setCaption(reviewEntity.getCaption());
+
+        return dto;
     }
 }

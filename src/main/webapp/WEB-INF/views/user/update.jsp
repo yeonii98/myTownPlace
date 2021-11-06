@@ -13,11 +13,15 @@
             <!--프로필셋팅 아이디영역-->
             <div class="content-item__01">
                 <div class="item__img">
-                    <img src="#" onerror="this.src='/images/Profile.png'"/>
+                    <img src="/upload/${principal.user.profileImageUrl}" onerror="this.src='/images/Profile.png'" id="userProfileImage"/>
                 </div>
                 <div class="item__username">
                     <h1>${principal.username}</h1>
-                    <button type="button" class="profile-img__update">프로필 사진 바꾸기</button>
+                    <button class="profile-img__update" onclick="profileImageUpload(${principal.user.id})">프로필 사진 바꾸기</button>
+                        <form id="userProfileImageForm">
+                            <input type="file" name="profileImageFile" style="display: none;"
+                                   id="userProfileImageInput"/>
+                        </form>
                 </div>
             </div>
             <!--프로필셋팅 아이디영역end-->
@@ -110,5 +114,5 @@
 
 <script src="/js/update.js"></script>
 <script src="/js/getLocation.js"></script>
-
+<script src="/js/profile.js"></script>
 <%@ include file="../layout/footer.jsp" %>

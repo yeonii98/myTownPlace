@@ -13,4 +13,8 @@ public class ApiReviewDto {
     private double avgRating;
     private String placeName;
     private String location;
+
+    private String reviewImgUrl;
+    private int rating;
+    private String caption;
 }

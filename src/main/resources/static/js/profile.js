@@ -260,7 +260,7 @@ function popup(obj, pageUserId, principalId) {
 
 function popup2(obj, pageUserId, principalId, reviewId) {
     $("#reviewModal").empty();
-    let item = `<button>수정</button>
+    let item = `<button onclick="location.href='/review/update/${reviewId}'">수정</button>
         <button onclick="deleteReview(${reviewId})">삭제</button>
         <button onclick="closePopup('.modal-review')">취소</button>`
     $("#reviewModal").prepend(item)

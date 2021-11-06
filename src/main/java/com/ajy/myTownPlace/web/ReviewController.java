@@ -1,5 +1,7 @@
 package com.ajy.myTownPlace.web;
 
+import com.ajy.myTownPlace.domain.review.Review;
+import com.ajy.myTownPlace.domain.review.ReviewRepository;
 import com.ajy.myTownPlace.domain.user.User;
 import com.ajy.myTownPlace.domain.user.UserRepository;
 import com.ajy.myTownPlace.handler.ex.CustomValidationApiException;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -23,6 +26,8 @@ public class ReviewController {
 
     private final ReviewService reviewService;
     private final UserRepository userRepository;
+    private final ReviewRepository reviewRepository;
+
 
     @GetMapping({"/review"})
     public String story(){
@@ -35,7 +40,6 @@ public class ReviewController {
             throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
         }
         //서비스 호출
-        System.out.println(reviewUploadDto.getRating());
         reviewService.uploadReview(reviewUploadDto, principalDetails);
         return "redirect:/user/" + principalDetails.getUser().getId();
     }
@@ -46,8 +50,25 @@ public class ReviewController {
             throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
         }
         //서비스 호출
-        System.out.println(reviewUploadDto.getApiId());
         reviewService.uploadReview(reviewUploadDto, principalDetails);
+        return "redirect:/user/" + principalDetails.getUser().getId();
+    }
+
+    @PostMapping("/apiReview/update/{reviewId}")
+    public String apiReviewUpdate(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable int reviewId){
+        System.out.println(reviewUploadDto);
+        Review reviewEntity = reviewRepository.findById(reviewId).orElseThrow(()-> {
+            return new CustomValidationApiException("찾을 수 없는 글입니다.");
+        });
+        String img = "";
+        if(reviewUploadDto.getFile().isEmpty()){
+            img = reviewEntity.getPostImageUrl();
+        }
+        if(reviewEntity.getUser().getId() != principalDetails.getUser().getId()){
+            throw new CustomValidationException("잘못된 경로입니다.", null);
+        }
+        //서비스 호출
+        reviewService.updateReview(reviewUploadDto, reviewId, img);
         return "redirect:/user/" + principalDetails.getUser().getId();
     }
 
@@ -80,5 +101,12 @@ public class ReviewController {
         model.addAttribute("apiId", apiId);
         model.addAttribute("dto",dto);
         return "image/apiReview";
+    }
+
+    @GetMapping("/review/update/{reviewId}")
+    public String reviewUpdate(@PathVariable int reviewId, Model model){
+        ApiReviewDto dto = reviewService.getReviewDto(reviewId);
+        model.addAttribute("dto",dto);
+        return "image/reviewUpdate";
     }
 }
