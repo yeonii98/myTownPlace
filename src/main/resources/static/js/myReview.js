@@ -16,6 +16,8 @@ function storyLoad() {
             $("#storyList").append(item);
         })
     }).fail(error => {
+        alert("등록된 리뷰가 없습니다.");
+        history.back();
         console.log("오류", error);
     });
 }

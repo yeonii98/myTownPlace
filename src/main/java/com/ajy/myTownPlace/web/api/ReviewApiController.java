@@ -32,6 +32,8 @@ public class ReviewApiController {
     @GetMapping("/api/myReview")
     public ResponseEntity<?> myStory(@AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size = 5) Pageable pageable){
         Page<Review> reviews = reviewService.myReviewList(principalDetails.getUser().getId(), pageable);
+        if(reviews == null) return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 실패", null), HttpStatus.BAD_REQUEST);
+
         return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", reviews), HttpStatus.OK);
     }
 

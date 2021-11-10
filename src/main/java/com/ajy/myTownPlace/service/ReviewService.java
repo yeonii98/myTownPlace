@@ -48,6 +48,8 @@ public class ReviewService {
     public Page<Review> myReviewList(int principalId, Pageable pageable){
         Page<Review> reviews = reviewRepository.myReview(principalId, pageable);
 
+        if(reviews.get().findFirst().isEmpty()) return null;
+
         reviews.forEach((review -> {
             review.setLikeCount(review.getLikes().size());
             review.setCommentCount(review.getComments().size());
@@ -57,7 +59,7 @@ public class ReviewService {
                 }
             }));
         }));
-        System.out.println("reviews = " + reviews);
+
         return reviews;
     }
 
