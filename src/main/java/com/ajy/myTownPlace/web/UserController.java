@@ -23,8 +23,13 @@ public class UserController {
         return "user/profile";
     }
 
-    @GetMapping("/user/{id}/update")
-    public String update(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails){
+    @GetMapping("/user/update")
+    public String update(){
         return "user/update";
+    }
+
+    @GetMapping("user/pwdUpdate")
+    public String pwdUpdate(){
+        return "user/pwdUpdate";
     }
 }

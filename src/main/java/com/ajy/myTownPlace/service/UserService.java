@@ -4,11 +4,14 @@ import com.ajy.myTownPlace.domain.favorite.FavoriteRepository;
 import com.ajy.myTownPlace.domain.user.User;
 import com.ajy.myTownPlace.domain.user.UserRepository;
 import com.ajy.myTownPlace.handler.ex.CustomException;
+import com.ajy.myTownPlace.util.Script;
 import com.ajy.myTownPlace.web.dto.user.UserProfileDto;
 import com.ajy.myTownPlace.domain.subscribe.SubscribeRepository;
 import com.ajy.myTownPlace.handler.ex.CustomValidationApiException;
+import com.ajy.myTownPlace.web.dto.user.UserPwdUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +31,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final SubscribeRepository subscribeRepository;
     private final FavoriteRepository favoriteRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Value("${file.path}")
     private String uploadFolder;
@@ -100,6 +104,29 @@ public class UserService {
         userEntity.setGender(user.getGender());
         userEntity.setLocation(user.getLocation());
 
+        return userEntity;
+    }
+
+    @Transactional
+    public User updateUserPwd(int id, UserPwdUpdateDto userPwdUpdateDto){
+        User userEntity = userRepository.findById(id).orElseThrow(()-> {
+            return new CustomValidationApiException("찾을 수 없는 id입니다.");
+        });
+        String rawPassword = userPwdUpdateDto.getPassword();
+        String encPassword;
+        if(bCryptPasswordEncoder.matches(rawPassword, userEntity.getPassword())){
+            if(userPwdUpdateDto.getNewPassword().equals(userPwdUpdateDto.getNewPasswordConfirm())){
+                rawPassword = userPwdUpdateDto.getNewPassword();
+                encPassword = bCryptPasswordEncoder.encode(rawPassword);
+                userEntity.setPassword(encPassword);
+                userRepository.save(userEntity);
+            }
+            else{
+                throw new CustomValidationApiException("비밀번호가 일치하지 않습니다.");
+            }
+        }else{
+            throw new CustomValidationApiException("비밀번호를 다시 입력해주세요.");
+        }
         return userEntity;
     }
 }

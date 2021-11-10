@@ -59,6 +59,9 @@
 .setting-container .setting__content .content-item__01 .item__username {
   flex: 4;
 }
+.setting-container .setting__content .content-item__01 .pwd__username{
+  flex: 3;
+}
 .setting-container .setting__content .content-item__01 .item__btn h2 {
   font-size: 18px;
 }
@@ -87,6 +90,9 @@
   flex: 4;
   display: flex;
   flex-direction: column;
+}
+.setting-container .setting__content div .pwd__input{
+  flex: 3;
 }
 
 /*form 입력요소 인풋*/

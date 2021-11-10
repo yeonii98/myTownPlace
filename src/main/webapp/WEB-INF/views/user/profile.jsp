@@ -123,8 +123,8 @@
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info" onclick="modalInfo()">
     <div class="modal">
-        <button>비밀번호 변경</button>
-        <button onclick="location.href='/user/${principal.user.id}/update'">프로필 변경</button>
+        <button onclick="location.href='/user/update'">프로필 변경</button>
+        <button onclick="location.href='/user/pwdUpdate'">비밀번호 변경</button>
         <button onclick="location.href='/logout'">로그아웃</button>
         <button onclick="closePopup('.modal-info')">취소</button>
     </div>
