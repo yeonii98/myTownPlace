@@ -12,6 +12,9 @@ public interface ReviewRepository extends JpaRepository<Review,Integer> {
     @Query(value = "SELECT * FROM review WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId =:principalId) ORDER BY id DESC", nativeQuery = true)
     Page<Review> mReview(int principalId, Pageable pageable);
 
+    @Query(value = "SELECT * FROM review WHERE userId =:principalId ORDER BY id DESC", nativeQuery = true)
+    Page<Review> myReview(int principalId, Pageable pageable);
+
     @Query(value = "SELECT * FROM review WHERE apiId =:apiId ORDER BY id DESC", nativeQuery = true)
     Page<Review> mApiReview(String apiId, Pageable pageable);
 

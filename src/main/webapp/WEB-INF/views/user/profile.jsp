@@ -38,8 +38,7 @@
                 <h2>${dto.user.username}</h2>
                 <c:choose>
                     <c:when test="${dto.pageOwner}">
-<%--                        <button class="modi" onclick="location.href='/image/upload'"><i class="fas fa-edit"></i>--%>
-<%--                        </button>--%>
+                        <button class="cta blue" onclick="location.href='/myReview'">내 글 목록</button>
                         <button class="modi" onclick="popup('.modal-info')"><i class="fas fa-cog"></i></button>
                     </c:when>
                     <c:when test="${!dto.pageOwner}">
@@ -98,7 +97,6 @@
         <div id="tab-1-content" class="tab-content-item show">
             <!--게시물컨 그리드배열-->
             <div class="tab-1-content-inner">
-
                 <!--아이템들-->
                 <c:set var = "size" value="${fn:length(dto.user.reviews)}"/>
                 <c:forEach var="i" begin="1" end="${size}">

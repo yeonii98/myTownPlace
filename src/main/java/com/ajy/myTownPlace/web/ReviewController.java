@@ -34,6 +34,11 @@ public class ReviewController {
         return "image/review";
     }
 
+    @GetMapping({"/myReview"})
+    public String myStory(){
+        return "image/myReview";
+    }
+
     @PostMapping("/image")
     public String imageUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
         if(reviewUploadDto.getFile().isEmpty()){

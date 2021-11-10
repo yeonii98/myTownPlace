@@ -45,6 +45,23 @@ public class ReviewService {
     }
 
     @Transactional(readOnly = true)
+    public Page<Review> myReviewList(int principalId, Pageable pageable){
+        Page<Review> reviews = reviewRepository.myReview(principalId, pageable);
+
+        reviews.forEach((review -> {
+            review.setLikeCount(review.getLikes().size());
+            review.setCommentCount(review.getComments().size());
+            review.getLikes().forEach((likes -> {
+                if(likes.getUser().getId() == principalId){
+                    review.setLikeState(true);
+                }
+            }));
+        }));
+        System.out.println("reviews = " + reviews);
+        return reviews;
+    }
+
+    @Transactional(readOnly = true)
     public Page<Review> apiReviewList(int principalId, String apiId, Pageable pageable){
         Page<Review> reviews = reviewRepository.mApiReview(apiId, pageable);
         if(reviews.getSize() == 0){
