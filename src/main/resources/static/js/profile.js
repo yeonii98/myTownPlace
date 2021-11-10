@@ -193,8 +193,9 @@ function toggleSubscribeModal(obj, pageUserId) {
 }
 
 // (4) 유저 프로파일 사진 변경 (완)
-function profileImageUpload(principalId) {
-    $("#userProfileImageInput").click();
+function profileImageUpload(principalId, pageUserId) {
+    if(principalId === pageUserId)
+        $("#userProfileImageInput").click();
 
     $("#userProfileImageInput").on("change", (e) => {
         let f = e.target.files[0];
@@ -221,6 +222,7 @@ function profileImageUpload(principalId) {
             dataType: "json"
         }).done(res=>{
             // 사진 전송 성공시 이미지 변경
+            $("#profileImg").attr("onclick", `popup('.modal-image', ${pageUserId}, ${principalId})`);
             let reader = new FileReader();
             reader.onload = (e) => {
                 $("#userProfileImage").attr("src", e.target.result);
@@ -229,6 +231,20 @@ function profileImageUpload(principalId) {
         }).fail(error=>{
             console.log("오류", error);
         })
+    });
+}
+
+function profileImageDelete(principalId, pageUserId){
+    $.ajax({
+        url: `/api/user/${principalId}/profileImageUrl`,
+        type: "delete",
+        dataType: "json"
+    }).done(res => {
+        console.log(res);
+        $("#userProfileImage").attr("src",'/images/Profile.png');
+        $("#profileImg").attr("onclick", `profileImageUpload(${principalId}, ${pageUserId})`);
+    }).fail(error => {
+        console.log("오류", error);
     });
 }
 

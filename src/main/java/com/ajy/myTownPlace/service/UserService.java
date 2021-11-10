@@ -33,8 +33,8 @@ public class UserService {
     private String uploadFolder;
 
     @Transactional
-    public User profileUserImage(int princopalId, MultipartFile profileImageFile) {
-        User userEntity = userRepository.findById(princopalId).orElseThrow(()-> {
+    public User profileUserImage(int principalId, MultipartFile profileImageFile) {
+        User userEntity = userRepository.findById(principalId).orElseThrow(()-> {
             return new CustomValidationApiException("찾을 수 없는 id입니다.");
         });
         UUID uuid = UUID.randomUUID();
@@ -47,6 +47,17 @@ public class UserService {
             e.printStackTrace();
         }
         userEntity.setProfileImageUrl(imageFileName);
+
+        return userEntity;
+    }
+
+    @Transactional
+    public User profileUserImageDelete(int principalId){
+        User userEntity = userRepository.findById(principalId).orElseThrow(()-> {
+            return new CustomValidationApiException("찾을 수 없는 id입니다.");
+        });
+
+        userEntity.setProfileImageUrl(null);
 
         return userEntity;
     }

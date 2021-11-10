@@ -12,16 +12,23 @@
 
         <!--유저이미지-->
         <div class="profile-left">
-            <div class="profile-img-wrap story-border"
-                 onclick="popup('.modal-image', ${dto.user.id}, ${principal.user.id})">
+            <c:choose>
+                <c:when test="${null eq principal.user.profileImageUrl || empty principal.user.profileImageUrl}">
+                    <div class="profile-img-wrap" id="profileImg"
+                         onclick="profileImageUpload(${principal.user.id}, ${dto.user.id})">
+                </c:when>
+                <c:otherwise>
+                    <div class="profile-img-wrap" id="profileImg"
+                         onclick="popup('.modal-image', ${dto.user.id}, ${principal.user.id})">
+                </c:otherwise>
+            </c:choose>
+                <img src="/upload/${dto.user.profileImageUrl}"
+                     onerror="this.src='/images/Profile.png'" id="userProfileImage"/>
+                </div>
                 <form id="userProfileImageForm">
                     <input type="file" name="profileImageFile" style="display: none;"
                            id="userProfileImageInput"/>
                 </form>
-
-                <img src="/upload/${dto.user.profileImageUrl}"
-                     onerror="this.src='/images/Profile.png'" id="userProfileImage"/>
-            </div>
         </div>
         <!--유저이미지end-->
 
@@ -130,7 +137,8 @@
 <div class="modal-image" onclick="modalImage()">
     <div class="modal">
         <p>프로필 사진 바꾸기</p>
-        <button onclick="profileImageUpload(${principal.user.id})">사진 업로드</button>
+        <button onclick="profileImageUpload(${principal.user.id}, ${dto.user.id})">사진 업로드</button>
+        <button onclick="profileImageDelete(${principal.user.id}, ${dto.user.id})">현재 사진 삭제</button>
         <button onclick="closePopup('.modal-image')">취소</button>
     </div>
 </div>

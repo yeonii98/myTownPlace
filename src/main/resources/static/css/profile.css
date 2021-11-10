@@ -306,6 +306,10 @@
   font-weight: 600;
   color: #0095f6;
 }
+.modal-image .modal button:nth-child(3) {
+  font-weight: 600;
+  color: #ed4956;
+}
 .modal-image .modal button:not(:last-child) {
   border-bottom: 1px solid #dbdbdb;
 }

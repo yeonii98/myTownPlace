@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -13,15 +14,27 @@
             <!--프로필셋팅 아이디영역-->
             <div class="content-item__01">
                 <div class="item__img">
-                    <img src="/upload/${principal.user.profileImageUrl}" onerror="this.src='/images/Profile.png'" id="userProfileImage"/>
+                    <img src="/upload/${principal.user.profileImageUrl}" onerror="this.src='/images/Profile.png'"
+                         id="userProfileImage"/>
                 </div>
                 <div class="item__username">
                     <h1>${principal.username}</h1>
-                    <button class="profile-img__update" onclick="profileImageUpload(${principal.user.id})">프로필 사진 바꾸기</button>
-                        <form id="userProfileImageForm">
-                            <input type="file" name="profileImageFile" style="display: none;"
-                                   id="userProfileImageInput"/>
-                        </form>
+                    <c:choose>
+                        <c:when test="${null eq principal.user.profileImageUrl || empty principal.user.profileImageUrl}">
+                            <button class="profile-img__update" id="profileImg"
+                                    onclick="profileImageUpload(${principal.user.id},${principal.user.id})">프로필 사진 바꾸기
+                            </button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="profile-img__update" id="profileImg"
+                                    onclick="popup('.modal-image', ${principal.user.id}, ${principal.user.id})">프로필 사진 바꾸기
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
+                    <form id="userProfileImageForm">
+                        <input type="file" name="profileImageFile" style="display: none;"
+                               id="userProfileImageInput"/>
+                    </form>
                 </div>
             </div>
             <!--프로필셋팅 아이디영역end-->
@@ -83,17 +96,20 @@
                         <input type="text" name="gender" value="${principal.user.gender}"/>
                     </div>
                 </div>
-<%--                <div class="content-item__07">--%>
-<%--                    <div class="item__title"></div>--%>
-<%--                    <div class="item__input">--%>
-<%--                        <span><b>홍보용 계정</b></span> <span>맛집 홍보용 계정을 사용하실 유저라면 아래의 정보를 입력해주세요</span>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+                <%--                <div class="content-item__07">--%>
+                <%--                    <div class="item__title"></div>--%>
+                <%--                    <div class="item__input">--%>
+                <%--                        <span><b>홍보용 계정</b></span> <span>맛집 홍보용 계정을 사용하실 유저라면 아래의 정보를 입력해주세요</span>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
                 <div class="content-item__10">
                     <div class="item__title">내 위치(동 이름)</div>
                     <div class="item__input">
-                        <input type="text" class="getLocation" name="location" value="${principal.user.location}" required/>
-                        <div style="width: 355px; padding-top: 7px" onclick="loadCoords()" class="text_location">위치 받아오기</div>
+                        <input type="text" class="getLocation" name="location" value="${principal.user.location}"
+                               required/>
+                        <div style="width: 355px; padding-top: 7px" onclick="loadCoords()" class="text_location">위치
+                            받아오기
+                        </div>
                     </div>
                 </div>
 
@@ -111,8 +127,17 @@
         </article>
     </section>
 </main>
-
+<!--프로필사진 바꾸기 모달-->
+<div class="modal-image" onclick="modalImage()">
+    <div class="modal">
+        <p>프로필 사진 바꾸기</p>
+        <button onclick="profileImageUpload(${principal.user.id}, ${principal.user.id})">사진 업로드</button>
+        <button onclick="profileImageDelete(${principal.user.id}, ${principal.user.id})">현재 사진 삭제</button>
+        <button onclick="closePopup('.modal-image')">취소</button>
+    </div>
+</div>
+<script src="/js/profile.js"></script>
 <script src="/js/update.js"></script>
 <script src="/js/getLocation.js"></script>
-<script src="/js/profile.js"></script>
+
 <%@ include file="../layout/footer.jsp" %>

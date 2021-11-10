@@ -16,10 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
@@ -41,6 +38,13 @@ public class UserApiController {
         User userEntity = userService.profileUserImage(principalId,profileImageFile);
         principalDetails.setUser(userEntity); // 세션 변경
         return new ResponseEntity<>(new CMRespDto<>(1,"프로필 사진 변경 성공",null), HttpStatus.OK);
+    }
+
+    @DeleteMapping("api/user/{principalId}/profileImageUrl")
+    public ResponseEntity<?> profileImageUrlDelete(@PathVariable int principalId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        User userEntity = userService.profileUserImageDelete(principalId);
+        principalDetails.setUser(userEntity); // 세션 변경
+        return new ResponseEntity<>(new CMRespDto<>(1,"프로필 사진 삭제 성공",null), HttpStatus.OK);
     }
 
     @GetMapping("/api/user/{pageUserId}/subscribe")
@@ -73,7 +77,5 @@ public class UserApiController {
             principalDetails.setUser(userEntity);
             return new CMRespDto<>(1,"회원 수정 완료",userEntity); //응답시에 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답한다.
         }
-
-
     }
 }
