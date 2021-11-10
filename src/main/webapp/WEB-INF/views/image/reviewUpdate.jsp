@@ -26,11 +26,11 @@
                         <img src="/upload/${dto.reviewImgUrl}" alt="" id="imageUploadPreview" />
                     </div>
                     <fieldset>
-                        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-                        <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+                        <input type="radio" name="rating" value="5" id="rate5"><label for="rate5">⭐</label>
+                        <input type="radio" name="rating" value="4" id="rate4"><label for="rate4">⭐</label>
                         <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-                        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-                        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+                        <input type="radio" name="rating" value="2" id="rate2"><label for="rate2">⭐</label>
+                        <input type="radio" name="rating" value="1" id="rate1"><label for="rate1">⭐</label>
                     </fieldset>
                     <!--사진설명 + 업로드버튼-->
                     <div class="upload-form-detail">
@@ -46,6 +46,11 @@
             <!--사진업로드 박스 end-->
         </main>
         <br/><br/>
-	
-	<script src="/js/upload.js" ></script>
+
+<script src="/js/upload.js" ></script>
+<script>
+    window.onload = function(){
+        document.getElementById(`rate${dto.rating}`).checked = true;
+    };
+</script>
     <%@ include file="../layout/footer.jsp" %>
