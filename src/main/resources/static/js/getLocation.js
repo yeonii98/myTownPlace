@@ -15,7 +15,7 @@ function getCurrent(lat,lon) {
     });
 }
 
-function handleGeoSucces(position) {
+function handleGeoSuccess(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     getCurrent(lat,lon);
@@ -26,15 +26,13 @@ function handleGeoError() {
 }
 
 function askForCoords() {
-    navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
+    navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError);
 }
 
 function loadCoords() {
     const loadedCoords = localStorage.getItem(COORDS);
     if (loadedCoords === null) {
         askForCoords();
-    } else {
-        //
     }
 };
 

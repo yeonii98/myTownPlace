@@ -53,7 +53,7 @@
                                     <div class="star-ratings" style="padding-left: 8px">
                                         <div
                                                 class="star-ratings-fill space-x-2 text-lg"
-                                                style="width: ${u.avgRating * 20}%; font-size: 16px; padding-left: 8px"
+                                                style="width: ${u.avgRating * 20 + 3.5}%; font-size: 16px; padding-left: 8px"
                                         >
                                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                         </div>

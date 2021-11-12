@@ -15,7 +15,7 @@
                         <div class="star-ratings">
                             <div
                                     class="star-ratings-fill space-x-2 text-lg"
-                                    style="width: ${dto.avgRating * 20}%"
+                                    style="width: ${dto.avgRating * 20 + 3.5}%"
                             >
                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                             </div>

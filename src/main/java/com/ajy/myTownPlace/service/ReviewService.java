@@ -100,7 +100,7 @@ public class ReviewService {
         String placeName = reviews.get().findFirst().get().getPlace();
         String location = reviews.get().findFirst().get().getTown();
 
-        apiReviewDto.setAvgRating(sum / count);
+        apiReviewDto.setAvgRating(Double.parseDouble(String.format("%.1f", sum / count)));
         apiReviewDto.setPlaceName(placeName);
         apiReviewDto.setLocation(location);
 

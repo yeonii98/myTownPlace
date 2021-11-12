@@ -75,7 +75,7 @@ public class StoryService {
                     imgLink,
                     favoriteRepository.mFavoriteState (principalId, localRes.getDocuments().get(i).getId()) == 1,
                     favoriteRepository.countByToPlaceId(localRes.getDocuments().get(i).getId()),
-                    (count != 0) ? sum/count : 0
+                    (count != 0) ? Double.parseDouble(String.format("%.1f", sum / count)) : 0
                     )
             );
         }
