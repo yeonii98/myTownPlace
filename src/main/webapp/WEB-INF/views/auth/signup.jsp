@@ -32,7 +32,7 @@
                          
                          <!--회원가입 인풋-->
                         <form class="login__input" action="/auth/signup" method="post">
-                            <input type="email" name="email" placeholder="이메일" required="required" />
+                            <input type="email" name="email" placeholder="이메일" />
                             <input type="text" name="name" placeholder="성명" required="required" />
                             <input type="text" name="username" placeholder="사용자 이름" required="required" maxlength="15" minlength="2"/>
                             <input type="password" name="password" placeholder="비밀번호" required="required" />

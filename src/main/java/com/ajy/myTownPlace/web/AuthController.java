@@ -39,17 +39,9 @@ public class AuthController {
     @PostMapping("/auth/signup")
     public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {//폼으로 데이터가 날아오면 key=value (x-www-form-urlencoded) 형식으로 받아옴
 
-        if(bindingResult.hasErrors()){
-            Map<String, String> errorMap = new HashMap<>();
-            for(FieldError error : bindingResult.getFieldErrors()){
-                errorMap.put(error.getField(),error.getDefaultMessage());
-            }
-            throw new CustomValidationException("유효성검사 실패함",errorMap);
-        }else{
-            User user = signupDto.toEntity();
-            User userEntity = authService.join(user);
-            return "auth/signin";
-        }
+        User user = signupDto.toEntity();
+        User userEntity = authService.join(user);
+        return "auth/signin";
 
 
     }

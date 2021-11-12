@@ -69,17 +69,10 @@ public class UserApiController {
                                @Valid UserUpdateDto userUpdateDto,
                                BindingResult bindingResult, //꼭 @Valid가 적혀있는 다음 파라메터에 적어야함함
                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorMap = new HashMap<>();
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            throw new CustomValidationException("유효성검사 실패함", errorMap);
-        } else {
-            User userEntity = userService.updateUser(id, userUpdateDto.toEntity());
-            principalDetails.setUser(userEntity);
-            return new CMRespDto<>(1, "회원 수정 완료", userEntity); //응답시에 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답한다.
-        }
+
+        User userEntity = userService.updateUser(id, userUpdateDto.toEntity());
+        principalDetails.setUser(userEntity);
+        return new CMRespDto<>(1, "회원 수정 완료", userEntity); //응답시에 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답한다.
     }
 
     @PutMapping("/api/user/pwd/{id}")
@@ -87,18 +80,10 @@ public class UserApiController {
                                   @Valid UserPwdUpdateDto userPwdUpdateDto,
                                   BindingResult bindingResult, //꼭 @Valid가 적혀있는 다음 파라메터에 적어야함함
                                   @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorMap = new HashMap<>();
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            throw new CustomValidationException("유효성검사 실패함", errorMap);
-        } else {
-            User userEntity = userService.updateUserPwd(id, userPwdUpdateDto);
+        User userEntity = userService.updateUserPwd(id, userPwdUpdateDto);
 
-            principalDetails.setUser(userEntity);
-            return new CMRespDto<>(1, "비밀번호 수정 완료", userEntity); //응답시에 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답한다.
+        principalDetails.setUser(userEntity);
+        return new CMRespDto<>(1, "비밀번호 수정 완료", userEntity); //응답시에 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답한다.
 
-        }
     }
 }
