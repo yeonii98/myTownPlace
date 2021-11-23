@@ -48,6 +48,7 @@
 	<form action = "/search" method="GET">
 	<div class="input-box">
 	<input name="location" class="header__search" type="text" id="searchText" placeholder="동네를 검색하세요">
+	<input type="hidden">
 	<button class="search__btn"><i class="fas fa-search"></i></button>
 	</div>
 	</form>

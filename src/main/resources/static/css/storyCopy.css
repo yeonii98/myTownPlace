@@ -72,6 +72,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow: initial;
 }
 .review__hash{
   color: #0095f6;
@@ -204,6 +205,7 @@
   .sl__item__contents__content {
   padding: 5px 15px;
   display: flex;
+  font-size: 15px;
 }
 
 .main

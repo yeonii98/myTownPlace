@@ -3,6 +3,7 @@
          pageEncoding="UTF-8" %>
 <%@ include file="../layout/header.jsp" %>
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/storyCopy.css">
 <main class="main">
     <input type="hidden" id="apiId" value="${apiId}"/>
     <section class="container">

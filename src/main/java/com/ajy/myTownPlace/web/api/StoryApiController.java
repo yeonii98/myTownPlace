@@ -20,17 +20,14 @@ public class StoryApiController {
     private final StoryService storyService;
 
     @GetMapping("/api/story")
-    public ResponseEntity<?> story(@AuthenticationPrincipal PrincipalDetails principalDetails,  @RequestParam(required = false, defaultValue = "1") int page){
-        ArrayList<StoryDto> dto =  storyService.listStory(principalDetails.getUser().getId(), principalDetails.getUser().getLocation(),page);
+    public ResponseEntity<?> story(@AuthenticationPrincipal PrincipalDetails principalDetails,  @RequestParam(required = false, defaultValue = "1") int page, @RequestParam(required = false) String location){
+        ArrayList<StoryDto> dto =  storyService.listStory(principalDetails.getUser().getId(), location, page);
         return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", dto), HttpStatus.OK);
     }
 
-    @ResponseBody
-    @GetMapping("/api/search/{page}")
-    public ResponseEntity<?> searchStory(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable int page, String location){
-        ArrayList<StoryDto> reviews = storyService.listStory(principalDetails.getUser().getId(), location, page);
-        return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", reviews), HttpStatus.OK);
-    }
-
-
+//    @GetMapping("/api/search")
+//    public ResponseEntity<?> searchStory(@AuthenticationPrincipal PrincipalDetails principalDetails, @RequestParam(required = false, defaultValue = "1") int page, @RequestParam String location){
+//        ArrayList<StoryDto> dto = storyService.listStory(principalDetails.getUser().getId(), location, page);
+//        return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", dto), HttpStatus.OK);
+//    }
 }
