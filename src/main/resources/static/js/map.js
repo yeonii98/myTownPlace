@@ -1,11 +1,13 @@
-let i = 0;
-function Load() {
+
+function Load(page) {
     $.ajax({
-        url: `/api/story`,
+        url: `/api/story?page=${page}`,
         dataType: "json"
     }).done(res => {
+        let i = 0;
         console.log(res);
         res.data.forEach((data) => {
+            $(`#item-${i}`).empty();
             let item = getItem(data, i);
             $(`#item-${i}`).append(item);
             i++;
@@ -15,7 +17,6 @@ function Load() {
     });
 }
 
-Load();
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getItem(data,i) {
@@ -122,7 +123,6 @@ ps.keywordSearch("풍무동 맛집", placesSearchCB,{
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
-        console.log(data);
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
         displayPlaces(data);
@@ -163,7 +163,6 @@ function displayPlaces(places) {
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i),
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
@@ -272,6 +271,7 @@ function displayPagination(pagination) {
 
         if (i===pagination.current) {
             el.className = 'on';
+            Load(i);
         } else {
             el.onclick = (function(i) {
                 return function() {
