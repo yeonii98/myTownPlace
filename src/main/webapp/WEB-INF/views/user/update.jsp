@@ -113,6 +113,8 @@
                     </div>
                 </div>
 
+                <div id="map" style="width:500px;height:400px;"></div>
+
                 <!--제출버튼-->
                 <div class="content-item__11">
                     <div class="item__title"></div>
@@ -136,6 +138,27 @@
         <button onclick="closePopup('.modal-image')">취소</button>
     </div>
 </div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=85261d48bd7d56d5095b625de18c2e35"></script>
+<script>
+    var container = document.getElementById('map');
+    var options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+    };
+
+    var map = new kakao.maps.Map(container, options);
+
+    // 마커가 표시될 위치입니다
+    var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+</script>
 <script src="/js/profile.js"></script>
 <script src="/js/update.js"></script>
 <script src="/js/getLocation.js"></script>

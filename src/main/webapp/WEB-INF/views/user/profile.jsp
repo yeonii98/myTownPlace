@@ -146,7 +146,7 @@
 <div class="modal-subscribe">
     <div class="subscribe">
         <div class="subscribe-header">
-            <span>즐겨찾기</span>
+            <span>팔로우</span>
             <button onclick="modalClose()">
                 <i class="fas fa-times"></i>
             </button>

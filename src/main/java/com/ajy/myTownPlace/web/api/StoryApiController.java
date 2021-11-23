@@ -9,10 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -22,10 +19,10 @@ public class StoryApiController {
 
     private final StoryService storyService;
 
-    @GetMapping("/api/story/{page}")
-    public ResponseEntity<?> story(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable int page){
-        ArrayList<StoryDto> reviews = storyService.listStory(principalDetails.getUser().getId(), principalDetails.getUser().getLocation(), page);
-        return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", reviews), HttpStatus.OK);
+    @GetMapping("/api/story")
+    public ResponseEntity<?> story(@AuthenticationPrincipal PrincipalDetails principalDetails,  @RequestParam(required = false, defaultValue = "1") int page){
+        ArrayList<StoryDto> dto =  storyService.listStory(principalDetails.getUser().getId(), principalDetails.getUser().getLocation(),page);
+        return new ResponseEntity<>(new CMRespDto<>(1,"글 불러오기 성공", dto), HttpStatus.OK);
     }
 
     @ResponseBody
