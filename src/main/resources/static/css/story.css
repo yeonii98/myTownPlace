@@ -72,7 +72,9 @@
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  height: 500px;
+  height: 600px;
+  width: 100%;
+  padding: 0;
 }
 
 .review__hash{
@@ -88,7 +90,8 @@
 .main .container .story-list .story-list__item {
   border: 1px solid #dbdbdb;
   border-radius: 4px;
-  background:rgba(255, 255, 255, 0.7);;
+  background:rgba(255, 255, 255, 0.7);
+  padding-top: 1rem;
 }
 .story-cnt{
   color: #0095f6;
@@ -101,8 +104,8 @@
   width: 100%;
   height: 60px;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  padding-left: 2rem;
 }
 
 .sl__item__header--home{
@@ -111,7 +114,6 @@
 
 /*리스트 아이템 헤더 div*/
 .main .container .story-list .story-list__item .sl__item__header div {
-  margin-left: 10px;
   font-size: 15px;
   white-space:nowrap;
 }
@@ -329,8 +331,9 @@
 
 .map_wrap {
   position: relative;
-  width: 450px;
-  height: 500px;
+  width: 100%;
+  height: 600px;
+  padding: 0;
 }
 
 #menu_wrap {

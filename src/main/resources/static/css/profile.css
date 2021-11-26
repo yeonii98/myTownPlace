@@ -422,6 +422,8 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  position: initial;
+  height: auto;
 }
 .modal-info .modal button {
   border: 0;

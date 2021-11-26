@@ -27,7 +27,7 @@ function getItem(data,i) {
                             <div style="display: flex">
                                 <div>${i + 1}. ${data.name}</div>
                             </div>
-                            <div style="margin-right: 1rem; font-size: 11px">`
+                            <div style="font-size: 11px">`
     if(data.favoriteState){
         item += `<button class="cta" onclick="toggleFavorite(this, ${data.id}, ${i + 1})">즐겨찾기
                                             해제
@@ -46,7 +46,7 @@ function getItem(data,i) {
                             </div>
                         </div>
 
-                        <div style="display: flex; margin-left: 2rem; padding-bottom: 1rem">
+                        <div style="display: flex; margin-left: 2rem; padding: 1rem 0">
                             <img src="${data.image}" onerror="this.src='/images/foodImg.png'"
                                  style="width: 100px; height: 100px; align-self: center"/>
                             <div class="sl__item__contents">

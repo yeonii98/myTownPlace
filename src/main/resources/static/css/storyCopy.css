@@ -89,6 +89,7 @@
   border: 1px solid #dbdbdb;
   border-radius: 4px;
   background-color: white;
+  padding: 0;
 }
 .story-cnt{
   color: #0095f6;
@@ -103,9 +104,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: initial;
+  padding: 0;
 }
 .sl__item__header--home{
   justify-content: space-between;
+}
+
+.review__hash p{
+  margin: 0;
 }
 
 /*리스트 아이템 헤더 div*/
@@ -206,6 +213,19 @@
   padding: 5px 15px;
   display: flex;
   font-size: 15px;
+}
+
+.main
+.container
+.story-list
+.story-list__item
+.sl__item__contents
+.sl__item__contents__content p{
+  margin: 0;
+}
+
+.story__comment-list p{
+  margin: 0;
 }
 
 .main
