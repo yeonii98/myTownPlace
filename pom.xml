@@ -9,10 +9,10 @@
 		<version>2.4.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.cos</groupId>
-	<artifactId>photogram-start</artifactId>
+	<groupId>com.ajy</groupId>
+	<artifactId>myTownPlace</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>photogram-start</name>
+	<name>myTownPlace</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
