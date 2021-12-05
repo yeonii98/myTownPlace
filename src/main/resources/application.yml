@@ -16,7 +16,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mydb.ckfc1hudjneq.ap-northeast-2.rds.amazonaws.com:3306/mytownplace?serverTimezone=UTC&characterEncoding=UTF-8
     username: admin
-    password: mytownpwd
+    password: mytowndb
 
   jpa:
     open-in-view: true
