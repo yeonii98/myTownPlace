@@ -5,7 +5,7 @@
 ---
 ### 기술
 * IDE : InteliJ
-* DBMS : MySQL 5.7
+* DBMS : MySQL 8.0.21
 * Frontend : BootStrap 4, HTML, CSS, JavaScript
 * Backend : Java, Spring Boot, Spring Security
 ---
