@@ -43,7 +43,7 @@ function toggleSubscribe(obj, pageUserId) {
 
 // (2) 즐겨찾기  모달 보기
 function favoriteModalOpen(pageUserId) {
-    $(".modal-subscribe").css("display", "flex");
+    $(".m-favorite").css("display", "flex");
 
     $.ajax({
         url: `/api/user/${pageUserId}/favorite`,
@@ -51,7 +51,7 @@ function favoriteModalOpen(pageUserId) {
     }).done(res => {
         res.data.forEach((u) => {
             let item = getFavoriteItem(u);
-            $("#subscribeModalList").append(item);
+            $("#favoriteModalList").append(item);
         });
 
     }).fail(error => {
@@ -88,7 +88,7 @@ function getFavoriteItem(u) {
 
 // (2) 구독자 정보  모달 보기
 function subscribeInfoModalOpen(pageUserId) {
-    $(".modal-subscribe").css("display", "flex");
+    $(".m-sub").css("display", "flex");
 
     $.ajax({
         url: `/api/user/${pageUserId}/subscribe`,

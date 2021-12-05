@@ -18,7 +18,7 @@
                          id="userProfileImage"/>
                 </div>
                 <div class="item__username">
-                    <h1>${principal.username}</h1>
+                    <h3>${principal.username}</h3>
                     <c:choose>
                         <c:when test="${null eq principal.user.profileImageUrl || empty principal.user.profileImageUrl}">
                             <button class="profile-img__update" id="profileImg"

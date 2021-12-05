@@ -30,23 +30,23 @@
   margin-bottom: 3rem;
 }
 .profile > .profileContainer {
-  padding: 30px 20px 0;
+  padding: 30px 10px 0;
 }
 .profile .profile-left,
 .profile .profile-right {
   height: 100%;
 }
 .profile .profile-left {
-  flex-basis: 40%;
+  flex-basis: 36%;
   display: flex;
   justify-content: center;
 }
 .profile .profile-right {
-  flex-basis: 60%;
+  flex-basis: 54%;
 }
 .profile .profile-left .profile-img-wrap {
-  width: 162px;
-  height: 162px;
+  width: 132px;
+  height: 132px;
   padding: 6px;
   border-radius: 50%;
   position: relative;
@@ -65,6 +65,7 @@
   font-weight: normal;
   font-family: 'Gowun Dodum', sans-serif;
   margin-right: 30px;
+  font-size: 25px;
 }
 .profile .profile-right .name-group .cta {
   margin-right: 10px;
@@ -84,7 +85,7 @@
   padding: 8px;
 }
 .profile .profile-right .subscribe {
-  height: 28px;
+  height: 47px;
   margin-bottom: 5px;
 }
 .profile .profile-right .subscribe ul {
@@ -94,7 +95,7 @@
   margin-right: 18px;
 }
 .profile .profile-right .subscribe ul li a {
-  font-size: 16px;
+  font-size: 14px;
   color: #262626;
 }
 .profile .profile-right .subscribe ul li a span {
@@ -103,6 +104,7 @@
 }
 .profile .profile-right .state h4 {
   margin-bottom: 2px;
+  font-size: 14px;
 }
 
 /* story */
@@ -185,7 +187,7 @@
 }
 #tab-content #tab-1-content .tab-1-content-inner .img-box {
   position: relative;
-  height: 293px;
+  height: 100%;
 }
 #tab-content #tab-1-content .tab-1-content-inner .img-box img {
   width: 100%;
@@ -343,7 +345,6 @@
 .modal-subscribe .subscribe .subscribe-header button {
   position: absolute;
   right: 15px;
-  top: 15px;
   background-color: transparent;
   border: 0;
 }
@@ -386,6 +387,7 @@
   margin-left: auto;
   display: flex;
   align-items: center;
+  font-size: 12px;
 }
 
 .cta {
@@ -475,6 +477,42 @@
 }
 
 /* Media */
+@media screen and (min-width: 768px) {
+  .profile .profile-left .profile-img-wrap {
+    width: 162px;
+    height: 162px;
+  }
+  .profile > .profileContainer {
+    padding: 30px 20px 0;
+  }
+  #tab-content #tab-1-content .tab-1-content-inner .img-box {
+    position: relative;
+    height: 293px;
+  }
+  .profile .profile-right {
+    flex-basis: 60%;
+  }
+  .profile .profile-right .name-group h2 {
+    font-size: 32px;
+  }
+  .profile .profile-left {
+    flex-basis: 50%;
+  }
+  .profile .profile-right .subscribe ul li a {
+    font-size: 16px;
+    color: #262626;
+  }
+  .profile .profile-right .subscribe {
+    height: 28px;
+    margin-bottom: 5px;
+  }
+  .profile .profile-right .state h4 {
+    font-size: 24px;
+  }
+  .modal-subscribe .subscribe .subscribe-list .subscribe__item .subscribe__btn {
+    font-size: 16px;
+  }
+}
 @media screen and (max-width: 935px) {
   .profileContainer {
     width: 100%;

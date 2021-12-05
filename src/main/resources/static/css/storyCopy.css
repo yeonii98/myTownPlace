@@ -27,7 +27,7 @@
 /*컨테이너*/
 .main .container {
   padding-top: 30px;
-  width: 935px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -75,10 +75,8 @@
   overflow: initial;
 }
 .review__hash{
-  color: #0095f6;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
+  display: block;
+  display: none;
 }
 .review__hash p:nth-child(1){
   padding-right: 10px;
@@ -151,7 +149,7 @@
 
 /* 게시물 이미지 박스*/
 .main .container .story-list .story-list__item .sl__item__img {
-  height: 600px;
+  height: 300px;
   min-height: 300px;
 }
 
@@ -324,7 +322,7 @@
   background-color: transparent;
   font-weight: 500;
   color: #0095f6;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -340,5 +338,31 @@
   color: #0095f6;
 }
 
+@media screen and (min-width: 768px){
+  .main .container .story-list .story-list__item .sl__item__header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: initial;
+    padding: 0;
+  }
 
+  .review__hash{
+    color: #0095f6;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+  }
 
+  /* 게시물 이미지 박스*/
+  .main .container .story-list .story-list__item .sl__item__img {
+    height: 600px;
+    min-height: 300px;
+  }
+
+  .main .container .story-list .story-list__item .sl__item__input button {
+    font-size: 17px;
+  }
+}

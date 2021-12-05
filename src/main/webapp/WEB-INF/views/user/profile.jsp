@@ -77,9 +77,9 @@
                 </ul>
             </div>
             <div class="state">
-                <h4>${dto.user.name}</h4>
+                <h5>${dto.user.name}</h5>
                 <div>${dto.user.bio}</div>
-                <h4><a href="${dto.user.website}" style="color: #00376b">${dto.user.website}</a></h4>
+                <div><a href="${dto.user.website}" style="color: #00376b">${dto.user.website}</a></div>
             </div>
         </div>
         <!--유저정보 및 사진등록 구독하기-->
@@ -142,8 +142,21 @@
 </div>
 
 <!--프로필사진 바꾸기 모달end-->
+<div class="modal-subscribe m-favorite">
+    <div class="subscribe">
+        <div class="subscribe-header">
+            <span>즐겨찾기</span>
+            <button onclick="modalClose()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
 
-<div class="modal-subscribe">
+        <div class="subscribe-list" id="favoriteModalList">
+        </div>
+    </div>
+</div>
+
+<div class="modal-subscribe m-sub">
     <div class="subscribe">
         <div class="subscribe-header">
             <span>팔로우</span>

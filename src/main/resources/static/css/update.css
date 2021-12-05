@@ -9,7 +9,7 @@
 
 /*프로필셋팅 섹션*/
 .setting-container {
-  width: 935px;
+  width: 100%;
   margin: 0 auto;
   border: 1px solid gainsboro;
   margin-top: 30px;
@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   padding-top: 32px;
+  width: 100%;
 }
 
 /*프로필 셋팅 내이미지 + 아이디*/
@@ -87,7 +88,7 @@
 }
 /*form 입력요소 인풋박스*/
 .setting-container .setting__content div .item__input {
-  flex: 4;
+  flex: 3;
   display: flex;
   flex-direction: column;
 }
@@ -102,7 +103,7 @@
   padding: 0 10px;
   border-radius: 3px;
   font-size: 16px;
-  width: 355px;
+  width: 203px;
 }
 
 /*form 입력요소 소개부분*/
@@ -143,4 +144,25 @@
   cursor: pointer;
 }
 
-
+@media screen and (min-width: 768px) {
+  /*프로필셋팅 섹션*/
+  .setting-container {
+    width: 935px;
+  }
+  /*프로필셋팅 아티클*/
+  .setting-container .setting__content {
+    width: initial;
+  }
+  .setting-container .setting__content div .item__input {
+    flex: 4;
+  }
+  /*form 입력요소 인풋*/
+  .setting-container .setting__content div .item__input input {
+    border: 1px solid #dbdbdb;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    width: 355px;
+  }
+}
