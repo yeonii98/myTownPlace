@@ -10,7 +10,7 @@
                
                <!--사진업로드 로고-->
                 <div class="upload-top">
-                    <a href="home.html" class="logo upload__logo">
+                    <a href="home.html" class="upload__logo">
                         우리 동네 맛집<i class="fas fa-utensils header_icon"></i>
                     </a>
                     <p>리뷰 쓰기</p>

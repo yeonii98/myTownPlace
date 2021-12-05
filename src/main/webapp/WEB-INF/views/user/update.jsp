@@ -27,7 +27,8 @@
                         </c:when>
                         <c:otherwise>
                             <button class="profile-img__update" id="profileImg"
-                                    onclick="popup('.modal-image', ${principal.user.id}, ${principal.user.id})">프로필 사진 바꾸기
+                                    onclick="popup('.modal-image', ${principal.user.id}, ${principal.user.id})">프로필 사진
+                                바꾸기
                             </button>
                         </c:otherwise>
                     </c:choose>
@@ -96,27 +97,17 @@
                         <input type="text" name="gender" value="${principal.user.gender}"/>
                     </div>
                 </div>
-                <%--                <div class="content-item__07">--%>
-                <%--                    <div class="item__title"></div>--%>
-                <%--                    <div class="item__input">--%>
-                <%--                        <span><b>홍보용 계정</b></span> <span>맛집 홍보용 계정을 사용하실 유저라면 아래의 정보를 입력해주세요</span>--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
-                <div class="content-item__10">
+                <div class="content-item__11">
                     <div class="item__title">내 위치(동 이름)</div>
                     <div class="item__input">
                         <input type="text" class="getLocation" name="location" value="${principal.user.location}"
                                required/>
-                        <div style="width: 355px; padding-top: 7px" onclick="loadCoords()" class="text_location">위치
+                        <div onclick="loadCoords()" class="text_location">위치
                             받아오기
                         </div>
                     </div>
                 </div>
-
-<%--                <div id="map" style="width:500px;height:400px;"></div>--%>
-
-                <!--제출버튼-->
-                <div class="content-item__11">
+                <div class="content-item__12">
                     <div class="item__title"></div>
                     <div class="item__input">
                         <button>제출</button>
@@ -132,7 +123,7 @@
 <!--프로필사진 바꾸기 모달-->
 <div class="modal-image" onclick="modalImage()">
     <div class="modal">
-        <p>프로필 사진 바꾸기</p>
+        <div>프로필 사진 바꾸기</div>
         <button onclick="profileImageUpload(${principal.user.id}, ${principal.user.id})">사진 업로드</button>
         <button onclick="profileImageDelete(${principal.user.id}, ${principal.user.id})">현재 사진 삭제</button>
         <button onclick="closePopup('.modal-image')">취소</button>
@@ -149,7 +140,7 @@
     var map = new kakao.maps.Map(container, options);
 
     // 마커가 표시될 위치입니다
-    var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
+    var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
 
     // 마커를 생성합니다
     var marker = new kakao.maps.Marker({

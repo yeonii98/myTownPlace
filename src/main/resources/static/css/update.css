@@ -80,11 +80,11 @@
 .text_location{
   cursor: pointer;
   display: flex;
-  width: 100%;
-  justify-content: end;
   text-decoration: underline;
   text-underline-position:under;
   font-size: 13px;
+  flex-direction: column;
+  padding-left: 8rem;
 }
 /*form 입력요소 인풋박스*/
 .setting-container .setting__content div .item__input {
@@ -113,7 +113,7 @@
   border-radius: 3px;
   font-size: 16px;
   resize: vertical;
-  width: 355px;
+  width: 203px;
   height: 60px;
 }
 
@@ -127,7 +127,7 @@
 }
 
 /*제출버튼*/
-.setting-container .setting__content .content-item__11 .item__input {
+.setting-container .setting__content .content-item__12 .item__input {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -135,7 +135,7 @@
 }
 
 /*제출버튼*/
-.setting-container .setting__content .content-item__11 .item__input button {
+.setting-container .setting__content .content-item__12 .item__input button {
   border: 0;
   background-color: #0095f6;
   padding: 5px 9px;
@@ -163,6 +163,19 @@
     padding: 0 10px;
     border-radius: 3px;
     font-size: 16px;
+    width: 355px;
+  }
+  .text_location{
+    cursor: pointer;
+    display: flex;
+    text-decoration: underline;
+    text-underline-position:under;
+    font-size: 13px;
+    flex-direction: column;
+    padding-left: 17rem;
+  }
+  /*form 입력요소 소개부분*/
+  .setting-container .setting__content div .item__input textarea {
     width: 355px;
   }
 }

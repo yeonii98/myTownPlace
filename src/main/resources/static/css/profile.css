@@ -289,6 +289,8 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  position: initial;
+  height: auto;
 }
 .modal-image .modal button {
   border: 0;
@@ -296,7 +298,7 @@
   height: 48px;
   cursor: pointer;
 }
-.modal-image .modal p {
+.modal-image .modal div {
   line-height: 50px;
   text-align: center;
   border-bottom: 1px solid #ddd;
@@ -316,7 +318,7 @@
   border-bottom: 1px solid #dbdbdb;
 }
 
-.modal-subscribe {
+.modal-subscribe, .modal-image {
   position: fixed;
   top: 0;
   left: 0;
@@ -449,13 +451,17 @@
   align-items: center;
   justify-content: center;
 }
+
 .modal-review .modal {
   width: 400px;
   background-color: #fff;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  position: initial;
+  height: auto;
 }
+
 .modal-review .modal button {
   border: 0;
   background-color: transparent;

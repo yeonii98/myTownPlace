@@ -23,6 +23,11 @@
   justify-content: center;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 26px;
+  color: black;
 }
 
 /*업로드박스 로고*/
@@ -185,3 +190,7 @@ textarea{
   text-shadow: 0 0 0 #f7e600; /* 마우스 클릭 체크 */
 }
 
+/* Media */
+@media screen and (min-width: 768px) {
+
+}
