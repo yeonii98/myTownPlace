@@ -1,7 +1,6 @@
 let location1 = $("#location").val();
 
 function Load(page) {
-    console.log(location1);
     $.ajax({
         url: `/api/story?location=${location1}&page=${page}`,
         dataType: "json"
