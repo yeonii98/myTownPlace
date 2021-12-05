@@ -10,15 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
     @GetMapping("/user/{pageUserId}")
     public String profile(@PathVariable int pageUserId, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
-        UserProfileDto dto = userService.profileUser(1, principalDetails.getUser().getId());
+        UserProfileDto dto = userService.profileUser(pageUserId, principalDetails.getUser().getId());
         model.addAttribute("dto", dto);
         return "user/profile";
     }
