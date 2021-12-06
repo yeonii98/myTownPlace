@@ -47,7 +47,7 @@
                 <!--제출버튼-->
                 <div class="content-item__12">
                     <div class="item__title"></div>
-                    <div class="item__input pwd__input" style="padding-left: 12rem">
+                    <div class="item__input pwd__input">
                         <button>비밀번호 변경</button>
                     </div>
                 </div>

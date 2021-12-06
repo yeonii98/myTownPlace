@@ -284,7 +284,7 @@
   justify-content: center;
 }
 .modal-image .modal {
-  width: 400px;
+  width: 327px;
   background-color: #fff;
   border-radius: 10px;
   display: flex;
@@ -330,13 +330,13 @@
   justify-content: center;
 }
 .modal-subscribe .subscribe {
-  width: 500px;
-  height: 500px;
-  background-color: #fff;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-}
+   width: 327px;
+   height: 403px;
+   background-color: #fff;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+ }
 .modal-subscribe .subscribe .subscribe-header {
   text-align: center;
   line-height: 50px;
@@ -421,7 +421,7 @@
   justify-content: center;
 }
 .modal-info .modal {
-  width: 400px;
+  width: 327px;
   background-color: #fff;
   border-radius: 10px;
   display: flex;
@@ -453,7 +453,7 @@
 }
 
 .modal-review .modal {
-  width: 400px;
+  width: 327px;
   background-color: #fff;
   border-radius: 10px;
   display: flex;
@@ -517,6 +517,19 @@
   }
   .modal-subscribe .subscribe .subscribe-list .subscribe__item .subscribe__btn {
     font-size: 16px;
+  }
+  .modal-subscribe .subscribe {
+    width: 500px;
+    height: 500px;
+  }
+  .modal-info .modal {
+    width: 400px;
+  }
+  .modal-review .modal {
+    width: 400px;
+  }
+  .modal-image .modal {
+    width: 400px;
   }
 }
 @media screen and (max-width: 935px) {

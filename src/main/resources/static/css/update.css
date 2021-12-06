@@ -132,7 +132,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-left: 15rem;
+  padding-left: 12rem;
 }
 
 /*제출버튼*/
@@ -181,6 +181,6 @@
   }
   /*제출버튼*/
   .setting-container .setting__content .content-item__12 .item__input {
-    margin-left: 24rem;
+    padding-left: 24rem;
   }
 }
