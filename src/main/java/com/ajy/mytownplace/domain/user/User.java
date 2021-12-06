@@ -18,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity //디비에 테이블을 생성
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

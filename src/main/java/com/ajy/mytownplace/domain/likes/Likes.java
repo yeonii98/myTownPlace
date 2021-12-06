@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(
+@Table(name = "lieks",
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "likes_uk",
