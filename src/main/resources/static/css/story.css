@@ -27,7 +27,7 @@
 /*컨테이너*/
 .main .container {
   padding-top: 30px;
-  width: 935px;
+  width: 324px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -332,7 +332,7 @@
 .map_wrap {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 315px;
   padding: 0;
 }
 
@@ -499,5 +499,18 @@
   cursor: default;
   color: #777;
 }
+/* Media */
+@media screen and (min-width: 768px) {
+  /*컨테이너*/
+  .main .container {
+    width: 935px;
+  }
 
+  .map_wrap {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    padding: 0;
+  }
+}
 

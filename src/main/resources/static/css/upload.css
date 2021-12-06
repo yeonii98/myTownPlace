@@ -12,7 +12,7 @@
 
 /*업로드섹션*/
 .upload {
-  width: 600px;
+  width: 355px;
   display: flex;
   flex-direction: column;
   padding: 10px 40px;
@@ -47,7 +47,7 @@
 }
 .upload .upload-top p::before {
   content: "";
-  position: absolute;
+  position: inherit;
   left: 60px;
   top: 50%;
   transform: translateY(-50%);
@@ -57,7 +57,7 @@
 }
 .upload .upload-top p::after {
   content: "";
-  position: absolute;
+  position: inherit;
   right: 60px;
   top: 50%;
   transform: translateY(-50%);
@@ -102,7 +102,7 @@
 }
 
 .upload__review{
-  width: 340px;
+  width: 305px;
   resize: vertical;
   height: 100px;
   padding-top: 7px;
@@ -115,7 +115,7 @@
 
 /*업로드 이미지 박스*/
 .upload .upload-form .upload-img {
-  width: 400px;
+  width: 335px;
   height: 300px;
   margin-bottom: 1rem;
 }
@@ -136,7 +136,7 @@
 /*이미지에 대한 설명인풋 + 버튼*/
 .upload .upload-form .upload-form-detail input,
 .upload .upload-form .upload-form-detail button {
-  width: 340px;
+  width: 305px;
 }
 .upload .upload-form .upload-form-detail input,
 textarea{
@@ -192,5 +192,40 @@ textarea{
 
 /* Media */
 @media screen and (min-width: 768px) {
-
+  .upload .upload-top p::before {
+    content: "";
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 150px;
+    height: 1px;
+    background: #222;
+  }
+  .upload .upload-top p::after {
+    content: "";
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 150px;
+    height: 1px;
+    background: #222;
+  }
+  /*업로드섹션*/
+  .upload {
+    width: 600px;
+  }
+  /*업로드 이미지 박스*/
+  .upload .upload-form .upload-img {
+    width: 400px;
+  }
+  /*이미지에 대한 설명인풋 + 버튼*/
+  .upload .upload-form .upload-form-detail input,
+  .upload .upload-form .upload-form-detail button {
+    width: 340px;
+  }
+  .upload__review{
+    width: 340px;
+  }
 }
