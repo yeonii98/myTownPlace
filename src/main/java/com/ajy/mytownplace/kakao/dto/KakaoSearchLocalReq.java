@@ -13,7 +13,7 @@ public class KakaoSearchLocalReq {
     //지역 검색 요청 변수에 대한 변수 생성
     private String query = ""; //검색을 원하는 문자열로서 UTF-8로 인코딩한다
     private int page = 1;
-    private int size = 7;
+    private int size = 9;
 
     public MultiValueMap<String, String> toMultiValueMap(){
         var map = new LinkedMultiValueMap<String, String>();
