@@ -166,7 +166,7 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 // 키워드로 장소를 검색합니다
 
 ps.keywordSearch(location1 +" 맛집", placesSearchCB,{
-    size: 9
+    size: 7
 });
 
 
