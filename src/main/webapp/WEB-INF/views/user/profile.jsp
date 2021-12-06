@@ -134,7 +134,7 @@
 <!--프로필사진 바꾸기 모달-->
 <div class="modal-image" onclick="modalImage()">
     <div class="modal">
-        <p>프로필 사진 바꾸기</p>
+        <div>프로필 사진 바꾸기</div>
         <button onclick="profileImageUpload(${principal.user.id}, ${dto.user.id})">사진 업로드</button>
         <button onclick="profileImageDelete(${principal.user.id}, ${dto.user.id})">현재 사진 삭제</button>
         <button onclick="closePopup('.modal-image')">취소</button>

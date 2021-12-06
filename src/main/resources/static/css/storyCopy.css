@@ -163,7 +163,7 @@
 .main .container .story-list .story-list__item .sl__item__contents {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
 }
 
 /*좋아요 버튼영역*/
@@ -308,7 +308,7 @@
 
 /*입력 인풋*/
 .main .container .story-list .story-list__item .sl__item__input input {
-  flex: 9;
+  flex: 4;
   height: 56px;
   border: 0;
   padding-left: 15px;
@@ -364,5 +364,10 @@
 
   .main .container .story-list .story-list__item .sl__item__input button {
     font-size: 17px;
+  }
+
+  /*입력 인풋*/
+  .main .container .story-list .story-list__item .sl__item__input input {
+    flex: 9;
   }
 }

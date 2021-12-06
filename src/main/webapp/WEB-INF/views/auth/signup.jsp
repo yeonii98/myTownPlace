@@ -37,7 +37,7 @@
                             <input type="text" name="username" placeholder="사용자 이름" required="required" maxlength="15" minlength="2"/>
                             <input type="password" name="password" placeholder="비밀번호" required="required" />
                             <input type="text" id="getLocation" class="getLocation" name="location" placeholder="내 위치(동 이름)" required="required"/>
-                            <div onclick="loadCoords()" class="text_location">위치 받아오기</div>
+                            <div onclick="loadCoords()" class="text_location" style="padding-left: 11rem">위치 받아오기</div>
                             <button>가입</button>
                         </form>
                         <!--회원가입 인풋end-->
