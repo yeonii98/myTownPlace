@@ -370,4 +370,9 @@
   .main .container .story-list .story-list__item .sl__item__input input {
     flex: 9;
   }
+
+  /*컨테이너*/
+  .main .container {
+    width: 935px;
+  }
 }
