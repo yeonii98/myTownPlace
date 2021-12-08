@@ -15,18 +15,12 @@ public class StoryController {
 
     @GetMapping({"/"})
     public String story(){
-//        ArrayList<StoryDto> dto =  storyService.listStory(principalDetails.getUser().getId(), principalDetails.getUser().getLocation(),page);
-//        model.addAttribute("u", dto);
-//        model.addAttribute("page", page);
         return "image/story";
     }
 
     @GetMapping("/search")
     public String searchStory(@RequestParam(value = "location") String location, Model model){
-//        ArrayList<StoryDto> dto = storyService.listStory(principalDetails.getUser().getId(), location, page);
-//        model.addAttribute("u", dto);
         model.addAttribute("location", location);
-//        model.addAttribute("page", page);
         return "image/search";
     }
 

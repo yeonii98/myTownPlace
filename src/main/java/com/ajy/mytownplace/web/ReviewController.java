@@ -41,16 +41,6 @@ public class ReviewController {
         return "image/myReview";
     }
 
-//    @PostMapping("/image")
-//    public String imageUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
-//        if(reviewUploadDto.getFile().isEmpty()){
-//            throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
-//        }
-//        //서비스 호출
-//        reviewService.uploadReview(reviewUploadDto, principalDetails);
-//        return "redirect:/user/" + principalDetails.getUser().getId();
-//    }
-
     @PostMapping("/apiReview")
     public String apiReviewUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
         if(reviewUploadDto.getFile().isEmpty()){
@@ -63,14 +53,14 @@ public class ReviewController {
     }
 
     @PostMapping("/apiReview/update/{reviewId}")
-    public String apiReviewUpdate(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable int reviewId){
+    public String apiReviewUpdate(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable int reviewId) throws IOException {
         System.out.println(reviewUploadDto);
         Review reviewEntity = reviewRepository.findById(reviewId).orElseThrow(()-> {
             return new CustomValidationApiException("찾을 수 없는 글입니다.");
         });
         String img = "";
         if(reviewUploadDto.getFile().isEmpty()){
-            img = reviewEntity.getPostImageUrl();
+            img = s3Service.upload(reviewUploadDto.getFile());
         }
         if(reviewEntity.getUser().getId() != principalDetails.getUser().getId()){
             throw new CustomValidationException("잘못된 경로입니다.", null);

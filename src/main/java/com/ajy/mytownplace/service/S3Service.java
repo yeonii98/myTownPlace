@@ -54,4 +54,8 @@ public class S3Service {
                 .withCannedAcl(CannedAccessControlList.PublicRead));
         return fileName;
     }
+
+    public void delete(String fileName){
+        s3Client.deleteObject(bucket, fileName);
+    }
 }

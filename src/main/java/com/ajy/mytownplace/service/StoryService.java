@@ -39,7 +39,6 @@ public class StoryService {
 
     @Transactional(readOnly = true)//영속성 컨텍스트 변경 감지를 해서, 더티체킹, flush(반영) X
     public ArrayList<StoryDto> listStory(int principalId, String location, int page){
-        System.out.println("---------------------"+location+"----------------------------");
         KakaoSearchLocalReq kakaoSearchLocalReq = new KakaoSearchLocalReq();
         NaverSearchImageReq naverSearchImageReq = new NaverSearchImageReq();
         kakaoSearchLocalReq.setPage(page);

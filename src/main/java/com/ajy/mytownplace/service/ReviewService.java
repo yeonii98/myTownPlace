@@ -131,17 +131,17 @@ public class ReviewService {
 
     @Transactional
     public void updateReview(ReviewUploadDto reviewUploadDto, int reviewId, String img){
-        UUID uuid = UUID.randomUUID();
-        String imageFileName = uuid + "_" + reviewUploadDto.getFile().getOriginalFilename();
-
-        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
-
-        //통신 I/O -> 예외가 발생할 수 있다.
-        try{
-            Files.write(imageFilePath,reviewUploadDto.getFile().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        UUID uuid = UUID.randomUUID();
+//        String imageFileName = uuid + "_" + reviewUploadDto.getFile().getOriginalFilename();
+//
+//        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+//
+//        //통신 I/O -> 예외가 발생할 수 있다.
+//        try{
+//            Files.write(imageFilePath,reviewUploadDto.getFile().getBytes());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         Review reviewEntity = reviewRepository.findById(reviewId).orElseThrow(()-> {
             return new CustomValidationApiException("찾을 수 없는 글입니다.");
@@ -149,7 +149,7 @@ public class ReviewService {
 
         reviewEntity.setCaption(reviewUploadDto.getCaption());
         reviewEntity.setRating(reviewUploadDto.getRating());
-        reviewEntity.setPostImageUrl(imageFileName);
+        reviewEntity.setPostImageUrl(img);
         if(!img.isBlank()){
             reviewEntity.setPostImageUrl(img);
         }

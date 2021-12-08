@@ -69,12 +69,13 @@
 }
 .profile .profile-right .name-group .cta {
   margin-right: 10px;
-  padding: 5px 9px;
+  padding: 0px 5px;
   border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
   border-radius: 4px;
   color: #262626;
   font-weight: bold;
   background: transparent;
+  font-size: 12px;
 }
 .profile .profile-right .name-group .modi, .subscribe__btn .modi{
   border: none;
@@ -530,6 +531,10 @@
   }
   .modal-image .modal {
     width: 400px;
+  }
+  .profile .profile-right .name-group .cta {
+    padding: 5px 9px;
+    font-size: 16px;
   }
 }
 @media screen and (max-width: 935px) {
