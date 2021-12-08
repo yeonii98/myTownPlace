@@ -26,7 +26,7 @@ function getStoryItem(review) {
     let item = `<div class="story-list__item">
                 <div class="sl__item__header sl__item__header--review">
                     <div style="display: -webkit-inline-box; align-items: center; cursor: pointer" onclick="location.href='/user/${review.user.id}'">
-                        <img class="profile-image" src="/upload/${review.user.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
+                        <img class="profile-image" src="${review.user.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
                             <div style="margin-left: 1rem; margin-top: 4px">${review.user.name}</div>
                     </div>
                     <div class="review__hash">
@@ -45,7 +45,7 @@ function getStoryItem(review) {
                 </div>
 
                 <div class="sl__item__img">
-                    <img src="/upload/${review.postImageUrl}" onerror="this.src='/images/foodImg.png'"/>
+                    <img src="${review.postImageUrl}" onerror="this.src='/images/foodImg.png'"/>
                 </div>
                 <div class="sl__item__contents">
                     <div class="sl__item__contents__icon">`

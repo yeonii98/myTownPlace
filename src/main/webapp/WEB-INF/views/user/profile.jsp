@@ -101,7 +101,7 @@
                 <c:set var = "size" value="${fn:length(dto.user.reviews)}"/>
                 <c:forEach var="i" begin="1" end="${size}">
                     <div class="img-box" id="review-${dto.user.reviews[size-i].id}" onclick="popup2('.modal-review', ${dto.user.id}, ${principal.user.id}, ${dto.user.reviews[size-i].id})">
-                        <a href=""> <img src="/upload/${dto.user.reviews[size-i].postImageUrl}"/>
+                        <a href=""> <img src="${dto.user.reviews[size-i].postImageUrl}"/>
                         </a>
                         <div class="comment">
                             <a href="#" class=""> <i class="fas fa-thumbs-up"></i><span>${dto.user.reviews[size-i].likeCount}</span>&nbsp&nbsp<i class="fas fa-comment"></i><span>${dto.user.reviews[size-i].commentCount}</span></a>
