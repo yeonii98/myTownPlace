@@ -34,20 +34,20 @@ public class UserService {
     private String uploadFolder;
 
     @Transactional
-    public User profileUserImage(int principalId, MultipartFile profileImageFile) {
+    public User profileUserImage(int principalId, String imgPath) {
         User userEntity = userRepository.findById(principalId).orElseThrow(()-> {
             return new CustomValidationApiException("찾을 수 없는 id입니다.");
         });
-        UUID uuid = UUID.randomUUID();
-        String imageFileName = uuid + "_" + profileImageFile.getOriginalFilename();
-
-        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
-        try{
-            Files.write(imageFilePath, profileImageFile.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        userEntity.setProfileImageUrl(imageFileName);
+//        UUID uuid = UUID.randomUUID();
+//        String imageFileName = uuid + "_" + profileImageFile.getOriginalFilename();
+//
+//        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+//        try{
+//            Files.write(imageFilePath, profileImageFile.getBytes());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        userEntity.setProfileImageUrl(imgPath);
 
         return userEntity;
     }

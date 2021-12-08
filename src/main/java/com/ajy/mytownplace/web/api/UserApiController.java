@@ -2,6 +2,7 @@ package com.ajy.mytownplace.web.api;
 
 import com.ajy.mytownplace.domain.user.User;
 import com.ajy.mytownplace.service.FavoriteService;
+import com.ajy.mytownplace.service.S3Service;
 import com.ajy.mytownplace.web.dto.CMRespDto;
 import com.ajy.mytownplace.web.dto.favorite.FavoriteDto;
 import com.ajy.mytownplace.web.dto.subscribe.SubscribeDto;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -28,10 +30,12 @@ public class UserApiController {
     private final UserService userService;
     private final SubscribeService subscribeService;
     private final FavoriteService favoriteService;
+    private final S3Service s3Service;
 
     @PutMapping("api/user/{principalId}/profileImageUrl")
-    public ResponseEntity<?> profileImageUrlUpdate(@PathVariable int principalId, MultipartFile profileImageFile, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        User userEntity = userService.profileUserImage(principalId, profileImageFile);
+    public ResponseEntity<?> profileImageUrlUpdate(@PathVariable int principalId, MultipartFile profileImageFile, @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
+        String imgPath = s3Service.upload(profileImageFile);
+        User userEntity = userService.profileUserImage(principalId, imgPath);
         principalDetails.setUser(userEntity); // 세션 변경
         return new ResponseEntity<>(new CMRespDto<>(1, "프로필 사진 변경 성공", null), HttpStatus.OK);
     }
