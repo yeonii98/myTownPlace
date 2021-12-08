@@ -22,7 +22,7 @@
                          onclick="popup('.modal-image', ${dto.user.id}, ${principal.user.id})">
                 </c:otherwise>
             </c:choose>
-                <img src="/upload/${dto.user.profileImageUrl}"
+                <img src="${dto.user.profileImageUrl}"
                      onerror="this.src='/images/Profile.png'" id="userProfileImage"/>
                 </div>
                 <form id="userProfileImageForm">
