@@ -2,6 +2,7 @@ package com.ajy.mytownplace.web;
 
 import com.ajy.mytownplace.domain.review.Review;
 import com.ajy.mytownplace.domain.review.ReviewRepository;
+import com.ajy.mytownplace.domain.subscribe.SubscribeRepository;
 import com.ajy.mytownplace.domain.user.User;
 import com.ajy.mytownplace.domain.user.UserRepository;
 import com.ajy.mytownplace.handler.ex.CustomValidationApiException;
@@ -29,18 +30,32 @@ public class ReviewController {
     private final ReviewService reviewService;
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
+    private final SubscribeRepository subscribeRepository;
     private final S3Service s3Service;
 
+    //팔로우 하고 있는 리뷰 글 모아보기
     @GetMapping({"/review"})
-    public String story(){
+    public String story(@AuthenticationPrincipal PrincipalDetails principalDetails){
+        if(subscribeRepository.mSubscribeCount(principalDetails.getUser().getId()) == 0){
+            new CustomValidationException("팔로우 하고 있는 계정이 없습니다!\n관심있는 계정을 팔로우 해보세요!", null);
+            return "redirect:/user/" + principalDetails.getUser().getId();
+        }
         return "image/review";
     }
 
     @GetMapping({"/myReview"})
-    public String myStory(){
+    public String myStory(@AuthenticationPrincipal PrincipalDetails principalDetails){
+        User userEntity = userRepository.findById(principalDetails.getUser().getId()).orElseThrow(()-> {
+            return new CustomValidationApiException("찾을 수 없는 id입니다.");
+        });
+        if(userEntity.getReviews().size() == 0){
+            new CustomValidationException("등록된 글이 없습니다!", null);
+            return "redirect:/user/" + principalDetails.getUser().getId();
+        }
         return "image/myReview";
     }
 
+    //리뷰 글 쓰기
     @PostMapping("/apiReview")
     public String apiReviewUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
         if(reviewUploadDto.getFile().isEmpty()){

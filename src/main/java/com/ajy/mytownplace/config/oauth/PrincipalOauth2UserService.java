@@ -49,7 +49,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
        String location = "서울역";
        String role = "ROLE_USER";
 
-       User userEntity = userRepository.findByUsername(username);
+       User userEntity = userRepository.findByProviderId(providerId);
 
        if(userEntity == null){
            userEntity = User.builder()
