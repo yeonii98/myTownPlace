@@ -38,11 +38,11 @@ public class ReviewController {
     //팔로우 하고 있는 리뷰 글 모아보기
     @GetMapping({"/review"})
     public String story(@AuthenticationPrincipal PrincipalDetails principalDetails){
+        ArrayList<Review> reviews = reviewRepository.mReview(principalDetails.getUser().getId());
         if(subscribeRepository.mSubscribeCount(principalDetails.getUser().getId()) == 0){
             throw new CustomValidationException("팔로우 하고 있는 계정이 없습니다! 관심있는 계정을 팔로우 해보세요!", null);
         }
-        ArrayList<Review> reviews = reviewRepository.mReview(principalDetails.getUser().getId());
-        if(reviews.size() == 0){
+        else if(reviews.size() == 0){
             throw new CustomValidationException("팔로우 하고 있는 계정의 게시글이 아직 올라오지 않았습니다😢", null);
         }
         return "image/review";
