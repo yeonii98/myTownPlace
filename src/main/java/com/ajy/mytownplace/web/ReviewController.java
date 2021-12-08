@@ -13,6 +13,7 @@ import com.ajy.mytownplace.web.dto.review.ReviewUploadDto;
 import com.ajy.mytownplace.config.auth.PrincipalDetails;
 import com.ajy.mytownplace.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Controller
@@ -38,6 +40,10 @@ public class ReviewController {
     public String story(@AuthenticationPrincipal PrincipalDetails principalDetails){
         if(subscribeRepository.mSubscribeCount(principalDetails.getUser().getId()) == 0){
             throw new CustomValidationException("팔로우 하고 있는 계정이 없습니다! 관심있는 계정을 팔로우 해보세요!", null);
+        }
+        ArrayList<Review> reviews = reviewRepository.mReview(principalDetails.getUser().getId());
+        if(reviews.size() == 0){
+            throw new CustomValidationException("팔로우 하고 있는 계정의 게시글이 아직 올라오지 않았습니다😢", null);
         }
         return "image/review";
     }
