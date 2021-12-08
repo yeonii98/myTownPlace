@@ -184,7 +184,7 @@
 #tab-content #tab-1-content .tab-1-content-inner {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px;
+  grid-gap: 7px;
 }
 #tab-content #tab-1-content .tab-1-content-inner .img-box {
   position: relative;
@@ -535,6 +535,12 @@
   .profile .profile-right .name-group .cta {
     padding: 5px 9px;
     font-size: 16px;
+  }
+  #tab-content #tab-1-content .tab-1-content-inner {
+    grid-gap: 15px;
+  }
+  .profileContainer {
+    width: 97%;
   }
 }
 @media screen and (max-width: 935px) {
