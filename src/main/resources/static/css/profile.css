@@ -484,7 +484,7 @@
 }
 
 /* Media */
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .profile .profile-left .profile-img-wrap {
     width: 162px;
     height: 162px;
