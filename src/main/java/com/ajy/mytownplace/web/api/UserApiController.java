@@ -32,7 +32,7 @@ public class UserApiController {
 
     @PutMapping("api/user/{principalId}/profileImageUrl")
     public ResponseEntity<?> profileImageUrlUpdate(@PathVariable int principalId, MultipartFile profileImageFile, @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
-        String imgPath = s3Uploader.upload(profileImageFile,"test");
+        String imgPath = s3Service.upload(profileImageFile);
         User userEntity = userService.profileUserImage(principalId, imgPath);
         principalDetails.setUser(userEntity); // 세션 변경
         return new ResponseEntity<>(new CMRespDto<>(1, "프로필 사진 변경 성공", null), HttpStatus.OK);
