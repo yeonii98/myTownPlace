@@ -23,7 +23,7 @@
                     <input type="file" name="file"  onchange="imageChoose(this)" id='profile_img_upload'/>
                     <label for='profile_img_upload'><i class="far fa-file-image"></i>&nbsp;이미지 선택</label>
                     <div class="upload-img">
-                        <img src="${dto.reviewImgUrl}" alt="" id="imageUploadPreview" />
+                        <img src="https://d1fs6z327bfwly.cloudfront.net/${dto.reviewImgUrl}" alt="" id="imageUploadPreview" />
                     </div>
                     <fieldset>
                         <input type="radio" name="rating" value="5" id="rate5"><label for="rate5">⭐</label>

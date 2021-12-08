@@ -46,7 +46,7 @@ function getStoryItem(review) {
                 </div>
 
                 <div class="sl__item__img">
-                    <img src="${review.postImageUrl}" onerror="this.src='/images/foodImg.png'"/>
+                    <img src="https://d1fs6z327bfwly.cloudfront.net/${review.postImageUrl}" onerror="this.src='/images/foodImg.png'"/>
                 </div>
                 <div class="sl__item__contents">
                     <div class="sl__item__contents__icon">`

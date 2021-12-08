@@ -28,7 +28,6 @@ public class UserApiController {
     private final SubscribeService subscribeService;
     private final FavoriteService favoriteService;
     private final S3Service s3Service;
-    private final S3Uploader s3Uploader;
 
     @PutMapping("api/user/{principalId}/profileImageUrl")
     public ResponseEntity<?> profileImageUrlUpdate(@PathVariable int principalId, MultipartFile profileImageFile, @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {

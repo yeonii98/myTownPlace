@@ -19,6 +19,9 @@ import java.util.UUID;
 @Service
 @NoArgsConstructor
 public class S3Service {
+
+    public static final String CLOUD_FRONT_DOMAIN_NAME = "d1fs6z327bfwly.cloudfront.net";
+
     private AmazonS3 s3Client;
 
     @Value("${cloud.aws.credentials.accessKey}")
@@ -49,6 +52,6 @@ public class S3Service {
 
         s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
-        return s3Client.getUrl(bucket, fileName).toString();
+        return fileName;
     }
 }

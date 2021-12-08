@@ -63,7 +63,7 @@ function getFavoriteItem(u) {
     let item = `<div class="subscribe__item">
         <a href="${u.detailUrl}">
             <div class="subscribe__img" style="cursor: pointer">
-                <img src=${u.img} onerror="this.src='/images/foodImg.png'"/>
+                <img src=$https://d1fs6z327bfwly.cloudfront.net/{u.img} onerror="this.src='/images/foodImg.png'"/>
             </div>
         </a>
     <div class="subscribe__text">
@@ -108,7 +108,7 @@ function subscribeInfoModalOpen(pageUserId) {
 function getSubscribeModalItem(u) {
     let item = `<div class="subscribe__item" id="subscribeModalItem-${u.id}">
     <div class="subscribe__img" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
-        <img src="${u.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
+        <img src="https://d1fs6z327bfwly.cloudfront.net/${u.profileImageUrl}" onerror="this.src='/images/Profile.png'"/>
     </div>
     <div class="subscribe__text" onclick="location.href='/user/${u.id}'" style="cursor: pointer">
         <div>${u.username}</div>

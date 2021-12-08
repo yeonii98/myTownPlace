@@ -14,7 +14,7 @@
             <!--프로필셋팅 아이디영역-->
             <div class="content-item__01">
                 <div class="item__img">
-                    <img src="${principal.user.profileImageUrl}" onerror="this.src='/images/Profile.png'"
+                    <img src="https://d1fs6z327bfwly.cloudfront.net/${principal.user.profileImageUrl}" onerror="this.src='/images/Profile.png'"
                          id="userProfileImage"/>
                 </div>
                 <div class="item__username">

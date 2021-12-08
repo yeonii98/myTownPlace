@@ -22,7 +22,7 @@
                          onclick="popup('.modal-image', ${dto.user.id}, ${principal.user.id})">
                 </c:otherwise>
             </c:choose>
-                <img src="${dto.user.profileImageUrl}"
+                <img src="https://d1fs6z327bfwly.cloudfront.net/${dto.user.profileImageUrl}"
                      onerror="this.src='/images/Profile.png'" id="userProfileImage"/>
                 </div>
                 <form id="userProfileImageForm">
@@ -101,7 +101,7 @@
                 <c:set var = "size" value="${fn:length(dto.user.reviews)}"/>
                 <c:forEach var="i" begin="1" end="${size}">
                     <div class="img-box" id="review-${dto.user.reviews[size-i].id}" onclick="popup2('.modal-review', ${dto.user.id}, ${principal.user.id}, ${dto.user.reviews[size-i].id})">
-                        <a href=""> <img src="${dto.user.reviews[size-i].postImageUrl}"/>
+                        <a href=""> <img src="https://d1fs6z327bfwly.cloudfront.net/${dto.user.reviews[size-i].postImageUrl}"/>
                         </a>
                         <div class="comment">
                             <a href="#" class=""> <i class="fas fa-thumbs-up"></i><span>${dto.user.reviews[size-i].likeCount}</span>&nbsp&nbsp<i class="fas fa-comment"></i><span>${dto.user.reviews[size-i].commentCount}</span></a>
