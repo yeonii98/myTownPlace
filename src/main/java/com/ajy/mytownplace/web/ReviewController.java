@@ -37,7 +37,7 @@ public class ReviewController {
     @GetMapping({"/review"})
     public String story(@AuthenticationPrincipal PrincipalDetails principalDetails){
         if(subscribeRepository.mSubscribeCount(principalDetails.getUser().getId()) == 0){
-            new CustomValidationException("팔로우 하고 있는 계정이 없습니다!\n관심있는 계정을 팔로우 해보세요!", null);
+            new CustomValidationApiException("팔로우 하고 있는 계정이 없습니다!\n관심있는 계정을 팔로우 해보세요!", null);
             return "redirect:/user/" + principalDetails.getUser().getId();
         }
         return "image/review";
@@ -49,7 +49,7 @@ public class ReviewController {
             return new CustomValidationApiException("찾을 수 없는 id입니다.");
         });
         if(userEntity.getReviews().size() == 0){
-            new CustomValidationException("등록된 글이 없습니다!", null);
+            new CustomValidationApiException("등록된 글이 없습니다!", null);
             return "redirect:/user/" + principalDetails.getUser().getId();
         }
         return "image/myReview";

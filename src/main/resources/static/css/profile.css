@@ -483,13 +483,8 @@
   }
 }
 
-@media screen and (max-width: 935px) {
-  .profileContainer {
-    width: 100%;
-  }
-
 /* Media */
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .profile .profile-left .profile-img-wrap {
     width: 162px;
     height: 162px;
@@ -547,5 +542,4 @@
   .profileContainer {
     width: 97%;
   }
-}
 }
