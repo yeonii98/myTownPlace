@@ -6,6 +6,7 @@ import com.ajy.mytownplace.domain.user.User;
 import com.ajy.mytownplace.domain.user.UserRepository;
 import com.ajy.mytownplace.handler.ex.CustomValidationApiException;
 import com.ajy.mytownplace.handler.ex.CustomValidationException;
+import com.ajy.mytownplace.service.S3Service;
 import com.ajy.mytownplace.web.dto.review.ApiReviewDto;
 import com.ajy.mytownplace.web.dto.review.ReviewUploadDto;
 import com.ajy.mytownplace.config.auth.PrincipalDetails;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
+
 @RequiredArgsConstructor
 @Controller
 public class ReviewController {
@@ -26,7 +29,7 @@ public class ReviewController {
     private final ReviewService reviewService;
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
-
+    private final S3Service s3Service;
 
     @GetMapping({"/review"})
     public String story(){
@@ -38,23 +41,24 @@ public class ReviewController {
         return "image/myReview";
     }
 
-    @PostMapping("/image")
-    public String imageUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
-        if(reviewUploadDto.getFile().isEmpty()){
-            throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
-        }
-        //서비스 호출
-        reviewService.uploadReview(reviewUploadDto, principalDetails);
-        return "redirect:/user/" + principalDetails.getUser().getId();
-    }
+//    @PostMapping("/image")
+//    public String imageUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
+//        if(reviewUploadDto.getFile().isEmpty()){
+//            throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
+//        }
+//        //서비스 호출
+//        reviewService.uploadReview(reviewUploadDto, principalDetails);
+//        return "redirect:/user/" + principalDetails.getUser().getId();
+//    }
 
     @PostMapping("/apiReview")
-    public String apiReviewUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
+    public String apiReviewUpload(ReviewUploadDto reviewUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
         if(reviewUploadDto.getFile().isEmpty()){
             throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
         }
+        String imgPath = s3Service.upload(reviewUploadDto.getFile());
         //서비스 호출
-        reviewService.uploadReview(reviewUploadDto, principalDetails);
+        reviewService.uploadReview(reviewUploadDto, principalDetails, imgPath);
         return "redirect:/user/" + principalDetails.getUser().getId();
     }
 

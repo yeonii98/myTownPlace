@@ -110,21 +110,21 @@ public class ReviewService {
     //트랜잭션이란? 일의 최소 단위. ex) 송금을 하기 위해서는 입금과 출금 2가지 상황이 필요함, 입금과 출금을 성공 했을 때 commit을 한다. 실패하면 rollback
     //데이터의 변형이 일어난다면 Transactional을 꼭 걸어줘야한다.
     @Transactional
-    public void uploadReview(ReviewUploadDto reviewUploadDto, PrincipalDetails principalDetails){
-        UUID uuid = UUID.randomUUID();
-        String imageFileName = uuid + "_" + reviewUploadDto.getFile().getOriginalFilename();
-
-        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
-
-        //통신 I/O -> 예외가 발생할 수 있다.
-        try{
-            Files.write(imageFilePath,reviewUploadDto.getFile().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void uploadReview(ReviewUploadDto reviewUploadDto, PrincipalDetails principalDetails, String imgPath){
+//        UUID uuid = UUID.randomUUID();
+//        String imageFileName = uuid + "_" + reviewUploadDto.getFile().getOriginalFilename();
+//
+//        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+//
+//        //통신 I/O -> 예외가 발생할 수 있다.
+//        try{
+//            Files.write(imageFilePath,reviewUploadDto.getFile().getBytes());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         //review 테이블에 저장
-        Review review = reviewUploadDto.toEntity(imageFileName, principalDetails.getUser());
+        Review review = reviewUploadDto.toEntity(imgPath, principalDetails.getUser());
         reviewRepository.save(review);
 
     }
