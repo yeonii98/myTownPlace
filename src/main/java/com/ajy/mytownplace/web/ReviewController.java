@@ -37,7 +37,7 @@ public class ReviewController {
     @GetMapping({"/review"})
     public String story(@AuthenticationPrincipal PrincipalDetails principalDetails){
         if(subscribeRepository.mSubscribeCount(principalDetails.getUser().getId()) == 0){
-            throw new CustomValidationException("팔로우 하고 있는 계정이 없습니다!\n관심있는 계정을 팔로우 해보세요!", null);
+            throw new CustomValidationException("팔로우 하고 있는 계정이 없습니다! 관심있는 계정을 팔로우 해보세요!", null);
         }
         return "image/review";
     }
