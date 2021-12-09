@@ -63,7 +63,7 @@ function getFavoriteItem(u) {
     let item = `<div class="subscribe__item">
         <a href="${u.detailUrl}">
             <div class="subscribe__img" style="cursor: pointer">
-                <img src=$https://d1fs6z327bfwly.cloudfront.net/{u.img} onerror="this.src='/images/foodImg.png'"/>
+                <img src=${u.img} onerror="this.src='/images/foodImg.png'"/>
             </div>
         </a>
     <div class="subscribe__text">
