@@ -48,7 +48,7 @@ function getItem(data,i) {
                         </div>
 
                         <div style="display: flex; margin-left: 2rem; padding: 1rem 0">
-                            <img src="https://d1fs6z327bfwly.cloudfront.net/${data.image}" onerror="this.src='/images/foodImg.png'"
+                            <img src="${data.image}" onerror="this.src='/images/foodImg.png'"
                                  style="width: 100px; height: 100px; align-self: center"/>
                             <div class="sl__item__contents">
                                 <div class="sl__item__contents__content">
