@@ -7,7 +7,7 @@
 * IDE : InteliJ
 * DBMS : MySQL 8.0.21
 * Frontend : BootStrap 4, HTML, CSS, JavaScript
-* Backend : Java, Spring Boot, Spring Security
+* Backend : Java, Spring Boot, Spring Security, AWS(EC2, RDS, S3, CloudFront)
 ---
 ### 기능
 * 동네 설정하기 - 카카오 지도 api를 사용하여 현재 위치 가져오기
