@@ -1,16 +1,15 @@
-# 우리동네 맛집
+# 우리동네 맛집🏘🍽
+동네를 설정하여 해당 동네의 맛집을 불러오고 리뷰 및 별점을 남길 수 있는 반응형 웹 페이지 입니다.  
 
-### 프로젝트 개요
-* 동네를 설정하여 해당 동네의 맛집을 불러오고 리뷰 및 별점을 남길 수 있는 반응형 웹 페이지 입니다.
----
-### 기술
+## 🛠기술
 * IDE : InteliJ
 * DBMS : MySQL 8.0.21
 * Frontend : BootStrap 4, HTML, CSS, JavaScript
 * Backend : Java, Spring Boot, Spring Security, AWS(EC2, RDS, S3, CloudFront)
----
-### 기능
+
+## 🔎기능
 * 동네 설정하기 - 카카오 지도 api를 사용하여 현재 위치 가져오기
+* 지도 - 현재 위치 및 음식점들의 위치를 번호로 매핑하여 가져오기
 * 맛집 정보 가져오기
     - 카카오 검색 api를 사용하여 "동네" + 맛집 으로 검색된 정보
     - 네이버 이미지 api를 사용하여 "동네" + 맛집 으로 검색된 이미지
@@ -28,3 +27,9 @@
     - 구글 로그인
     - 카카오 로그인
     - 네이버 로그인
+* 서버 인프라 구축
+    - AWS AWS EC2, RDS, S3, CloudFront 생성
+
+## 🖥메인 화면
+![image](https://user-images.githubusercontent.com/76156034/147045388-166ddf10-d69c-42bb-99fe-edf114ad2023.png)
+
